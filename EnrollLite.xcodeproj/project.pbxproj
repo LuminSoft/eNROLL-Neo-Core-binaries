@@ -1,0 +1,491 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		27828AF22CE0E193002BEE4D /* EnrollLite.h in Headers */ = {isa = PBXBuildFile; fileRef = 27828AF12CE0E193002BEE4D /* EnrollLite.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		27828AF92CE0E300002BEE4D /* CardDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828AF82CE0E300002BEE4D /* CardDetectionViewController.swift */; };
+		27828AFB2CE0E331002BEE4D /* BaseCardDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828AFA2CE0E331002BEE4D /* BaseCardDetectionViewController.swift */; };
+		27828AFD2CE0E344002BEE4D /* CardDetectionViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828AFC2CE0E344002BEE4D /* CardDetectionViewControllerDelegate.swift */; };
+		27828B012CE0E3A0002BEE4D /* CardDetectionSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828B002CE0E3A0002BEE4D /* CardDetectionSettings.swift */; };
+		27828B032CE0E424002BEE4D /* ObjectDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828B022CE0E424002BEE4D /* ObjectDetectionViewController.swift */; };
+		27828B052CE0E436002BEE4D /* ObjectDetectionSessionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828B042CE0E436002BEE4D /* ObjectDetectionSessionHandler.swift */; };
+		27828B072CE0E55C002BEE4D /* TorchSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828B062CE0E55C002BEE4D /* TorchSettings.swift */; };
+		27828B092CE0E5A4002BEE4D /* DetectionOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828B082CE0E5A4002BEE4D /* DetectionOperations.swift */; };
+		27828B0B2CE0E5F2002BEE4D /* Bundle+IDCardCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828B0A2CE0E5F2002BEE4D /* Bundle+IDCardCamera.swift */; };
+		27828B122CE0E674002BEE4D /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27828B0D2CE0E674002BEE4D /* Media.xcassets */; };
+		27828B132CE0E674002BEE4D /* BarcodeDetectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27828B0E2CE0E674002BEE4D /* BarcodeDetectionViewController.xib */; };
+		27828B142CE0E674002BEE4D /* CardDetectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27828B0F2CE0E674002BEE4D /* CardDetectionViewController.xib */; };
+		27828B162CE0E674002BEE4D /* Base.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 27828B112CE0E674002BEE4D /* Base.xcconfig */; };
+		27828B192CE0F341002BEE4D /* CMSampleBuffer+CGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828B182CE0F341002BEE4D /* CMSampleBuffer+CGImage.swift */; };
+		27828B1C2CE0F732002BEE4D /* PassportDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828B1B2CE0F732002BEE4D /* PassportDetectionViewController.swift */; };
+		27828B1F2CE239C7002BEE4D /* MLFaceDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828B1E2CE239C7002BEE4D /* MLFaceDetectionViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		27828AEE2CE0E193002BEE4D /* EnrollLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EnrollLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27828AF12CE0E193002BEE4D /* EnrollLite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnrollLite.h; sourceTree = "<group>"; };
+		27828AF82CE0E300002BEE4D /* CardDetectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetectionViewController.swift; sourceTree = "<group>"; };
+		27828AFA2CE0E331002BEE4D /* BaseCardDetectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCardDetectionViewController.swift; sourceTree = "<group>"; };
+		27828AFC2CE0E344002BEE4D /* CardDetectionViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetectionViewControllerDelegate.swift; sourceTree = "<group>"; };
+		27828B002CE0E3A0002BEE4D /* CardDetectionSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetectionSettings.swift; sourceTree = "<group>"; };
+		27828B022CE0E424002BEE4D /* ObjectDetectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectDetectionViewController.swift; sourceTree = "<group>"; };
+		27828B042CE0E436002BEE4D /* ObjectDetectionSessionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectDetectionSessionHandler.swift; sourceTree = "<group>"; };
+		27828B062CE0E55C002BEE4D /* TorchSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TorchSettings.swift; sourceTree = "<group>"; };
+		27828B082CE0E5A4002BEE4D /* DetectionOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetectionOperations.swift; sourceTree = "<group>"; };
+		27828B0A2CE0E5F2002BEE4D /* Bundle+IDCardCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+IDCardCamera.swift"; sourceTree = "<group>"; };
+		27828B0D2CE0E674002BEE4D /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		27828B0E2CE0E674002BEE4D /* BarcodeDetectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BarcodeDetectionViewController.xib; sourceTree = "<group>"; };
+		27828B0F2CE0E674002BEE4D /* CardDetectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardDetectionViewController.xib; sourceTree = "<group>"; };
+		27828B102CE0E674002BEE4D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		27828B112CE0E674002BEE4D /* Base.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
+		27828B182CE0F341002BEE4D /* CMSampleBuffer+CGImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CMSampleBuffer+CGImage.swift"; sourceTree = "<group>"; };
+		27828B1B2CE0F732002BEE4D /* PassportDetectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportDetectionViewController.swift; sourceTree = "<group>"; };
+		27828B1E2CE239C7002BEE4D /* MLFaceDetectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLFaceDetectionViewController.swift; sourceTree = "<group>"; };
+		27828B522CE245FA002BEE4D /* GoogleDataTransport.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleDataTransport.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27828B532CE245FA002BEE4D /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27828B542CE245FA002BEE4D /* GoogleUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27828B552CE245FA002BEE4D /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27828B562CE245FA002BEE4D /* nanopb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = nanopb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27828B582CE245FA002BEE4D /* FBLPromises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBLPromises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		27828AEB2CE0E193002BEE4D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		23AEA9DAE5C5C63A0501CF3F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				27828B522CE245FA002BEE4D /* GoogleDataTransport.framework */,
+				27828B532CE245FA002BEE4D /* GoogleToolboxForMac.framework */,
+				27828B542CE245FA002BEE4D /* GoogleUtilities.framework */,
+				27828B552CE245FA002BEE4D /* GTMSessionFetcher.framework */,
+				27828B562CE245FA002BEE4D /* nanopb.framework */,
+				27828B582CE245FA002BEE4D /* FBLPromises.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		27828AE42CE0E193002BEE4D = {
+			isa = PBXGroup;
+			children = (
+				27828AF02CE0E193002BEE4D /* EnrollLite */,
+				27828AEF2CE0E193002BEE4D /* Products */,
+				ED1994C71043151CEA3A2CAB /* Pods */,
+				23AEA9DAE5C5C63A0501CF3F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		27828AEF2CE0E193002BEE4D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				27828AEE2CE0E193002BEE4D /* EnrollLite.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		27828AF02CE0E193002BEE4D /* EnrollLite */ = {
+			isa = PBXGroup;
+			children = (
+				27828AFF2CE0E360002BEE4D /* features */,
+				27828AF12CE0E193002BEE4D /* EnrollLite.h */,
+			);
+			path = EnrollLite;
+			sourceTree = "<group>";
+		};
+		27828AFE2CE0E34D002BEE4D /* CardDetection */ = {
+			isa = PBXGroup;
+			children = (
+				27828B0C2CE0E674002BEE4D /* Resources */,
+				27828B0A2CE0E5F2002BEE4D /* Bundle+IDCardCamera.swift */,
+				27828B062CE0E55C002BEE4D /* TorchSettings.swift */,
+				27828AFA2CE0E331002BEE4D /* BaseCardDetectionViewController.swift */,
+				27828B082CE0E5A4002BEE4D /* DetectionOperations.swift */,
+				27828AF82CE0E300002BEE4D /* CardDetectionViewController.swift */,
+				27828B002CE0E3A0002BEE4D /* CardDetectionSettings.swift */,
+				27828B182CE0F341002BEE4D /* CMSampleBuffer+CGImage.swift */,
+				27828B022CE0E424002BEE4D /* ObjectDetectionViewController.swift */,
+				27828B042CE0E436002BEE4D /* ObjectDetectionSessionHandler.swift */,
+				27828AFC2CE0E344002BEE4D /* CardDetectionViewControllerDelegate.swift */,
+			);
+			path = CardDetection;
+			sourceTree = "<group>";
+		};
+		27828AFF2CE0E360002BEE4D /* features */ = {
+			isa = PBXGroup;
+			children = (
+				27828B1D2CE2399D002BEE4D /* FaceDetection */,
+				27828B1A2CE0F3B1002BEE4D /* PassportDetection */,
+				27828AFE2CE0E34D002BEE4D /* CardDetection */,
+			);
+			path = features;
+			sourceTree = "<group>";
+		};
+		27828B0C2CE0E674002BEE4D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				27828B0D2CE0E674002BEE4D /* Media.xcassets */,
+				27828B0E2CE0E674002BEE4D /* BarcodeDetectionViewController.xib */,
+				27828B0F2CE0E674002BEE4D /* CardDetectionViewController.xib */,
+				27828B102CE0E674002BEE4D /* Info.plist */,
+				27828B112CE0E674002BEE4D /* Base.xcconfig */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		27828B1A2CE0F3B1002BEE4D /* PassportDetection */ = {
+			isa = PBXGroup;
+			children = (
+				27828B1B2CE0F732002BEE4D /* PassportDetectionViewController.swift */,
+			);
+			path = PassportDetection;
+			sourceTree = "<group>";
+		};
+		27828B1D2CE2399D002BEE4D /* FaceDetection */ = {
+			isa = PBXGroup;
+			children = (
+				27828B1E2CE239C7002BEE4D /* MLFaceDetectionViewController.swift */,
+			);
+			path = FaceDetection;
+			sourceTree = "<group>";
+		};
+		ED1994C71043151CEA3A2CAB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		27828AE92CE0E193002BEE4D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27828AF22CE0E193002BEE4D /* EnrollLite.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		27828AED2CE0E193002BEE4D /* EnrollLite */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27828AF52CE0E193002BEE4D /* Build configuration list for PBXNativeTarget "EnrollLite" */;
+			buildPhases = (
+				27828AE92CE0E193002BEE4D /* Headers */,
+				27828AEA2CE0E193002BEE4D /* Sources */,
+				27828AEB2CE0E193002BEE4D /* Frameworks */,
+				27828AEC2CE0E193002BEE4D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EnrollLite;
+			productName = EnrollLite;
+			productReference = 27828AEE2CE0E193002BEE4D /* EnrollLite.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		27828AE52CE0E193002BEE4D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					27828AED2CE0E193002BEE4D = {
+						CreatedOnToolsVersion = 15.2;
+						LastSwiftMigration = 1520;
+					};
+				};
+			};
+			buildConfigurationList = 27828AE82CE0E193002BEE4D /* Build configuration list for PBXProject "EnrollLite" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 27828AE42CE0E193002BEE4D;
+			productRefGroup = 27828AEF2CE0E193002BEE4D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				27828AED2CE0E193002BEE4D /* EnrollLite */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		27828AEC2CE0E193002BEE4D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27828B122CE0E674002BEE4D /* Media.xcassets in Resources */,
+				27828B142CE0E674002BEE4D /* CardDetectionViewController.xib in Resources */,
+				27828B132CE0E674002BEE4D /* BarcodeDetectionViewController.xib in Resources */,
+				27828B162CE0E674002BEE4D /* Base.xcconfig in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		27828AEA2CE0E193002BEE4D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27828B1F2CE239C7002BEE4D /* MLFaceDetectionViewController.swift in Sources */,
+				27828B012CE0E3A0002BEE4D /* CardDetectionSettings.swift in Sources */,
+				27828B0B2CE0E5F2002BEE4D /* Bundle+IDCardCamera.swift in Sources */,
+				27828AFD2CE0E344002BEE4D /* CardDetectionViewControllerDelegate.swift in Sources */,
+				27828B052CE0E436002BEE4D /* ObjectDetectionSessionHandler.swift in Sources */,
+				27828B072CE0E55C002BEE4D /* TorchSettings.swift in Sources */,
+				27828B192CE0F341002BEE4D /* CMSampleBuffer+CGImage.swift in Sources */,
+				27828AF92CE0E300002BEE4D /* CardDetectionViewController.swift in Sources */,
+				27828B032CE0E424002BEE4D /* ObjectDetectionViewController.swift in Sources */,
+				27828AFB2CE0E331002BEE4D /* BaseCardDetectionViewController.swift in Sources */,
+				27828B1C2CE0F732002BEE4D /* PassportDetectionViewController.swift in Sources */,
+				27828B092CE0E5A4002BEE4D /* DetectionOperations.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		27828AF32CE0E193002BEE4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		27828AF42CE0E193002BEE4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		27828AF62CE0E193002BEE4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = XMW4TN8V63;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bahielfeky.EnrollLite;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		27828AF72CE0E193002BEE4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = XMW4TN8V63;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bahielfeky.EnrollLite;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		27828AE82CE0E193002BEE4D /* Build configuration list for PBXProject "EnrollLite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27828AF32CE0E193002BEE4D /* Debug */,
+				27828AF42CE0E193002BEE4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27828AF52CE0E193002BEE4D /* Build configuration list for PBXNativeTarget "EnrollLite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27828AF62CE0E193002BEE4D /* Debug */,
+				27828AF72CE0E193002BEE4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 27828AE52CE0E193002BEE4D /* Project object */;
+}
