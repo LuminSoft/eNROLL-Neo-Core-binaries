@@ -1,0 +1,43 @@
+# Ignore Pods directory but keep Podfile and Podfile.lock
+Pods/
+
+# Allow Podfile and Podfile.lock
+!Podfile
+!Podfile.lock
+
+# Ignore Xcode generated files
+DerivedData/
+build/
+.xcworkspace/
+
+# Ignore user-specific files
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+*.xcsettings
+*.swp
+*.DS_Store
+
+# Ignore Xcode project files
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata
+*.xcodeproj/xcuserdata
+
+# Ignore Xcode workspace settings
+xcuserdata/
+*.xcworkspace/xcuserdata
+*.xcworkspace/xcshareddata
+*.xcworkspace/xcdebugger
+
+# Ignore temporary files and logs
+*.tmp
+*.log
+*.swp
+*.lock
+
+# Ignore build folders
+*.ipa
+*.app.dSYM
+*.framework.dSYM
+*.dSYM

@@ -24,9 +24,11 @@
 		27828B192CE0F341002BEE4D /* CMSampleBuffer+CGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828B182CE0F341002BEE4D /* CMSampleBuffer+CGImage.swift */; };
 		27828B1C2CE0F732002BEE4D /* PassportDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828B1B2CE0F732002BEE4D /* PassportDetectionViewController.swift */; };
 		27828B1F2CE239C7002BEE4D /* MLFaceDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828B1E2CE239C7002BEE4D /* MLFaceDetectionViewController.swift */; };
+		EBC078C4ECA6CE5FA6A064D7 /* Pods_EnrollLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D43C67C232A385D78E0784 /* Pods_EnrollLite.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		21194A4C6B7B11A93E6032B8 /* Pods-EnrollLite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnrollLite.release.xcconfig"; path = "Target Support Files/Pods-EnrollLite/Pods-EnrollLite.release.xcconfig"; sourceTree = "<group>"; };
 		27828AEE2CE0E193002BEE4D /* EnrollLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EnrollLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27828AF12CE0E193002BEE4D /* EnrollLite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnrollLite.h; sourceTree = "<group>"; };
 		27828AF82CE0E300002BEE4D /* CardDetectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetectionViewController.swift; sourceTree = "<group>"; };
@@ -52,6 +54,8 @@
 		27828B552CE245FA002BEE4D /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27828B562CE245FA002BEE4D /* nanopb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = nanopb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27828B582CE245FA002BEE4D /* FBLPromises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBLPromises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B114AED999A1DA9333BB040D /* Pods-EnrollLite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnrollLite.debug.xcconfig"; path = "Target Support Files/Pods-EnrollLite/Pods-EnrollLite.debug.xcconfig"; sourceTree = "<group>"; };
+		E5D43C67C232A385D78E0784 /* Pods_EnrollLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EnrollLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBC078C4ECA6CE5FA6A064D7 /* Pods_EnrollLite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +79,7 @@
 				27828B552CE245FA002BEE4D /* GTMSessionFetcher.framework */,
 				27828B562CE245FA002BEE4D /* nanopb.framework */,
 				27828B582CE245FA002BEE4D /* FBLPromises.framework */,
+				E5D43C67C232A385D78E0784 /* Pods_EnrollLite.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -164,6 +170,8 @@
 		ED1994C71043151CEA3A2CAB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				B114AED999A1DA9333BB040D /* Pods-EnrollLite.debug.xcconfig */,
+				21194A4C6B7B11A93E6032B8 /* Pods-EnrollLite.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -186,10 +194,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 27828AF52CE0E193002BEE4D /* Build configuration list for PBXNativeTarget "EnrollLite" */;
 			buildPhases = (
+				04AC7DED1C3658C89C24E515 /* [CP] Check Pods Manifest.lock */,
 				27828AE92CE0E193002BEE4D /* Headers */,
 				27828AEA2CE0E193002BEE4D /* Sources */,
 				27828AEB2CE0E193002BEE4D /* Frameworks */,
 				27828AEC2CE0E193002BEE4D /* Resources */,
+				C9EB41856228B611E988E60D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -246,6 +256,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		04AC7DED1C3658C89C24E515 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EnrollLite-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C9EB41856228B611E988E60D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EnrollLite/Pods-EnrollLite-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EnrollLite/Pods-EnrollLite-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EnrollLite/Pods-EnrollLite-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		27828AEA2CE0E193002BEE4D /* Sources */ = {
@@ -397,6 +449,7 @@
 		};
 		27828AF62CE0E193002BEE4D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B114AED999A1DA9333BB040D /* Pods-EnrollLite.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -432,6 +485,7 @@
 		};
 		27828AF72CE0E193002BEE4D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21194A4C6B7B11A93E6032B8 /* Pods-EnrollLite.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
