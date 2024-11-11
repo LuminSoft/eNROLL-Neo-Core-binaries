@@ -8,73 +8,92 @@
 import UIKit
 import VisionKit
 
-
-protocol PassportDetectionDelegate {
-    func passportDetectionViewController(didFinishWith image: UIImage)
-    func passportDetectionViewController(didFailWithError error: Error)
-    func passportDetectionViewControllerDidCancelled()
+public protocol PassportDetectionDelegate: AnyObject {
+    func passportDetectionDidSucceed(image: UIImage)
+    func passportDetectionDidFail(withError error: Error)
+    func passportDetectionDidCancel()
 }
 
-class PassportDetectionViewController: UIViewController {
-//    @IBOutlet private var imageView: UIImageView!
+public class PassportDetectionManager: NSObject {
     
-    var delegate: PassportDetectionDelegate?
+    public weak var delegate: PassportDetectionDelegate?
     
-    // MARK: - View
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let scanner = VNDocumentCameraViewController()
-        scanner.delegate = self
-        present(scanner, animated: true)
+    // Create a private instance of the delegate handler
+    private var delegateHandler = PassportDetectionDelegateHandler()
+    
+    public init(delegate: PassportDetectionDelegate?) {
+        super.init()
+        // Set self as a handler in the delegate handler
+        delegateHandler.manager = self
+        self.delegate = delegate
     }
-
-    // MARK: - Action
-//    @IBAction private func tapped(scan button: UIButton) {
-//        
-//    }
     
+    // Public method to start the scanning process
+    public func startPassportScanning(from viewController: UIViewController) {
+        
+        guard VNDocumentCameraViewController.isSupported else {
+            self.delegate?.passportDetectionDidFail(withError: NSError(
+                domain: "com.sdk.passportdetection",
+                code: -1,
+                userInfo: [NSLocalizedDescriptionKey: "Document scanning is not supported on this device."]
+            ))
+            return
+        }
+        let documentCameraViewController = VNDocumentCameraViewController()
+        documentCameraViewController.delegate = delegateHandler  // Set the handler as the delegate
+        viewController.present(documentCameraViewController, animated: true, completion: nil)
+    }
+    
+    // Internal methods to handle results, called by the delegate handler
+    internal func handleDetectionSuccess(scan: VNDocumentCameraScan) {
+        if scan.pageCount > 0 {
+            // Extract the first page as UIImage
+            let image = scan.imageOfPage(at: 0)
+            delegate?.passportDetectionDidSucceed(image: image)
+        } else {
+            // If no pages were scanned, call failure
+            let error = NSError(
+                domain: "com.sdk.passportdetection",
+                code: -1,
+                userInfo: [NSLocalizedDescriptionKey: "No pages found in scan."]
+            )
+            delegate?.passportDetectionDidFail(withError: error)
+        }
+    }
+    
+    internal func handleDetectionFailure(error: Error) {
+        delegate?.passportDetectionDidFail(withError: error)
+    }
+    
+    internal func handleDetectionCancel() {
+        delegate?.passportDetectionDidCancel()
+    }
 }
 
-extension PassportDetectionViewController: VNDocumentCameraViewControllerDelegate {
+// Internal delegate handler class to conform to VNDocumentCameraViewControllerDelegate
+internal class PassportDetectionDelegateHandler: NSObject, VNDocumentCameraViewControllerDelegate {
+    
+    // Weak reference to the manager to prevent retain cycles
+    var manager: PassportDetectionManager?
+    
     func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
-        controller.dismiss(animated: true) { [weak self] in
-            guard let strongSelf = self else { return }
-            let image = scan.imageOfPage(at: 0)
-            strongSelf.delegate?.passportDetectionViewController(didFinishWith: image)
-            strongSelf.dismiss(animated: false)
-
-//            UIAlertController.present(title: "Success!", message: "Document \(scan.title) scanned with \(scan.pageCount) pages.", on: strongSelf)
+        manager?.handleDetectionSuccess(scan: scan)
+        controller.dismiss(animated: true){ [weak self] in
+            self?.manager = nil
         }
     }
     
     func documentCameraViewControllerDidCancel(_ controller: VNDocumentCameraViewController) {
-        controller.dismiss(animated: true) { [weak self] in
-//            self?.imageView.image = nil
-            
-            guard let strongSelf = self else { return }
-            strongSelf.delegate?.passportDetectionViewControllerDidCancelled()
-            strongSelf.dismiss(animated: false)
-//            UIAlertController.present(title: "Cancelled", message: "User cancelled operation.", on: strongSelf)
+        manager?.handleDetectionCancel()
+        controller.dismiss(animated: true){ [weak self] in
+            self?.manager = nil
         }
     }
     
     func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFailWithError error: Error) {
-        controller.dismiss(animated: true) { [weak self] in
-//            self?.imageView.image = nil
-            
-            guard let strongSelf = self else { return }
-            strongSelf.delegate?.passportDetectionViewController(didFailWithError: error)
-            strongSelf.dismiss(animated: false)
-//            UIAlertController.present(title: "Error", message: error.localizedDescription, on: strongSelf)
+        manager?.handleDetectionFailure(error: error)
+        controller.dismiss(animated: true){ [weak self] in
+            self?.manager = nil
         }
-    }
-}
-
-extension UIAlertController {
-    static func present(title: String?, message: String?, on viewController: UIViewController) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let confirm = UIAlertAction(title: "OK", style: .default)
-        alert.addAction(confirm)
-        viewController.present(alert, animated: true)
     }
 }

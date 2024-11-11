@@ -9,11 +9,17 @@ import UIKit
 import AVFoundation
 import MLKit
 
-class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, AVCapturePhotoCaptureDelegate {
+public protocol FaceDetectionDelegate{
+    func faceDectionSucceed(withImage image: UIImage)
+    func faceDetectionFail(withError error: Error)
+}
+
+public class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, AVCapturePhotoCaptureDelegate {
     
     var captureSession = AVCaptureSession()
     var photoOutput = AVCapturePhotoOutput()
     var isPhotoCaptured = false // Flag to ensure photo is captured only once
+    public var delegate: FaceDetectionDelegate?
     
     // Updated implementation of numberOfFaces label
     let textLabel: UILabel = {
@@ -67,7 +73,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     var faceDetected = "Face Detected"
     var moveCloser = "Move Closer"
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         setupCamera()
         setupLabel()
@@ -95,7 +101,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     let requiredStableFrames = 3 // Number of consecutive stable frames required
     var isCapturing = false
     
-    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+    public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard !isCapturing else { return } // Skip processing if we're capturing
         
         frameCounter += 1
@@ -240,16 +246,24 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
         // Rotate the captured image by 90 degrees clockwise
         let rotatedImage = capturedImage.rotate(radians: .pi / 2)
 
-        // Display the rotated image in a simple photo view
-        let photoViewController = UIViewController()
-        photoViewController.view.backgroundColor = .black
-        let imageView = UIImageView(image: rotatedImage)
-        imageView.contentMode = .scaleAspectFit
-        imageView.frame = photoViewController.view.bounds
-        photoViewController.view.addSubview(imageView)
-
-        // Present the photo view controller
-        present(photoViewController, animated: true, completion: nil)
+//        // Display the rotated image in a simple photo view
+//        let photoViewController = UIViewController()
+//        photoViewController.view.backgroundColor = .black
+//        let imageView = UIImageView(image: rotatedImage)
+//        imageView.contentMode = .scaleAspectFit
+//        imageView.frame = photoViewController.view.bounds
+//        photoViewController.view.addSubview(imageView)
+//
+//        // Present the photo view controller
+//        present(photoViewController, animated: true, completion: nil)
+        if let rotatedImage = rotatedImage {
+            self.dismiss(animated: true){ [weak self] in
+                self?.delegate?.faceDectionSucceed(withImage: rotatedImage)
+            }
+            
+            
+        }
+        
 
         // Reset capturing state to allow further processing after showing the photo
         isCapturing = false
@@ -344,7 +358,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     }
     
     // Implement the delegate method to handle the captured photo
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+    public func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         guard let imageData = photo.fileDataRepresentation(),
               let image = UIImage(data: imageData) else { return }
         // Stop the capture session
@@ -414,8 +428,10 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
         let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.frame = view.frame
         view.layer.insertSublayer(previewLayer, at: 0)
+        DispatchQueue.global().async{
+            self.captureSession.startRunning()
+        }
         
-        captureSession.startRunning()
     }
     
     func setupImageView() {

@@ -8,6 +8,12 @@ import UIKit
 import AVFoundation
 import Vision
 
+
+public protocol IDDetectorDelegate{
+    func IDDetectorDidSucceed(withImage image: UIImage)
+    func IDDetectorDidFail(withError error: Error)
+}
+
 public class BaseCardDetectionViewController: ObjectDetectionViewController {
     
     // MARK: - To override in subclasses
@@ -57,7 +63,7 @@ public class BaseCardDetectionViewController: ObjectDetectionViewController {
     }()
     
     @objc public init() {
-        super.init(nibName: "CardDetectionViewController", bundle: Bundle.module)
+        super.init(nibName: "CardDetectionViewController", bundle: Bundle(identifier: "com.bahielfeky.EnrollLite"))
     }
     
     required init?(coder: NSCoder) {
@@ -309,116 +315,6 @@ public class BaseCardDetectionViewController: ObjectDetectionViewController {
         }
     }
 
-    
-//    override func sessionHandler(_ handler: ObjectDetectionSessionHandler, didDetectCardInImage image: CGImage, withTopLeftCorner topLeftCorner: CGPoint, topRightCorner: CGPoint, bottomRightCorner: CGPoint, bottomLeftCorner: CGPoint, perspectiveCorrectionParams: [String:CIVector], sharpness: Float?, brightnessLevel: Float?) {
-//        let imageSize = CGSize(width: image.width, height: image.height)
-//        let expected = self.expectedCorners(inSize: imageSize)
-//        let maxDistance: CGFloat = (expected[3].y - expected[0].y) / 8
-//        let detected: [CGPoint] = [
-//            topLeftCorner, topRightCorner, bottomRightCorner, bottomLeftCorner
-//        ]
-//        self.detectedCorners = [false, false, false, false]
-//        var tooFar = false
-//        var noFrameDetected = true
-//        
-//        // Calculate areas
-//        let expectedArea = calculateQuadrilateralArea(points: expected)
-//        let detectedArea = calculateQuadrilateralArea(points: detected)
-//        
-//        // Calculate the ratio of detected area to expected area
-//        let areaRatio = detectedArea / expectedArea
-//        print("Area Ration: \(areaRatio)")
-//        
-//        // Define thresholds for too close/far
-//        let tooCloseThreshold: CGFloat = 1.05 // 30% larger than expected
-//        let tooFarThreshold: CGFloat = 0.7   // 30% smaller than expected
-//        
-//        
-//        if areaRatio > tooCloseThreshold {
-//            showLabelWithText(text: "Move Away")
-//        } else if areaRatio < tooFarThreshold {
-//            showLabelWithText(text: "Move Closer")
-//        }else if areaRatio > 0 && areaRatio < 0.2 {
-////            removeLbl()
-//            showLabelWithText(text: "Center Document")
-//        }
-//        
-//        // Original corner detection logic
-//        for pt in expected {
-////            print("Expected-X: \(pt.x), Expected-Y: \(pt.y)")
-//            if let index = detected.firstIndex(where: { hypot($0.x - pt.x, $0.y - pt.y) < maxDistance }) {
-//                self.detectedCorners[index] = true
-//                noFrameDetected = false
-//            } else {
-//                tooFar = true
-//            }
-//        }
-//        
-//        // Update UI with both corner status and distance instruction
-//        self.drawCardOverlay()
-////        self.updateUserInstruction(userInstruction)
-//        /// If the card is too far, show the "get closer" label
-////         if noFrameDetected {
-////             showLabelWithText(text: "Center Document")
-////             return
-////         } else {
-////             removeLbl()
-////         }
-////        
-////        /// If the card is too far, show the "get closer" label
-////         if tooFar {
-////             showLabelWithText(text: "Move Closer")
-////             return
-////         } else {
-////             removeLbl()
-////         }
-//        
-//        
-//        /// check if the all the corners are valid
-//        if self.detectedCorners.reduce(true, { $0 ? $1 : false }) {
-//            showLabelWithText(text: "Hold Still")
-//            // All corners detected
-//            let originalPrompt = self.navigationItem.prompt
-//            if self.backgroundOperationQueue.isSuspended || self.backgroundOperationQueue.operationCount > 0 {
-//                return
-//            }
-//            self.backgroundOperationQueue.addOperation { [weak self] in
-//                guard let `self` = self else {
-//                    return
-//                }
-//                /// extracting the card image from the main image in dewrapedImage variable
-//                guard let dewarpedImage = self.dewarpImage(image, withParams: perspectiveCorrectionParams) else {
-//                    self.collectedImages = []
-//                    DispatchQueue.main.async {
-//                        self.navigationItem.prompt = originalPrompt
-//                        self.cardOverlayView.isHidden = false
-//                        self.cameraPreview.isHidden = false
-//                    }
-//                    return
-//                }
-//                if let quality = self.qualityOfImage(dewarpedImage) {
-//                    self.collectedImages.append((dewarpedImage,quality))
-//                } else if let quality = sharpness {
-//                    self.collectedImages.append((dewarpedImage,quality))
-//                } else {
-//                    self.backgroundOperationQueue.isSuspended = true
-//                    self.didCropImageToImage(dewarpedImage)
-//                    return
-//                }
-//                if self.collectedImages.count >= self.imagePoolSize {
-//                    self.collectedImages.sort(by: { $0.1 > $1.1 })
-//                    guard let (image, _) = self.collectedImages.first else {
-//                        return
-//                    }
-//                    self.backgroundOperationQueue.isSuspended = true
-//                    self.didCropImageToImage(image)
-//                }
-//            }
-//        } else {
-////            showLabelWithText(text: "Center Document")
-//            self.collectedImages = []
-//        }
-//    }
     
     override func shouldDetectCardImageWithSessionHandler(_ handler: ObjectDetectionSessionHandler) -> Bool {
         return !self.backgroundOperationQueue.isSuspended && self.backgroundOperationQueue.operationCount == 0
