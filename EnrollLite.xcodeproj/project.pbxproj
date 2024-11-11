@@ -28,7 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		21194A4C6B7B11A93E6032B8 /* Pods-EnrollLite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnrollLite.release.xcconfig"; path = "../../EnrollLiteWorkspace/Pods/Target Support Files/Pods-EnrollLite/Pods-EnrollLite.release.xcconfig"; sourceTree = "<group>"; };
+		21194A4C6B7B11A93E6032B8 /* Pods-EnrollLite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnrollLite.release.xcconfig"; path = "Target Support Files/Pods-EnrollLite/Pods-EnrollLite.release.xcconfig"; sourceTree = "<group>"; };
 		27828AEE2CE0E193002BEE4D /* EnrollLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EnrollLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27828AF12CE0E193002BEE4D /* EnrollLite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnrollLite.h; sourceTree = "<group>"; };
 		27828AF82CE0E300002BEE4D /* CardDetectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetectionViewController.swift; sourceTree = "<group>"; };
@@ -56,7 +56,7 @@
 		27828B582CE245FA002BEE4D /* FBLPromises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBLPromises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27828BB32CE279F5002BEE4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		95BEBC1A6877ED65D7E7E2BE /* Pods_EnrollLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EnrollLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B114AED999A1DA9333BB040D /* Pods-EnrollLite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnrollLite.debug.xcconfig"; path = "../../EnrollLiteWorkspace/Pods/Target Support Files/Pods-EnrollLite/Pods-EnrollLite.debug.xcconfig"; sourceTree = "<group>"; };
+		B114AED999A1DA9333BB040D /* Pods-EnrollLite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnrollLite.debug.xcconfig"; path = "Target Support Files/Pods-EnrollLite/Pods-EnrollLite.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
