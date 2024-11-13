@@ -8,7 +8,7 @@ import Foundation
 
 /// Protocol describing torch settings
 /// - Since: 1.4.0
-@objc public protocol TorchSettings {
+@objc protocol TorchSettings {
     
     /// Set the torch level when the user turns the torch on
     ///

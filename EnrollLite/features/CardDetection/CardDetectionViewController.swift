@@ -11,7 +11,7 @@ import Vision
 
 /// View controller used to run a camera session that collects an image of an card with a given aspect ratio and returns an image with corrected perspective
 /// - Since: 1.0.0
-public class CardDetectionViewController: BaseCardDetectionViewController {
+internal class CardDetectionViewController: BaseCardDetectionViewController {
     
     /// Card detection delegate
     /// - Since: 1.0.0

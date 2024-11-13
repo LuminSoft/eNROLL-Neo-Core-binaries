@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0471D2952CE36C9C006FE45C /* EnrollLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471D2942CE36C9C006FE45C /* EnrollLite.swift */; };
+		0471D2972CE36CE4006FE45C /* FaceDetectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471D2962CE36CE4006FE45C /* FaceDetectionManager.swift */; };
+		0471D2992CE36D9C006FE45C /* FaceDetectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471D2982CE36D9C006FE45C /* FaceDetectionDelegate.swift */; };
+		0471D29B2CE36DFF006FE45C /* FaceDetectionSuccessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471D29A2CE36DFF006FE45C /* FaceDetectionSuccessModel.swift */; };
+		0471D29E2CE36E71006FE45C /* FaceDetectionErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471D29D2CE36E71006FE45C /* FaceDetectionErrorModel.swift */; };
+		0471D2A12CE36F3B006FE45C /* CardDetectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471D2A02CE36F3B006FE45C /* CardDetectionManager.swift */; };
+		0471D2B12CE3B666006FE45C /* PassportDetectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471D2B02CE3B666006FE45C /* PassportDetectionDelegate.swift */; };
+		0471D2B42CE3B682006FE45C /* PassportDetectionSuccessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471D2B32CE3B682006FE45C /* PassportDetectionSuccessModel.swift */; };
+		0471D2B62CE3B693006FE45C /* PassportDetectionErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471D2B52CE3B693006FE45C /* PassportDetectionErrorModel.swift */; };
+		0471D2B82CE3B6A8006FE45C /* PassportDetectionDelegateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471D2B72CE3B6A8006FE45C /* PassportDetectionDelegateHandler.swift */; };
+		0471D2BA2CE3B735006FE45C /* CardDetectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471D2B92CE3B735006FE45C /* CardDetectionDelegate.swift */; };
+		0471D2BD2CE3B74E006FE45C /* CardDetectionSuccessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471D2BC2CE3B74E006FE45C /* CardDetectionSuccessModel.swift */; };
+		0471D2BF2CE3B769006FE45C /* CardDetectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471D2BE2CE3B769006FE45C /* CardDetectionHandler.swift */; };
 		27828AF22CE0E193002BEE4D /* EnrollLite.h in Headers */ = {isa = PBXBuildFile; fileRef = 27828AF12CE0E193002BEE4D /* EnrollLite.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27828AF92CE0E300002BEE4D /* CardDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828AF82CE0E300002BEE4D /* CardDetectionViewController.swift */; };
 		27828AFB2CE0E331002BEE4D /* BaseCardDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828AFA2CE0E331002BEE4D /* BaseCardDetectionViewController.swift */; };
@@ -23,12 +36,25 @@
 		27828B162CE0E674002BEE4D /* Base.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 27828B112CE0E674002BEE4D /* Base.xcconfig */; };
 		27828B192CE0F341002BEE4D /* CMSampleBuffer+CGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828B182CE0F341002BEE4D /* CMSampleBuffer+CGImage.swift */; };
 		27828B1C2CE0F732002BEE4D /* PassportDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828B1B2CE0F732002BEE4D /* PassportDetectionViewController.swift */; };
-		27828B1F2CE239C7002BEE4D /* MLFaceDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828B1E2CE239C7002BEE4D /* MLFaceDetectionViewController.swift */; };
+		27828B1F2CE239C7002BEE4D /* FaceDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828B1E2CE239C7002BEE4D /* FaceDetectionViewController.swift */; };
 		4D27B29DEFFB2A8DA70F30B7 /* Pods_EnrollLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95BEBC1A6877ED65D7E7E2BE /* Pods_EnrollLite.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		21194A4C6B7B11A93E6032B8 /* Pods-EnrollLite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnrollLite.release.xcconfig"; path = "Target Support Files/Pods-EnrollLite/Pods-EnrollLite.release.xcconfig"; sourceTree = "<group>"; };
+		0471D2942CE36C9C006FE45C /* EnrollLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollLite.swift; sourceTree = "<group>"; };
+		0471D2962CE36CE4006FE45C /* FaceDetectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionManager.swift; sourceTree = "<group>"; };
+		0471D2982CE36D9C006FE45C /* FaceDetectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionDelegate.swift; sourceTree = "<group>"; };
+		0471D29A2CE36DFF006FE45C /* FaceDetectionSuccessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionSuccessModel.swift; sourceTree = "<group>"; };
+		0471D29D2CE36E71006FE45C /* FaceDetectionErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionErrorModel.swift; sourceTree = "<group>"; };
+		0471D2A02CE36F3B006FE45C /* CardDetectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetectionManager.swift; sourceTree = "<group>"; };
+		0471D2B02CE3B666006FE45C /* PassportDetectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportDetectionDelegate.swift; sourceTree = "<group>"; };
+		0471D2B32CE3B682006FE45C /* PassportDetectionSuccessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportDetectionSuccessModel.swift; sourceTree = "<group>"; };
+		0471D2B52CE3B693006FE45C /* PassportDetectionErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportDetectionErrorModel.swift; sourceTree = "<group>"; };
+		0471D2B72CE3B6A8006FE45C /* PassportDetectionDelegateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportDetectionDelegateHandler.swift; sourceTree = "<group>"; };
+		0471D2B92CE3B735006FE45C /* CardDetectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetectionDelegate.swift; sourceTree = "<group>"; };
+		0471D2BC2CE3B74E006FE45C /* CardDetectionSuccessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetectionSuccessModel.swift; sourceTree = "<group>"; };
+		0471D2BE2CE3B769006FE45C /* CardDetectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetectionHandler.swift; sourceTree = "<group>"; };
+		21194A4C6B7B11A93E6032B8 /* Pods-EnrollLite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnrollLite.release.xcconfig"; path = "../../EnrollLiteWorkspace/Pods/Target Support Files/Pods-EnrollLite/Pods-EnrollLite.release.xcconfig"; sourceTree = "<group>"; };
 		27828AEE2CE0E193002BEE4D /* EnrollLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EnrollLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27828AF12CE0E193002BEE4D /* EnrollLite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnrollLite.h; sourceTree = "<group>"; };
 		27828AF82CE0E300002BEE4D /* CardDetectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDetectionViewController.swift; sourceTree = "<group>"; };
@@ -47,7 +73,7 @@
 		27828B112CE0E674002BEE4D /* Base.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
 		27828B182CE0F341002BEE4D /* CMSampleBuffer+CGImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CMSampleBuffer+CGImage.swift"; sourceTree = "<group>"; };
 		27828B1B2CE0F732002BEE4D /* PassportDetectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportDetectionViewController.swift; sourceTree = "<group>"; };
-		27828B1E2CE239C7002BEE4D /* MLFaceDetectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLFaceDetectionViewController.swift; sourceTree = "<group>"; };
+		27828B1E2CE239C7002BEE4D /* FaceDetectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceDetectionViewController.swift; sourceTree = "<group>"; };
 		27828B522CE245FA002BEE4D /* GoogleDataTransport.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleDataTransport.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27828B532CE245FA002BEE4D /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27828B542CE245FA002BEE4D /* GoogleUtilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleUtilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,7 +82,7 @@
 		27828B582CE245FA002BEE4D /* FBLPromises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBLPromises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27828BB32CE279F5002BEE4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		95BEBC1A6877ED65D7E7E2BE /* Pods_EnrollLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EnrollLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B114AED999A1DA9333BB040D /* Pods-EnrollLite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnrollLite.debug.xcconfig"; path = "Target Support Files/Pods-EnrollLite/Pods-EnrollLite.debug.xcconfig"; sourceTree = "<group>"; };
+		B114AED999A1DA9333BB040D /* Pods-EnrollLite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnrollLite.debug.xcconfig"; path = "../../EnrollLiteWorkspace/Pods/Target Support Files/Pods-EnrollLite/Pods-EnrollLite.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +97,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0471D29C2CE36E5F006FE45C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0471D29A2CE36DFF006FE45C /* FaceDetectionSuccessModel.swift */,
+				0471D29D2CE36E71006FE45C /* FaceDetectionErrorModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0471D29F2CE36F30006FE45C /* CardDetectionManager */ = {
+			isa = PBXGroup;
+			children = (
+				0471D2A02CE36F3B006FE45C /* CardDetectionManager.swift */,
+			);
+			path = CardDetectionManager;
+			sourceTree = "<group>";
+		};
+		0471D2B22CE3B676006FE45C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0471D2B32CE3B682006FE45C /* PassportDetectionSuccessModel.swift */,
+				0471D2B52CE3B693006FE45C /* PassportDetectionErrorModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0471D2BB2CE3B749006FE45C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0471D2BC2CE3B74E006FE45C /* CardDetectionSuccessModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		23AEA9DAE5C5C63A0501CF3F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +169,7 @@
 				27828BB32CE279F5002BEE4D /* Info.plist */,
 				27828AFF2CE0E360002BEE4D /* features */,
 				27828AF12CE0E193002BEE4D /* EnrollLite.h */,
+				0471D2942CE36C9C006FE45C /* EnrollLite.swift */,
 			);
 			path = EnrollLite;
 			sourceTree = "<group>";
@@ -116,6 +177,8 @@
 		27828AFE2CE0E34D002BEE4D /* CardDetection */ = {
 			isa = PBXGroup;
 			children = (
+				0471D2BB2CE3B749006FE45C /* Models */,
+				0471D29F2CE36F30006FE45C /* CardDetectionManager */,
 				27828B0C2CE0E674002BEE4D /* Resources */,
 				27828B0A2CE0E5F2002BEE4D /* Bundle+IDCardCamera.swift */,
 				27828B062CE0E55C002BEE4D /* TorchSettings.swift */,
@@ -127,6 +190,8 @@
 				27828B022CE0E424002BEE4D /* ObjectDetectionViewController.swift */,
 				27828B042CE0E436002BEE4D /* ObjectDetectionSessionHandler.swift */,
 				27828AFC2CE0E344002BEE4D /* CardDetectionViewControllerDelegate.swift */,
+				0471D2B92CE3B735006FE45C /* CardDetectionDelegate.swift */,
+				0471D2BE2CE3B769006FE45C /* CardDetectionHandler.swift */,
 			);
 			path = CardDetection;
 			sourceTree = "<group>";
@@ -156,7 +221,10 @@
 		27828B1A2CE0F3B1002BEE4D /* PassportDetection */ = {
 			isa = PBXGroup;
 			children = (
+				0471D2B22CE3B676006FE45C /* Models */,
 				27828B1B2CE0F732002BEE4D /* PassportDetectionViewController.swift */,
+				0471D2B02CE3B666006FE45C /* PassportDetectionDelegate.swift */,
+				0471D2B72CE3B6A8006FE45C /* PassportDetectionDelegateHandler.swift */,
 			);
 			path = PassportDetection;
 			sourceTree = "<group>";
@@ -164,7 +232,10 @@
 		27828B1D2CE2399D002BEE4D /* FaceDetection */ = {
 			isa = PBXGroup;
 			children = (
-				27828B1E2CE239C7002BEE4D /* MLFaceDetectionViewController.swift */,
+				0471D29C2CE36E5F006FE45C /* Models */,
+				27828B1E2CE239C7002BEE4D /* FaceDetectionViewController.swift */,
+				0471D2962CE36CE4006FE45C /* FaceDetectionManager.swift */,
+				0471D2982CE36D9C006FE45C /* FaceDetectionDelegate.swift */,
 			);
 			path = FaceDetection;
 			sourceTree = "<group>";
@@ -306,18 +377,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27828B1F2CE239C7002BEE4D /* MLFaceDetectionViewController.swift in Sources */,
+				27828B1F2CE239C7002BEE4D /* FaceDetectionViewController.swift in Sources */,
+				0471D2A12CE36F3B006FE45C /* CardDetectionManager.swift in Sources */,
+				0471D2BA2CE3B735006FE45C /* CardDetectionDelegate.swift in Sources */,
 				27828B012CE0E3A0002BEE4D /* CardDetectionSettings.swift in Sources */,
+				0471D29B2CE36DFF006FE45C /* FaceDetectionSuccessModel.swift in Sources */,
 				27828B0B2CE0E5F2002BEE4D /* Bundle+IDCardCamera.swift in Sources */,
 				27828AFD2CE0E344002BEE4D /* CardDetectionViewControllerDelegate.swift in Sources */,
+				0471D29E2CE36E71006FE45C /* FaceDetectionErrorModel.swift in Sources */,
+				0471D2B62CE3B693006FE45C /* PassportDetectionErrorModel.swift in Sources */,
+				0471D2BF2CE3B769006FE45C /* CardDetectionHandler.swift in Sources */,
+				0471D2972CE36CE4006FE45C /* FaceDetectionManager.swift in Sources */,
+				0471D2B12CE3B666006FE45C /* PassportDetectionDelegate.swift in Sources */,
 				27828B052CE0E436002BEE4D /* ObjectDetectionSessionHandler.swift in Sources */,
+				0471D2992CE36D9C006FE45C /* FaceDetectionDelegate.swift in Sources */,
+				0471D2BD2CE3B74E006FE45C /* CardDetectionSuccessModel.swift in Sources */,
+				0471D2B42CE3B682006FE45C /* PassportDetectionSuccessModel.swift in Sources */,
 				27828B072CE0E55C002BEE4D /* TorchSettings.swift in Sources */,
 				27828B192CE0F341002BEE4D /* CMSampleBuffer+CGImage.swift in Sources */,
 				27828AF92CE0E300002BEE4D /* CardDetectionViewController.swift in Sources */,
 				27828B032CE0E424002BEE4D /* ObjectDetectionViewController.swift in Sources */,
 				27828AFB2CE0E331002BEE4D /* BaseCardDetectionViewController.swift in Sources */,
 				27828B1C2CE0F732002BEE4D /* PassportDetectionViewController.swift in Sources */,
+				0471D2B82CE3B6A8006FE45C /* PassportDetectionDelegateHandler.swift in Sources */,
 				27828B092CE0E5A4002BEE4D /* DetectionOperations.swift in Sources */,
+				0471D2952CE36C9C006FE45C /* EnrollLite.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

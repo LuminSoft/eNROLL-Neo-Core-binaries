@@ -8,7 +8,7 @@ import UIKit
 
 /// Card detection view controller delegate
 /// - Since: 1.0.0
-@objc public protocol CardDetectionViewControllerDelegate: AnyObject {
+@objc protocol CardDetectionViewControllerDelegate: AnyObject {
     
     /// Called when card detection succeeds
     /// - Parameters:

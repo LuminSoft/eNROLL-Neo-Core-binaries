@@ -11,7 +11,7 @@ import CoreMedia
 extension CVImageBuffer {
     
     @available(iOS 13.0, *)
-    public func sharpness() -> Float? {
+    func sharpness() -> Float? {
         CVPixelBufferLockBaseAddress(self, [])
         guard let srcBuff = CVPixelBufferGetBaseAddress(self) else {
             return nil
@@ -67,7 +67,7 @@ extension CVImageBuffer {
         return stdDev
     }
     
-    public func cgImage(withOrientation orientation: CGImagePropertyOrientation) -> CGImage? {
+    func cgImage(withOrientation orientation: CGImagePropertyOrientation) -> CGImage? {
         // Lock the pixels before adjusting rotation
         CVPixelBufferLockBaseAddress(self, [])
         // Get the vImage rotation constant based on the UI orientation
@@ -135,7 +135,7 @@ extension CVImageBuffer {
 
 extension CMSampleBuffer {
     
-    public func cgImage(withOrientation orientation: CGImagePropertyOrientation) -> CGImage? {
+    func cgImage(withOrientation orientation: CGImagePropertyOrientation) -> CGImage? {
         // Get the pixels from the sample buffer
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(self) else {
             return nil

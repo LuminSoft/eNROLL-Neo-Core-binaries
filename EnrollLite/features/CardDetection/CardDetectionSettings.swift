@@ -8,7 +8,7 @@ import UIKit
 
 /// Card detection session settings
 /// - Since: 1.0.0
-@objc public class CardDetectionSettings: BaseCardDetectionSettings, TorchSettings {
+@objc class CardDetectionSettings: BaseCardDetectionSettings, TorchSettings {
     
     /// Set the torch level when the user turns the torch on
     ///
@@ -19,7 +19,7 @@ import UIKit
 
 /// Base card detection settings
 /// - Since: 1.4.0
-@objc public class BaseCardDetectionSettings: NSObject {
+@objc class BaseCardDetectionSettings: NSObject {
     
     /// Card orientation
     /// - Since: 1.0.0

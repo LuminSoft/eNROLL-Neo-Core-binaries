@@ -9,7 +9,7 @@ import UIKit
 import Vision
 
 @available(iOS 11.0, *)
-public class PerspectiveCorrectionParamsOperation: Operation {
+class PerspectiveCorrectionParamsOperation: Operation {
     
     let orientation: CGImagePropertyOrientation
     let pixelBuffer: CVImageBuffer

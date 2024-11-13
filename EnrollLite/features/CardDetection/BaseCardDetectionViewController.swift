@@ -9,12 +9,7 @@ import AVFoundation
 import Vision
 
 
-public protocol IDDetectorDelegate{
-    func IDDetectorDidSucceed(withImage image: UIImage)
-    func IDDetectorDidFail(withError error: Error)
-}
-
-public class BaseCardDetectionViewController: ObjectDetectionViewController {
+class BaseCardDetectionViewController: ObjectDetectionViewController {
     
     // MARK: - To override in subclasses
     

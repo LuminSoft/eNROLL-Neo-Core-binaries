@@ -9,12 +9,7 @@ import UIKit
 import AVFoundation
 import MLKit
 
-public protocol FaceDetectionDelegate{
-    func faceDectionSucceed(withImage image: UIImage)
-    func faceDetectionFail(withError error: Error)
-}
-
-public class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, AVCapturePhotoCaptureDelegate {
+class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, AVCapturePhotoCaptureDelegate {
     
     var captureSession = AVCaptureSession()
     var photoOutput = AVCapturePhotoOutput()
@@ -27,7 +22,7 @@ public class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOu
         label.backgroundColor = .clear
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .orange
+        label.textColor = .white
         label.font = UIFont(name: "Avenir-Heavy", size: 30)
         label.text = "No face"
         return label
@@ -72,13 +67,13 @@ public class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOu
     var holdStill = "Hold Still"
     var faceDetected = "Face Detected"
     var moveCloser = "Move Closer"
+    var moveFar = "Move Far"
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupCamera()
-        setupLabel()
-        setupImageView()
         addDimmedLayerWithClearCircle()
+        setupLabel()
         view.addSubview(rectangleView)
     }
     
@@ -98,7 +93,7 @@ public class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOu
     }
     
     var stableFrameCounter = 0 // Counter to check stability across multiple frames
-    let requiredStableFrames = 3 // Number of consecutive stable frames required
+    let requiredStableFrames = 6 // Number of consecutive stable frames required
     var isCapturing = false
     
     public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
@@ -201,9 +196,13 @@ public class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOu
                     
                     if distance < thresholdDistance {
                         
-                        if iou < 0.5 {
+                        if iou < 0.4 {
                             self.textLabel.text = self.moveCloser
-                        }else {
+                            self.resetHoldStillTimer()
+                        }else if iou > 0.5 {
+                            self.textLabel.text = self.moveFar
+                            self.resetHoldStillTimer()
+                        } else {
                             if self.isLookingForward(face: face) {
                                 self.drawCircleBorder(color: .green, lineWidth: 4)
                                 self.textLabel.text = self.holdStill
@@ -241,33 +240,27 @@ public class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOu
         let ciImage = CIImage(cvPixelBuffer: imageBuffer)
         let context = CIContext()
         guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else { return }
-        let capturedImage = UIImage(cgImage: cgImage)
+        var capturedImage = UIImage(cgImage: cgImage)
 
         // Rotate the captured image by 90 degrees clockwise
-        let rotatedImage = capturedImage.rotate(radians: .pi / 2)
-
-//        // Display the rotated image in a simple photo view
-//        let photoViewController = UIViewController()
-//        photoViewController.view.backgroundColor = .black
-//        let imageView = UIImageView(image: rotatedImage)
-//        imageView.contentMode = .scaleAspectFit
-//        imageView.frame = photoViewController.view.bounds
-//        photoViewController.view.addSubview(imageView)
-//
-//        // Present the photo view controller
-//        present(photoViewController, animated: true, completion: nil)
-        if let rotatedImage = rotatedImage {
-            self.dismiss(animated: true){ [weak self] in
-                self?.delegate?.faceDectionSucceed(withImage: rotatedImage)
-            }
-            
-            
+        if let rotatedImage = capturedImage.rotate(radians: .pi / 2) {
+            capturedImage = rotatedImage
         }
-        
+
+        // Mirror the image if it's from the front camera
+        if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front), device.position == .front {
+            capturedImage = capturedImage.withHorizontallyFlippedOrientation()
+        }
+
+        // Pass the processed image to the delegate and dismiss the view controller
+        self.dismiss(animated: true) { [weak self] in
+            self?.delegate?.faceDectionSucceed(with: FaceDetectionSuccessModel(naturalImage: capturedImage))
+        }
 
         // Reset capturing state to allow further processing after showing the photo
         isCapturing = false
     }
+
 
     
     
@@ -357,20 +350,6 @@ public class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOu
         }
     }
     
-    // Implement the delegate method to handle the captured photo
-    public func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        guard let imageData = photo.fileDataRepresentation(),
-              let image = UIImage(data: imageData) else { return }
-        // Stop the capture session
-        captureSession.stopRunning()
-        
-        // Display the captured image
-        DispatchQueue.main.async{
-            self.capturedImageView.image = image
-            self.capturedImageView.isHidden = false // Show the image view
-            self.textLabel.text = "Photo Captured" // Update the label text
-        }
-    }
     
     
     //MARK: - Helpers
@@ -402,12 +381,12 @@ public class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOu
         view.addSubview(textLabel)
         NSLayoutConstraint.activate([
             textLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            textLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50)
+            textLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 150)
         ])
     }
     
     func setupCamera() {
-        captureSession.sessionPreset = .photo
+//        captureSession.sessionPreset = .photo
         guard let camera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) else { return }
         
         do {
@@ -424,6 +403,7 @@ public class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOu
         let videoOutput = AVCaptureVideoDataOutput()
         videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
         captureSession.addOutput(videoOutput)
+        captureSession.sessionPreset = .high
         
         let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.frame = view.frame
@@ -434,15 +414,6 @@ public class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOu
         
     }
     
-    func setupImageView() {
-        view.addSubview(capturedImageView)
-        NSLayoutConstraint.activate([
-            capturedImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            capturedImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            capturedImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-            capturedImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.6)
-        ])
-    }
     
     
     var virtualCircleMinX: CGFloat = 0.0
