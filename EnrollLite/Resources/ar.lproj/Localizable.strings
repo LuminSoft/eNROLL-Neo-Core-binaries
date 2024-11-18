@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  EnrollLite
+
+  Created by Bahi El Feky on 18/11/2024.
+  
+*/
+
+"centerYourFace" = "ضع وجهك في المنتصف";
+"lookStraight" = "انظر للأمام";
+"noFaceDetected" = "لم يتم اكتشاف وجه";
+"oneFaceAllowed" = "يسمح بوجه واحد فقط";
+"holdStill" = "اثبت";
+"moveCloser" = "اقترب";
+"moveFar" = "ابتعد";
+
+/*-------------------------*/
+
+"centerYourDocument" = "ضع المستند في المنتصف";
+"needMoreLight" = "بحاجة إلى المزيد من الضوء";

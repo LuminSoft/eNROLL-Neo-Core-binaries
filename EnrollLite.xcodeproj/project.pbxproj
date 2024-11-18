@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0471D2952CE36C9C006FE45C /* EnrollLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471D2942CE36C9C006FE45C /* EnrollLite.swift */; };
 		0471D2972CE36CE4006FE45C /* FaceDetectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471D2962CE36CE4006FE45C /* FaceDetectionManager.swift */; };
 		0471D2992CE36D9C006FE45C /* FaceDetectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471D2982CE36D9C006FE45C /* FaceDetectionDelegate.swift */; };
 		0471D29B2CE36DFF006FE45C /* FaceDetectionSuccessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471D29A2CE36DFF006FE45C /* FaceDetectionSuccessModel.swift */; };
@@ -37,11 +36,15 @@
 		27828B192CE0F341002BEE4D /* CMSampleBuffer+CGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828B182CE0F341002BEE4D /* CMSampleBuffer+CGImage.swift */; };
 		27828B1C2CE0F732002BEE4D /* PassportDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828B1B2CE0F732002BEE4D /* PassportDetectionViewController.swift */; };
 		27828B1F2CE239C7002BEE4D /* FaceDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828B1E2CE239C7002BEE4D /* FaceDetectionViewController.swift */; };
+		27F92F5E2CEB63CF00B02DC6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 27F92F602CEB63CF00B02DC6 /* Localizable.strings */; };
+		27F92F662CEB693000B02DC6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 27F92F652CEB63DF00B02DC6 /* Localizable.strings */; };
+		27F92F6C2CEB6E3E00B02DC6 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F92F6B2CEB6E3E00B02DC6 /* String+Ext.swift */; };
+		27F92F6F2CEB6E7D00B02DC6 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F92F6E2CEB6E7D00B02DC6 /* Keys.swift */; };
+		27F92F712CEB752000B02DC6 /* Bundle+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F92F702CEB752000B02DC6 /* Bundle+Ext.swift */; };
 		4D27B29DEFFB2A8DA70F30B7 /* Pods_EnrollLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95BEBC1A6877ED65D7E7E2BE /* Pods_EnrollLite.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0471D2942CE36C9C006FE45C /* EnrollLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollLite.swift; sourceTree = "<group>"; };
 		0471D2962CE36CE4006FE45C /* FaceDetectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionManager.swift; sourceTree = "<group>"; };
 		0471D2982CE36D9C006FE45C /* FaceDetectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionDelegate.swift; sourceTree = "<group>"; };
 		0471D29A2CE36DFF006FE45C /* FaceDetectionSuccessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionSuccessModel.swift; sourceTree = "<group>"; };
@@ -81,6 +84,11 @@
 		27828B562CE245FA002BEE4D /* nanopb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = nanopb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27828B582CE245FA002BEE4D /* FBLPromises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBLPromises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27828BB32CE279F5002BEE4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		27F92F5F2CEB63CF00B02DC6 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		27F92F642CEB63DF00B02DC6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		27F92F6B2CEB6E3E00B02DC6 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		27F92F6E2CEB6E7D00B02DC6 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		27F92F702CEB752000B02DC6 /* Bundle+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Ext.swift"; sourceTree = "<group>"; };
 		95BEBC1A6877ED65D7E7E2BE /* Pods_EnrollLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EnrollLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B114AED999A1DA9333BB040D /* Pods-EnrollLite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnrollLite.debug.xcconfig"; path = "../../EnrollLiteWorkspace/Pods/Target Support Files/Pods-EnrollLite/Pods-EnrollLite.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,9 +175,10 @@
 			isa = PBXGroup;
 			children = (
 				27828BB32CE279F5002BEE4D /* Info.plist */,
+				27F92F692CEB6E0000B02DC6 /* Core */,
+				27B415BB2CEB54D1008B3AB1 /* Resources */,
 				27828AFF2CE0E360002BEE4D /* features */,
 				27828AF12CE0E193002BEE4D /* EnrollLite.h */,
-				0471D2942CE36C9C006FE45C /* EnrollLite.swift */,
 			);
 			path = EnrollLite;
 			sourceTree = "<group>";
@@ -240,6 +249,41 @@
 			path = FaceDetection;
 			sourceTree = "<group>";
 		};
+		27B415BB2CEB54D1008B3AB1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				27F92F602CEB63CF00B02DC6 /* Localizable.strings */,
+				27F92F652CEB63DF00B02DC6 /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		27F92F692CEB6E0000B02DC6 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				27F92F6D2CEB6E7200B02DC6 /* Constants */,
+				27F92F6A2CEB6E1B00B02DC6 /* Extensions */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		27F92F6A2CEB6E1B00B02DC6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				27F92F6B2CEB6E3E00B02DC6 /* String+Ext.swift */,
+				27F92F702CEB752000B02DC6 /* Bundle+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		27F92F6D2CEB6E7200B02DC6 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				27F92F6E2CEB6E7D00B02DC6 /* Keys.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		ED1994C71043151CEA3A2CAB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,7 +333,7 @@
 		27828AE52CE0E193002BEE4D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
+				BuildIndependentTargetsInParallel = NO;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					27828AED2CE0E193002BEE4D = {
@@ -305,6 +349,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
 			);
 			mainGroup = 27828AE42CE0E193002BEE4D;
 			productRefGroup = 27828AEF2CE0E193002BEE4D /* Products */;
@@ -321,8 +366,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27F92F662CEB693000B02DC6 /* Localizable.strings in Resources */,
 				27828B122CE0E674002BEE4D /* Media.xcassets in Resources */,
 				27828B142CE0E674002BEE4D /* CardDetectionViewController.xib in Resources */,
+				27F92F5E2CEB63CF00B02DC6 /* Localizable.strings in Resources */,
 				27828B132CE0E674002BEE4D /* BarcodeDetectionViewController.xib in Resources */,
 				27828B162CE0E674002BEE4D /* Base.xcconfig in Resources */,
 			);
@@ -384,6 +431,7 @@
 				0471D29B2CE36DFF006FE45C /* FaceDetectionSuccessModel.swift in Sources */,
 				27828B0B2CE0E5F2002BEE4D /* Bundle+IDCardCamera.swift in Sources */,
 				27828AFD2CE0E344002BEE4D /* CardDetectionViewControllerDelegate.swift in Sources */,
+				27F92F6F2CEB6E7D00B02DC6 /* Keys.swift in Sources */,
 				0471D29E2CE36E71006FE45C /* FaceDetectionErrorModel.swift in Sources */,
 				0471D2B62CE3B693006FE45C /* PassportDetectionErrorModel.swift in Sources */,
 				0471D2BF2CE3B769006FE45C /* CardDetectionHandler.swift in Sources */,
@@ -393,6 +441,7 @@
 				0471D2992CE36D9C006FE45C /* FaceDetectionDelegate.swift in Sources */,
 				0471D2BD2CE3B74E006FE45C /* CardDetectionSuccessModel.swift in Sources */,
 				0471D2B42CE3B682006FE45C /* PassportDetectionSuccessModel.swift in Sources */,
+				27F92F6C2CEB6E3E00B02DC6 /* String+Ext.swift in Sources */,
 				27828B072CE0E55C002BEE4D /* TorchSettings.swift in Sources */,
 				27828B192CE0F341002BEE4D /* CMSampleBuffer+CGImage.swift in Sources */,
 				27828AF92CE0E300002BEE4D /* CardDetectionViewController.swift in Sources */,
@@ -400,12 +449,31 @@
 				27828AFB2CE0E331002BEE4D /* BaseCardDetectionViewController.swift in Sources */,
 				27828B1C2CE0F732002BEE4D /* PassportDetectionViewController.swift in Sources */,
 				0471D2B82CE3B6A8006FE45C /* PassportDetectionDelegateHandler.swift in Sources */,
+				27F92F712CEB752000B02DC6 /* Bundle+Ext.swift in Sources */,
 				27828B092CE0E5A4002BEE4D /* DetectionOperations.swift in Sources */,
-				0471D2952CE36C9C006FE45C /* EnrollLite.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		27F92F602CEB63CF00B02DC6 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				27F92F5F2CEB63CF00B02DC6 /* ar */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		27F92F652CEB63DF00B02DC6 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				27F92F642CEB63DF00B02DC6 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		27828AF32CE0E193002BEE4D /* Debug */ = {
@@ -461,7 +529,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -521,7 +589,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

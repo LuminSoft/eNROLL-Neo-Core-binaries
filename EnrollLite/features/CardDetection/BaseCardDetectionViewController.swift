@@ -45,20 +45,25 @@ class BaseCardDetectionViewController: ObjectDetectionViewController {
     private let detectionThreshold: CGFloat = 10.0
     var latestVisibleText = ""
     
-    let lblView:UIView = {
-        let view = UIView(frame: CGRect(x: 100, y: 200, width: 200, height: 70))
-        view.backgroundColor = .white.withAlphaComponent(0.5)
-        view.layer.cornerRadius = 10
-        let label =  UILabel(frame: view.bounds)
+    private let label: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.textColor = .black
         label.text = "Need more light"
-        view.addSubview(label)
+        return label
+    }()
+
+    private let lblView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.white.withAlphaComponent(0.5) // White background with low opacity
+        view.layer.cornerRadius = 10 // Rounded corners
+        view.translatesAutoresizingMaskIntoConstraints = false // Enable Auto Layout
         return view
     }()
     
     @objc public init() {
-        super.init(nibName: "CardDetectionViewController", bundle: Bundle(identifier: "com.bahielfeky.EnrollLite"))
+        super.init(nibName: "CardDetectionViewController", bundle: Bundle.enrollBundle)
     }
     
     required init?(coder: NSCoder) {
@@ -97,8 +102,17 @@ class BaseCardDetectionViewController: ObjectDetectionViewController {
         let cardAspectRatioConstraint = NSLayoutConstraint(item: self.cardOverlayView!, attribute: .width, relatedBy: .equal, toItem: self.cardOverlayView!, attribute: .height, multiplier: self.cardAspectRatio, constant: 0)
         cardAspectRatioConstraint.identifier = "aspectRatio"
         self.cardOverlayView.addConstraint(cardAspectRatioConstraint)
-        lblView.center = cardOverlayView.center
-        showLabelWithText(text: "Center Document")
+        // Add the label to the view
+        lblView.addSubview(label)
+        // Add constraints for the label inside lblView
+        NSLayoutConstraint.activate([
+            label.centerXAnchor.constraint(equalTo: lblView.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: lblView.centerYAnchor),
+            label.leadingAnchor.constraint(equalTo: lblView.leadingAnchor, constant: 30),
+            label.trailingAnchor.constraint(equalTo: lblView.trailingAnchor, constant: -30)
+        ])
+//        lblView.center = cardOverlayView.center
+        showLabelWithText(text: Keys.Localizations.centerYourDocument)
     }
     
     override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -168,7 +182,7 @@ class BaseCardDetectionViewController: ObjectDetectionViewController {
     override func brightnessHandler(brightnessDegree: Float) {
         if brightnessDegree < 70.0 {
             DispatchQueue.main.async {
-                self.showLabelWithText(text: "Need More Light")
+                self.showLabelWithText(text: Keys.Localizations.needMoreLight)
             }
         }else {
             self.showLabelWithText(text: latestVisibleText)
@@ -246,9 +260,9 @@ class BaseCardDetectionViewController: ObjectDetectionViewController {
         
         
         if iou < 0.4 {
-            showLabelWithText(text: "Center Document")
+            showLabelWithText(text: Keys.Localizations.centerYourDocument)
         } else if iou > 0.4 && iou <= 0.8 {
-            showLabelWithText(text: "Move Closer")
+            showLabelWithText(text: Keys.Localizations.moveCloser)
         }
         
         // Update detection status
@@ -267,7 +281,7 @@ class BaseCardDetectionViewController: ObjectDetectionViewController {
         
         /// check if the all the corners are valid
         if self.detectedCorners.reduce(true, { $0 ? $1 : false }) {
-            showLabelWithText(text: "Hold Still")
+            showLabelWithText(text: Keys.Localizations.holdStill)
             // All corners detected
             let originalPrompt = self.navigationItem.prompt
             if self.backgroundOperationQueue.isSuspended || self.backgroundOperationQueue.operationCount > 0 {
@@ -318,9 +332,14 @@ class BaseCardDetectionViewController: ObjectDetectionViewController {
     func showLabelWithText(text: String){
         self.latestVisibleText = text
         DispatchQueue.main.async {
-            let lbl = self.lblView.subviews.first as! UILabel
-            lbl.text = text
+            self.label.text = text
             self.view.addSubview(self.lblView)
+            // Add constraints to center the label inside the view
+            NSLayoutConstraint.activate([
+                self.lblView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+                self.lblView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+                self.lblView.heightAnchor.constraint(equalToConstant: 60),
+            ])
         }
     }
     

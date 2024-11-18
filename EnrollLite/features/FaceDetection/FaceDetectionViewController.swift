@@ -9,6 +9,8 @@ import UIKit
 import AVFoundation
 import MLKit
 
+
+
 class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, AVCapturePhotoCaptureDelegate {
     
     var captureSession = AVCaptureSession()
@@ -24,7 +26,6 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
         label.font = UIFont(name: "Avenir-Heavy", size: 30)
-        label.text = "No face"
         return label
     }()
     
@@ -47,7 +48,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     }()
     
     // Variables to manage label updates
-    private var lastLabelText: String = "No face"
+    private var lastLabelText: String = ""
     private var faceDetectionTimer: Timer?
     
     // Variables to store the circle properties
@@ -60,14 +61,13 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
         return circleRadius * 2
     }
     
-    var centerYourFace = "Center Your Face"
-    var lookStraight = "Look Straight"
-    var noFaceDetected = "No Face Detected"
-    var oneFaceAllowed = "Only One Face Allowed"
-    var holdStill = "Hold Still"
-    var faceDetected = "Face Detected"
-    var moveCloser = "Move Closer"
-    var moveFar = "Move Far"
+    var centerYourFace = Keys.Localizations.centerYourFace.localizedString()
+    var lookStraight = Keys.Localizations.lookStraight.localizedString()
+    var noFaceDetected = Keys.Localizations.noFaceDetected.localizedString()
+    var oneFaceAllowed = Keys.Localizations.oneFaceAllowed.localizedString()
+    var holdStill = Keys.Localizations.holdStill.localizedString()
+    var moveCloser = Keys.Localizations.moveCloser.localizedString()
+    var moveFar = Keys.Localizations.moveFar.localizedString()
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -166,30 +166,30 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
                     let faceFrame = face.frame
                     
                     let iou = self.calculateIoU(faceFrame: face.frame, imageWidth: imageWidth, imageHeight: imageHeight)
-                    print("IoU: \(iou)")
-                    
-                    print("IOU: \(iou)")
-                    print("Face Frame: \(faceFrame)") // Debug print
+//                    print("IoU: \(iou)")
+//                    
+//                    print("IOU: \(iou)")
+//                    print("Face Frame: \(faceFrame)") // Debug print
                     
                     let faceCenterX = faceFrame.origin.x + (faceFrame.width / 2)
                     let faceCenterY = faceFrame.origin.y + (faceFrame.height / 2)
-                    print("Face Center (Image Buffer Coordinates): (\(faceCenterX), \(faceCenterY))") // Debug print
+//                    print("Face Center (Image Buffer Coordinates): (\(faceCenterX), \(faceCenterY))") // Debug print
                     
                     // Convert the face center to the view's coordinate space
                     let viewFaceCenterX = (faceCenterX / imageWidth) * self.view.bounds.width
                     let viewFaceCenterY = (faceCenterY / imageHeight) * self.view.bounds.height
-                    print("Face Center (View Coordinates): (\(viewFaceCenterX), \(viewFaceCenterY))") // Debug print
+//                    print("Face Center (View Coordinates): (\(viewFaceCenterX), \(viewFaceCenterY))") // Debug print
                     
                     let faceCenter = CGPoint(x: viewFaceCenterX, y: viewFaceCenterY)
                     
                     // Calculate the center of the camera preview
                     let previewCenterX = self.view.bounds.midX
                     let previewCenterY = self.view.bounds.midY
-                    print("Camera Preview Center: (\(previewCenterX), \(previewCenterY))") // Debug print
+//                    print("Camera Preview Center: (\(previewCenterX), \(previewCenterY))") // Debug print
                     
                     // Calculate the distance from the face center to the preview center
                     let distance = hypot(faceCenter.x - previewCenterX, faceCenter.y - previewCenterY)
-                    print("Distance from face center to preview center: \(distance)") // Debug print
+//                    print("Distance from face center to preview center: \(distance)") // Debug print
                     
                     // Define a threshold distance (you can adjust this value)
                     let thresholdDistance: CGFloat =  60.0 // Adjust this as needed

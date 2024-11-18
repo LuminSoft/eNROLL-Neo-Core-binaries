@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  EnrollLite
+
+  Created by Bahi El Feky on 18/11/2024.
+  
+*/
+
+"centerYourFace" = "Center Your Face";
+"lookStraight" = "Look Straight";
+"noFaceDetected" = "No Face Detected";
+"oneFaceAllowed" = "One Face Allowed";
+"holdStill" = "Hold Still";
+"moveCloser" = "Move Closer";
+"moveFar" = "Move Far";
+
+/*-------------------------*/
+
+"centerYourDocument" = "Center Document";
+"needMoreLight" = "Need More Light";
