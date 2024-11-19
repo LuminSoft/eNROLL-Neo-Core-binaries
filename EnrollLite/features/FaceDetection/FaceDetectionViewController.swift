@@ -7,7 +7,7 @@
 
 import UIKit
 import AVFoundation
-import MLKit
+@_implementationOnly import MLKit
 
 
 
@@ -66,14 +66,14 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
         return circleRadius * 2
     }
     
-    var centerYourFace = Keys.Localizations.centerYourFace.localizedString()
-    var lookStraight = Keys.Localizations.lookStraight.localizedString()
-    var noFaceDetected = Keys.Localizations.noFaceDetected.localizedString()
-    var oneFaceAllowed = Keys.Localizations.oneFaceAllowed.localizedString()
-    var holdStill = Keys.Localizations.holdStill.localizedString()
-    var moveCloser = Keys.Localizations.moveCloser.localizedString()
-    var moveFar = Keys.Localizations.moveFar.localizedString()
-    var smile = Keys.Localizations.smile.localizedString()
+    var centerYourFace = Keys.Localizations.centerYourFace
+    var lookStraight = Keys.Localizations.lookStraight
+    var noFaceDetected = Keys.Localizations.noFaceDetected
+    var oneFaceAllowed = Keys.Localizations.oneFaceAllowed
+    var holdStill = Keys.Localizations.holdStill
+    var moveCloser = Keys.Localizations.moveCloser
+    var moveFar = Keys.Localizations.moveFar
+    var smile = Keys.Localizations.smile
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +81,11 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
         addDimmedLayerWithClearCircle()
         setupLabel()
         view.addSubview(rectangleView)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        captureSession.stopRunning()
     }
     
     //MARK: - Actions
@@ -96,11 +101,15 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     // Function to reset the timer when "Hold Still" is no longer shown
     func resetHoldStillTimer() {
         naturalStableFrameCounter = 0 // Reset the stability counter
+        smileStableFrameCounter = 0
+        naturalImage = nil
+        smileImage = nil
     }
     
     var naturalStableFrameCounter = 0 // Counter to check stability across multiple frames
     var smileStableFrameCounter = 0 // Counter to check stability across multiple frames
-    let requiredStableFrames = 6 // Number of consecutive stable frames required
+    let requiredNaturalStableFrames = 3 // Number of consecutive stable frames required
+    let requiredSmileStableFrames = 6 // Number of consecutive stable frames required
     var isCapturing = false
     
     public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
@@ -206,24 +215,25 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
                         if iou < 0.4 {
                             self.textLabel.text = self.moveCloser
                             self.resetHoldStillTimer()
-                        }else if iou > 0.5 {
+                        }else if iou > 0.55 {
                             self.textLabel.text = self.moveFar
                             self.resetHoldStillTimer()
                         } else {
                             if self.isLookingForward(face: face) {
                                 self.naturalStableFrameCounter += 1
-                                if self.naturalStableFrameCounter >= self.requiredStableFrames {
+                                if self.naturalStableFrameCounter >= self.requiredNaturalStableFrames {
                                     // Start the timer for 2 seconds
 //                                    self.naturalStableFrameCounter = 0 // Reset the stability counter
                                     self.capturePhoto(isSmileImage: false) // Capture the photo after 1 second
                                     self.textLabel.text = self.smile
-                                    print("Smile Score: \(face.smilingProbability)")
+//                                    print("Smile Score: \(face.smilingProbability)")
                                     if face.smilingProbability > 0.7 {
                                         self.drawCircleBorder(color: .green, lineWidth: 4)
                                         self.textLabel.text = self.holdStill
                                         self.smileStableFrameCounter += 1
-                                        if self.smileStableFrameCounter >= self.requiredStableFrames{
+                                        if self.smileStableFrameCounter >= self.requiredSmileStableFrames{
                                             self.capturePhoto(isSmileImage: true) // Capture the photo after 1 second
+                                            self.resetHoldStillTimer()
                                         }
                                     }
                                 }
@@ -246,8 +256,8 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     }
     
     // Function to capture the last frame when the "Hold Still" state is active
-    func capturePhoto(isSmileImage: Bool = false) {
-        isCapturing = isSmileImage ? true : false // Prevent further processing while capturing
+    func capturePhoto(isSmileImage: Bool) {
+        isCapturing = isSmileImage // Prevent further processing while capturing
         
         guard let sampleBuffer = lastSampleBuffer else { return }
         guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
@@ -274,11 +284,15 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
             // Pass the processed image to the delegate and dismiss the view controller
             if let naturalImage = naturalImage , let smileImage = smileImage{
                 self.dismiss(animated: true) { [weak self] in
+                    print("Dismissed")
                     self?.delegate?.faceDectionSucceed(with: FaceDetectionSuccessModel(naturalImage: naturalImage, smileImage: smileImage))
                 }
             }
         }else {
-            naturalImage = capturedImage
+            if naturalImage == nil {
+                naturalImage = capturedImage
+            }
+            
         }
         // Reset capturing state to allow further processing after showing the photo
         isCapturing = false
@@ -434,6 +448,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
         DispatchQueue.global().async{
             self.captureSession.startRunning()
         }
+        view.backgroundColor = .black
         
     }
     
