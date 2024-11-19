@@ -19,6 +19,7 @@ struct Keys{
         static let moveFar = "moveFar".localizedString()
         static let centerYourDocument = "centerYourDocument".localizedString()
         static let needMoreLight = "needMoreLight".localizedString()
+        static let smile = "smile".localizedString()
     }
     
     

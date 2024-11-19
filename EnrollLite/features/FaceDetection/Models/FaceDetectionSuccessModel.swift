@@ -10,4 +10,5 @@ import UIKit
 
 public struct FaceDetectionSuccessModel{
     public let naturalImage: UIImage
+    public let smileImage: UIImage
 }

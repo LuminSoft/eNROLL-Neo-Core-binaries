@@ -51,6 +51,11 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     private var lastLabelText: String = ""
     private var faceDetectionTimer: Timer?
     
+    // Images Catched
+    
+    private var naturalImage: UIImage?
+    private var smileImage: UIImage?
+    
     // Variables to store the circle properties
     var circleRadius: CGFloat = 0.0
     var circleCenter: CGPoint = .zero
@@ -68,6 +73,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     var holdStill = Keys.Localizations.holdStill.localizedString()
     var moveCloser = Keys.Localizations.moveCloser.localizedString()
     var moveFar = Keys.Localizations.moveFar.localizedString()
+    var smile = Keys.Localizations.smile.localizedString()
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,10 +95,11 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     
     // Function to reset the timer when "Hold Still" is no longer shown
     func resetHoldStillTimer() {
-        stableFrameCounter = 0 // Reset the stability counter
+        naturalStableFrameCounter = 0 // Reset the stability counter
     }
     
-    var stableFrameCounter = 0 // Counter to check stability across multiple frames
+    var naturalStableFrameCounter = 0 // Counter to check stability across multiple frames
+    var smileStableFrameCounter = 0 // Counter to check stability across multiple frames
     let requiredStableFrames = 6 // Number of consecutive stable frames required
     var isCapturing = false
     
@@ -125,11 +132,11 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
         visionImage.orientation = .right // Adjust orientation as needed
         
         let options = FaceDetectorOptions()
-        options.performanceMode = .fast
+        options.performanceMode = .accurate
         options.landmarkMode = .all
         options.classificationMode = .all
-        options.landmarkMode = .none // Disable landmarks if not needed
-        options.classificationMode = .none // Disable classification if not needed
+        options.landmarkMode = .all // Disable landmarks if not needed
+        options.classificationMode = .all // Disable classification if not needed
         options.contourMode = .none // Disable contours if not needed
         
         let faceDetector = FaceDetector.faceDetector(options: options)
@@ -204,13 +211,21 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
                             self.resetHoldStillTimer()
                         } else {
                             if self.isLookingForward(face: face) {
-                                self.drawCircleBorder(color: .green, lineWidth: 4)
-                                self.textLabel.text = self.holdStill
-                                self.stableFrameCounter += 1
-                                if self.stableFrameCounter >= self.requiredStableFrames {
+                                self.naturalStableFrameCounter += 1
+                                if self.naturalStableFrameCounter >= self.requiredStableFrames {
                                     // Start the timer for 2 seconds
-                                    self.stableFrameCounter = 0 // Reset the stability counter
-                                    self.capturePhoto() // Capture the photo after 1 second
+//                                    self.naturalStableFrameCounter = 0 // Reset the stability counter
+                                    self.capturePhoto(isSmileImage: false) // Capture the photo after 1 second
+                                    self.textLabel.text = self.smile
+                                    print("Smile Score: \(face.smilingProbability)")
+                                    if face.smilingProbability > 0.7 {
+                                        self.drawCircleBorder(color: .green, lineWidth: 4)
+                                        self.textLabel.text = self.holdStill
+                                        self.smileStableFrameCounter += 1
+                                        if self.smileStableFrameCounter >= self.requiredStableFrames{
+                                            self.capturePhoto(isSmileImage: true) // Capture the photo after 1 second
+                                        }
+                                    }
                                 }
                                 
                             } else {
@@ -231,8 +246,9 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     }
     
     // Function to capture the last frame when the "Hold Still" state is active
-    func capturePhoto() {
-        isCapturing = true // Prevent further processing while capturing
+    func capturePhoto(isSmileImage: Bool = false) {
+        isCapturing = isSmileImage ? true : false // Prevent further processing while capturing
+        
         guard let sampleBuffer = lastSampleBuffer else { return }
         guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
 
@@ -251,12 +267,19 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
         if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front), device.position == .front {
             capturedImage = capturedImage.withHorizontallyFlippedOrientation()
         }
-
-        // Pass the processed image to the delegate and dismiss the view controller
-        self.dismiss(animated: true) { [weak self] in
-            self?.delegate?.faceDectionSucceed(with: FaceDetectionSuccessModel(naturalImage: capturedImage))
+        
+        if isSmileImage {
+            smileImage = capturedImage
+            
+            // Pass the processed image to the delegate and dismiss the view controller
+            if let naturalImage = naturalImage , let smileImage = smileImage{
+                self.dismiss(animated: true) { [weak self] in
+                    self?.delegate?.faceDectionSucceed(with: FaceDetectionSuccessModel(naturalImage: naturalImage, smileImage: smileImage))
+                }
+            }
+        }else {
+            naturalImage = capturedImage
         }
-
         // Reset capturing state to allow further processing after showing the photo
         isCapturing = false
     }
