@@ -17,6 +17,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     var photoOutput = AVCapturePhotoOutput()
     var isPhotoCaptured = false // Flag to ensure photo is captured only once
     public var delegate: FaceDetectionDelegate?
+    public var withSmileLiveness: Bool = false
     
     // Updated implementation of numberOfFaces label
     let textLabel: UILabel = {
@@ -80,6 +81,9 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
         super.viewDidLoad()
         setupCamera()
         view.addSubview(rectangleView)
+        if !withSmileLiveness{
+            requiredNaturalStableFrames = 6
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -114,7 +118,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     
     var naturalStableFrameCounter = 0 // Counter to check stability across multiple frames
     var smileStableFrameCounter = 0 // Counter to check stability across multiple frames
-    let requiredNaturalStableFrames = 3 // Number of consecutive stable frames required
+    var requiredNaturalStableFrames = 3 // Number of consecutive stable frames required
     let requiredSmileStableFrames = 6 // Number of consecutive stable frames required
     var isCapturing = false
     var isCapturingSmileImage = false
@@ -223,22 +227,28 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
                                 self.textLabel.text = self.keepNaturalFace
                             } else if self.isLookingForward(face: face) {
                                 self.naturalStableFrameCounter += 1
-                                if self.naturalStableFrameCounter >= self.requiredNaturalStableFrames {
-                                    self.capturePhoto(isSmileImage: false) // Capture the photo after 1 second
-                                    self.textLabel.text = self.smile
-                                    self.isCapturingSmileImage = true
-                                    if face.smilingProbability > 0.7 {
-                                        self.drawCircleBorder(color: .green, lineWidth: 4)
-                                        self.textLabel.text = self.holdStill
-                                        self.smileStableFrameCounter += 1
-                                        if self.smileStableFrameCounter >= self.requiredSmileStableFrames{
-                                            self.capturePhoto(isSmileImage: true) // Capture the photo after 1 second
-                                            self.resetHoldStillTimer()
-                                        }
+                                if self.withSmileLiveness {
+                                    if self.naturalStableFrameCounter >= self.requiredNaturalStableFrames {
+                                            self.capturePhoto(isSmileImage: false) // Capture the photo after 1 second
+                                            self.textLabel.text = self.smile
+                                            self.isCapturingSmileImage = true
+                                            if face.smilingProbability > 0.7 {
+                                                self.drawCircleBorder(color: .green, lineWidth: 4)
+                                                self.textLabel.text = self.holdStill
+                                                self.smileStableFrameCounter += 1
+                                                if self.smileStableFrameCounter >= self.requiredSmileStableFrames{
+                                                    self.capturePhoto(isSmileImage: true) // Capture the photo after 1 second
+                                                    self.resetHoldStillTimer()
+                                                }
+                                            }
+                                    }
+                                } else {
+                                    self.drawCircleBorder(color: .green, lineWidth: 4)
+                                    self.textLabel.text = self.holdStill
+                                    if self.naturalStableFrameCounter >= self.requiredNaturalStableFrames {
+                                        self.capturePhoto(isSmileImage: false, isSinglePhotocapture: true) // Capture the photo after 1 second
                                     }
                                 }
-                                
-                                
                             }else {
                                 self.textLabel.text = self.lookStraight
                                 self.resetHoldStillTimer() // Reset the timer
@@ -257,8 +267,8 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     }
     
     // Function to capture the last frame when the "Hold Still" state is active
-    func capturePhoto(isSmileImage: Bool) {
-        isCapturing = isSmileImage // Prevent further processing while capturing
+    func capturePhoto(isSmileImage: Bool, isSinglePhotocapture: Bool? = nil) {
+        isCapturing = isSinglePhotocapture ?? isSmileImage // Prevent further processing while capturing
         
         guard let sampleBuffer = lastSampleBuffer else { return }
         guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
@@ -292,6 +302,12 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
         }else {
             if naturalImage == nil {
                 naturalImage = capturedImage
+                if isSinglePhotocapture == true {
+                    self.dismiss(animated: true) { [weak self] in
+                        print("Dismissed")
+                        self?.delegate?.faceDectionSucceed(with: FaceDetectionSuccessModel(naturalImage: capturedImage, smileImage: nil))
+                    }
+                }
             }
             
         }
