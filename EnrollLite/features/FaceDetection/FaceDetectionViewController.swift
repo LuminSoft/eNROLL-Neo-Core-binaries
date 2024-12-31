@@ -74,6 +74,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     var moveCloser = Keys.Localizations.moveCloser
     var moveFar = Keys.Localizations.moveFar
     var smile = Keys.Localizations.smile
+    var keepNaturalFace = Keys.Localizations.keepNaturalFace
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,6 +109,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
         smileStableFrameCounter = 0
         naturalImage = nil
         smileImage = nil
+        isCapturingSmileImage = false
     }
     
     var naturalStableFrameCounter = 0 // Counter to check stability across multiple frames
@@ -115,6 +117,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     let requiredNaturalStableFrames = 3 // Number of consecutive stable frames required
     let requiredSmileStableFrames = 6 // Number of consecutive stable frames required
     var isCapturing = false
+    var isCapturingSmileImage = false
     
     public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard !isCapturing else { return } // Skip processing if we're capturing
@@ -186,14 +189,9 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
                     let faceFrame = face.frame
                     
                     let iou = self.calculateIoU(faceFrame: face.frame, imageWidth: imageWidth, imageHeight: imageHeight)
-//                    print("IoU: \(iou)")
-//                    
-//                    print("IOU: \(iou)")
-//                    print("Face Frame: \(faceFrame)") // Debug print
                     
                     let faceCenterX = faceFrame.origin.x + (faceFrame.width / 2)
                     let faceCenterY = faceFrame.origin.y + (faceFrame.height / 2)
-//                    print("Face Center (Image Buffer Coordinates): (\(faceCenterX), \(faceCenterY))") // Debug print
                     
                     // Convert the face center to the view's coordinate space
                     let viewFaceCenterX = (faceCenterX / imageWidth) * self.view.bounds.width
@@ -205,11 +203,9 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
                     // Calculate the center of the camera preview
                     let previewCenterX = self.view.bounds.midX
                     let previewCenterY = self.view.bounds.midY
-//                    print("Camera Preview Center: (\(previewCenterX), \(previewCenterY))") // Debug print
                     
                     // Calculate the distance from the face center to the preview center
                     let distance = hypot(faceCenter.x - previewCenterX, faceCenter.y - previewCenterY)
-//                    print("Distance from face center to preview center: \(distance)") // Debug print
                     
                     // Define a threshold distance (you can adjust this value)
                     let thresholdDistance: CGFloat =  60.0 // Adjust this as needed
@@ -223,14 +219,14 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
                             self.textLabel.text = self.moveFar
                             self.resetHoldStillTimer()
                         } else {
-                            if self.isLookingForward(face: face) {
+                            if self.isLookingForward(face: face) && face.smilingProbability > 0.4 && !self.isCapturingSmileImage{
+                                self.textLabel.text = self.keepNaturalFace
+                            } else if self.isLookingForward(face: face) {
                                 self.naturalStableFrameCounter += 1
                                 if self.naturalStableFrameCounter >= self.requiredNaturalStableFrames {
-                                    // Start the timer for 2 seconds
-//                                    self.naturalStableFrameCounter = 0 // Reset the stability counter
                                     self.capturePhoto(isSmileImage: false) // Capture the photo after 1 second
                                     self.textLabel.text = self.smile
-//                                    print("Smile Score: \(face.smilingProbability)")
+                                    self.isCapturingSmileImage = true
                                     if face.smilingProbability > 0.7 {
                                         self.drawCircleBorder(color: .green, lineWidth: 4)
                                         self.textLabel.text = self.holdStill
@@ -242,7 +238,8 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
                                     }
                                 }
                                 
-                            } else {
+                                
+                            }else {
                                 self.textLabel.text = self.lookStraight
                                 self.resetHoldStillTimer() // Reset the timer
                             }

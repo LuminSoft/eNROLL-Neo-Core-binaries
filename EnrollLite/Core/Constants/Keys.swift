@@ -20,6 +20,7 @@ struct Keys{
         static let centerYourDocument = "centerYourDocument".localizedString()
         static let needMoreLight = "needMoreLight".localizedString()
         static let smile = "smile".localizedString()
+        static let keepNaturalFace = "keepNaturalFace".localizedString()
     }
     
     
