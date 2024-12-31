@@ -78,9 +78,13 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupCamera()
+        view.addSubview(rectangleView)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         addDimmedLayerWithClearCircle()
         setupLabel()
-        view.addSubview(rectangleView)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
