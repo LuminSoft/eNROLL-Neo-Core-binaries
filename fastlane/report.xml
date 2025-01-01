@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000288">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: rm -rf ../build" time="0.066869">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: mkdir -p ../build" time="0.00412">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: xcodebuild archive -workspace ../EnrollLite.xcworkspace       -scheme EnrollLite       -destination &apos;generic/platform=iOS Simulator&apos;       -archivePath ../build/EnrollLite-Sim       -configuration Release       SKIP_INSTALL=NO       BUILD_LIBRARY_FOR_DISTRIBUTION=YES       ENABLE_BITCODE=NO" time="58.292669">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: xcodebuild archive -workspace ../EnrollLite.xcworkspace       -scheme EnrollLite       -destination &apos;generic/platform=iOS&apos;       -archivePath ../build/EnrollLite-iOS       -configuration Release       SKIP_INSTALL=NO       BUILD_LIBRARY_FOR_DISTRIBUTION=YES       ENABLE_BITCODE=NO" time="54.858086">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="5: xcodebuild -create-xcframework       -framework ../build/EnrollLite-iOS.xcarchive/Products/Library/Frameworks/EnrollLite.framework       -framework ../build/EnrollLite-Sim.xcarchive/Products/Library/Frameworks/EnrollLite.framework       -output ../build/EnrollLite.xcframework" time="0.954548">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>
