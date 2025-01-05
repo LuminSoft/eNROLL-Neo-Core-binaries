@@ -200,7 +200,6 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
                     // Convert the face center to the view's coordinate space
                     let viewFaceCenterX = (faceCenterX / imageWidth) * self.view.bounds.width
                     let viewFaceCenterY = (faceCenterY / imageHeight) * self.view.bounds.height
-//                    print("Face Center (View Coordinates): (\(viewFaceCenterX), \(viewFaceCenterY))") // Debug print
                     
                     let faceCenter = CGPoint(x: viewFaceCenterX, y: viewFaceCenterY)
                     
@@ -295,7 +294,6 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
             // Pass the processed image to the delegate and dismiss the view controller
             if let naturalImage = naturalImage , let smileImage = smileImage{
                 self.dismiss(animated: true) { [weak self] in
-                    print("Dismissed")
                     self?.delegate?.faceDectionSucceed(with: FaceDetectionSuccessModel(naturalImage: naturalImage, smileImage: smileImage))
                 }
             }
@@ -304,7 +302,6 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
                 naturalImage = capturedImage
                 if isSinglePhotocapture == true {
                     self.dismiss(animated: true) { [weak self] in
-                        print("Dismissed")
                         self?.delegate?.faceDectionSucceed(with: FaceDetectionSuccessModel(naturalImage: capturedImage, smileImage: nil))
                     }
                 }
@@ -351,7 +348,6 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
         let viewHeight = (faceFrame.width / imageWidth) * self.view.bounds.height
         
         
-        //        print("Face Center (View Coordinates): (\(viewFaceCenterX), \(viewFaceCenterY))") // Debug print
         // Convert the face frame to the view's coordinate space
         let viewFaceFrame = CGRect(
             x: viewFaceCenterX,
@@ -447,7 +443,6 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
             let input = try AVCaptureDeviceInput(device: camera)
             captureSession.addInput(input)
         } catch {
-            print("Error accessing camera: \(error)")
             return
         }
         
