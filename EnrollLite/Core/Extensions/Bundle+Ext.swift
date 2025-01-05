@@ -8,5 +8,5 @@
 import Foundation
 
 extension Bundle {
-    static let enrollBundle = Bundle(identifier: "com.bahielfeky.EnrollLite")!
+    static let enrollBundle = Bundle(identifier: "com.luminsoft.EnrollLite")!
 }

@@ -16,9 +16,15 @@ public class PassportDetectionManager: NSObject {
     // Create a private instance of the delegate handler
     private var delegateHandler = PassportDetectionDelegateHandler()
     
-    public init(delegate: PassportDetectionDelegate? = nil) {
+    public init(delegate: PassportDetectionDelegate? = nil) throws {
         super.init()
         // Set self as a handler in the delegate handler
+        guard LicenseVerifier.checkLicense() else {
+            throw EnrollLiteLicenseError()
+        }
+        guard Globals.shared.isDocumentEnabled else {
+            throw EnrollLiteDocumentScannerError()
+        }
         delegateHandler.manager = self
         self.delegate = delegate
     }

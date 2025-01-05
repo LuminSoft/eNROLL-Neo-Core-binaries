@@ -36,6 +36,11 @@
 		27828B192CE0F341002BEE4D /* CMSampleBuffer+CGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828B182CE0F341002BEE4D /* CMSampleBuffer+CGImage.swift */; };
 		27828B1C2CE0F732002BEE4D /* PassportDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828B1B2CE0F732002BEE4D /* PassportDetectionViewController.swift */; };
 		27828B1F2CE239C7002BEE4D /* FaceDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27828B1E2CE239C7002BEE4D /* FaceDetectionViewController.swift */; };
+		27A22AC92D2A9D2C008E931C /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A22AC82D2A9D2C008E931C /* Globals.swift */; };
+		27A22ACB2D2AA3E4008E931C /* EnrollLiteVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A22ACA2D2AA3E4008E931C /* EnrollLiteVerifier.swift */; };
+		27A22ACE2D2AA580008E931C /* EnrollLiteError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A22ACD2D2AA580008E931C /* EnrollLiteError.swift */; };
+		27AD74F52D258268005B6CC0 /* LicenseModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AD74F42D258268005B6CC0 /* LicenseModels.swift */; };
+		27AD74F72D258275005B6CC0 /* LicenseVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AD74F62D258275005B6CC0 /* LicenseVerifier.swift */; };
 		27F92F5E2CEB63CF00B02DC6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 27F92F602CEB63CF00B02DC6 /* Localizable.strings */; };
 		27F92F662CEB693000B02DC6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 27F92F652CEB63DF00B02DC6 /* Localizable.strings */; };
 		27F92F6C2CEB6E3E00B02DC6 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F92F6B2CEB6E3E00B02DC6 /* String+Ext.swift */; };
@@ -84,6 +89,11 @@
 		27828B562CE245FA002BEE4D /* nanopb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = nanopb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27828B582CE245FA002BEE4D /* FBLPromises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBLPromises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27828BB32CE279F5002BEE4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		27A22AC82D2A9D2C008E931C /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		27A22ACA2D2AA3E4008E931C /* EnrollLiteVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollLiteVerifier.swift; sourceTree = "<group>"; };
+		27A22ACD2D2AA580008E931C /* EnrollLiteError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollLiteError.swift; sourceTree = "<group>"; };
+		27AD74F42D258268005B6CC0 /* LicenseModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseModels.swift; sourceTree = "<group>"; };
+		27AD74F62D258275005B6CC0 /* LicenseVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseVerifier.swift; sourceTree = "<group>"; };
 		27F92F5F2CEB63CF00B02DC6 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		27F92F642CEB63DF00B02DC6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		27F92F6B2CEB6E3E00B02DC6 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
@@ -179,6 +189,7 @@
 				27B415BB2CEB54D1008B3AB1 /* Resources */,
 				27828AFF2CE0E360002BEE4D /* features */,
 				27828AF12CE0E193002BEE4D /* EnrollLite.h */,
+				27A22ACA2D2AA3E4008E931C /* EnrollLiteVerifier.swift */,
 			);
 			path = EnrollLite;
 			sourceTree = "<group>";
@@ -249,6 +260,23 @@
 			path = FaceDetection;
 			sourceTree = "<group>";
 		};
+		27A22ACC2D2AA571008E931C /* EnrollLiteError */ = {
+			isa = PBXGroup;
+			children = (
+				27A22ACD2D2AA580008E931C /* EnrollLiteError.swift */,
+			);
+			path = EnrollLiteError;
+			sourceTree = "<group>";
+		};
+		27AD74F32D258255005B6CC0 /* License */ = {
+			isa = PBXGroup;
+			children = (
+				27AD74F42D258268005B6CC0 /* LicenseModels.swift */,
+				27AD74F62D258275005B6CC0 /* LicenseVerifier.swift */,
+			);
+			path = License;
+			sourceTree = "<group>";
+		};
 		27B415BB2CEB54D1008B3AB1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,6 +289,8 @@
 		27F92F692CEB6E0000B02DC6 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				27A22ACC2D2AA571008E931C /* EnrollLiteError */,
+				27AD74F32D258255005B6CC0 /* License */,
 				27F92F6D2CEB6E7200B02DC6 /* Constants */,
 				27F92F6A2CEB6E1B00B02DC6 /* Extensions */,
 			);
@@ -280,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				27F92F6E2CEB6E7D00B02DC6 /* Keys.swift */,
+				27A22AC82D2A9D2C008E931C /* Globals.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -432,6 +463,7 @@
 				27828B0B2CE0E5F2002BEE4D /* Bundle+IDCardCamera.swift in Sources */,
 				27828AFD2CE0E344002BEE4D /* CardDetectionViewControllerDelegate.swift in Sources */,
 				27F92F6F2CEB6E7D00B02DC6 /* Keys.swift in Sources */,
+				27A22AC92D2A9D2C008E931C /* Globals.swift in Sources */,
 				0471D29E2CE36E71006FE45C /* FaceDetectionErrorModel.swift in Sources */,
 				0471D2B62CE3B693006FE45C /* PassportDetectionErrorModel.swift in Sources */,
 				0471D2BF2CE3B769006FE45C /* CardDetectionHandler.swift in Sources */,
@@ -439,13 +471,17 @@
 				0471D2B12CE3B666006FE45C /* PassportDetectionDelegate.swift in Sources */,
 				27828B052CE0E436002BEE4D /* ObjectDetectionSessionHandler.swift in Sources */,
 				0471D2992CE36D9C006FE45C /* FaceDetectionDelegate.swift in Sources */,
+				27A22ACB2D2AA3E4008E931C /* EnrollLiteVerifier.swift in Sources */,
 				0471D2BD2CE3B74E006FE45C /* CardDetectionSuccessModel.swift in Sources */,
 				0471D2B42CE3B682006FE45C /* PassportDetectionSuccessModel.swift in Sources */,
 				27F92F6C2CEB6E3E00B02DC6 /* String+Ext.swift in Sources */,
+				27A22ACE2D2AA580008E931C /* EnrollLiteError.swift in Sources */,
 				27828B072CE0E55C002BEE4D /* TorchSettings.swift in Sources */,
 				27828B192CE0F341002BEE4D /* CMSampleBuffer+CGImage.swift in Sources */,
 				27828AF92CE0E300002BEE4D /* CardDetectionViewController.swift in Sources */,
+				27AD74F52D258268005B6CC0 /* LicenseModels.swift in Sources */,
 				27828B032CE0E424002BEE4D /* ObjectDetectionViewController.swift in Sources */,
+				27AD74F72D258275005B6CC0 /* LicenseVerifier.swift in Sources */,
 				27828AFB2CE0E331002BEE4D /* BaseCardDetectionViewController.swift in Sources */,
 				27828B1C2CE0F732002BEE4D /* PassportDetectionViewController.swift in Sources */,
 				0471D2B82CE3B6A8006FE45C /* PassportDetectionDelegateHandler.swift in Sources */,
@@ -628,7 +664,7 @@
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bahielfeky.EnrollLite;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luminsoft.EnrollLite;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -665,7 +701,7 @@
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bahielfeky.EnrollLite;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luminsoft.EnrollLite;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;

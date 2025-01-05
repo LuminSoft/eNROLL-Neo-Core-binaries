@@ -13,7 +13,13 @@ public class FaceDetectionManager: NSObject {
     private var delegate: FaceDetectionDelegate?
     private var withSmileLiveness: Bool
     
-    public init(delegate: FaceDetectionDelegate? = nil, withSmileLiveness: Bool = false) {
+    public init(delegate: FaceDetectionDelegate? = nil, withSmileLiveness: Bool = false) throws {
+        guard LicenseVerifier.checkLicense() else {
+            throw EnrollLiteLicenseError()
+        }
+        guard Globals.shared.isFaceEnabled else {
+            throw EnrollLiteFaceScannerError()
+        }
         self.delegate = delegate
         self.withSmileLiveness = withSmileLiveness
     }

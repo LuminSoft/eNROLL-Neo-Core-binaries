@@ -13,8 +13,14 @@ public class CardDetectionManager: NSObject{
     private var cardDetectionHandler: CardDetectionHandler = CardDetectionHandler()
     public weak var delegate: CardDetectionDelegate?
     
-    public init(delegate: CardDetectionDelegate? = nil) {
+    public init(delegate: CardDetectionDelegate? = nil) throws {
         super.init()
+        guard LicenseVerifier.checkLicense() else {
+            throw EnrollLiteLicenseError()
+        }
+        guard Globals.shared.isDocumentEnabled else {
+            throw EnrollLiteDocumentScannerError()
+        }
         cardDetectionHandler.manager = self
         self.delegate = delegate
         
