@@ -21,6 +21,7 @@ struct Keys{
         static let needMoreLight = "needMoreLight".localizedString()
         static let smile = "smile".localizedString()
         static let keepNaturalFace = "keepNaturalFace".localizedString()
+        static let theImageIsBlurry = "theImageIsBlurry".localizedString()
     }
     
     

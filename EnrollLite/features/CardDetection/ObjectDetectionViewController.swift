@@ -209,7 +209,7 @@ public class ObjectDetectionViewController: UIViewController, CardDetectionSessi
         }
     }
     
-    func brightnessHandler(brightnessDegree: Float){
+    func brightnessHandler(brightnessDegree: Float, message: String? = nil){
         
     }
 }

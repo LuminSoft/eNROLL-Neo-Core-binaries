@@ -150,28 +150,125 @@ class ObjectDetectionSessionHandler: NSObject, AVCaptureVideoDataOutputSampleBuf
         }
         
         let brightnessDegree = analyzeLightingDegree(pixelBuffer: pixelBuffer)
-        delegate.brightnessHandler(brightnessDegree: brightnessDegree)
-        let orientation = self.imageOrientation
-        let rectangleDetectionRequest = VNDetectRectanglesRequest() { (request, error) in
-            if let rect = request.results?.first as? VNRectangleObservation, !self.imageConversionOperationQueue.isSuspended && self.imageConversionOperationQueue.operationCount == 0 {
-                let op = PerspectiveCorrectionParamsOperation(pixelBuffer: pixelBuffer, orientation: orientation, rect: rect)
-                op.completionBlock = { [weak self, weak op] in
-                    let sharpness = op?.sharpness
-                    if let cgImage = op?.cgImage, let corners = op?.corners, let params = op?.perspectiveCorrectionParams {
-                        DispatchQueue.main.async {
-                            guard let `self` = self else {
-                                return
+        if brightnessDegree < 70 {
+            delegate.brightnessHandler(brightnessDegree: brightnessDegree, message: Keys.Localizations.needMoreLight)
+        } else {
+            let orientation = self.imageOrientation
+            let rectangleDetectionRequest = VNDetectRectanglesRequest() { (request, error) in
+                if let rect = request.results?.first as? VNRectangleObservation, !self.imageConversionOperationQueue.isSuspended && self.imageConversionOperationQueue.operationCount == 0 {
+                    let op = PerspectiveCorrectionParamsOperation(pixelBuffer: pixelBuffer, orientation: orientation, rect: rect)
+                    op.completionBlock = { [weak self, weak op] in
+                        let sharpness = op?.sharpness
+                        if let cgImage = op?.cgImage, let corners = op?.corners, let params = op?.perspectiveCorrectionParams {
+                            DispatchQueue.main.async {
+                                guard let `self` = self else {
+                                    return
+                                }
+                                delegate.sessionHandler(self, didDetectCardInImage: cgImage, withTopLeftCorner: corners.topLeft, topRightCorner: corners.topRight, bottomRightCorner: corners.bottomRight, bottomLeftCorner: corners.bottomLeft, perspectiveCorrectionParams: params, sharpness: sharpness, brightnessLevel: brightnessDegree, rect: rect)
                             }
-                            delegate.sessionHandler(self, didDetectCardInImage: cgImage, withTopLeftCorner: corners.topLeft, topRightCorner: corners.topRight, bottomRightCorner: corners.bottomRight, bottomLeftCorner: corners.bottomLeft, perspectiveCorrectionParams: params, sharpness: sharpness, brightnessLevel: brightnessDegree, rect: rect)
                         }
                     }
+                    self.imageConversionOperationQueue.addOperation(op)
+                } else {
+                    delegate.brightnessHandler(brightnessDegree: brightnessDegree, message: Keys.Localizations.centerYourDocument)
                 }
-                self.imageConversionOperationQueue.addOperation(op)
+            }
+            rectangleDetectionRequest.maximumObservations = 1
+            return rectangleDetectionRequest
+        }
+        return nil
+    }
+    
+    var threshold: Float = 100.0
+
+    func isImageBlurry(pixelBuffer: CVPixelBuffer) -> Bool {
+        guard let processedPixelBuffer = applyLaplacianTo(pixelBuffer: pixelBuffer),
+              let variance = calculateVarianceOf(pixelBuffer: processedPixelBuffer) else {
+            print("Processing failed.")
+            return false
+        }
+
+        let isBlurry = variance < threshold
+        let text = isBlurry ? "Blurry" : "Not Blurry"
+        print("\(text): \(variance)")
+        return isBlurry
+    }
+
+    func applyLaplacianTo(pixelBuffer: CVPixelBuffer) -> CVPixelBuffer? {
+        let context = CIContext()
+
+        // Lock the pixel buffer for reading
+        CVPixelBufferLockBaseAddress(pixelBuffer, .readOnly)
+        defer { CVPixelBufferUnlockBaseAddress(pixelBuffer, .readOnly) }
+
+        // Create a CIImage from the pixel buffer
+        let inputImage = CIImage(cvPixelBuffer: pixelBuffer)
+
+        // Define the Laplacian kernel
+        let laplacianKernel = CIVector(values: [-1, -1, -1,
+                                                 -1,  8, -1,
+                                                 -1, -1, -1], count: 9)
+
+        // Create and configure the convolution filter
+        guard let filter = CIFilter(name: "CIConvolution3X3") else { return nil }
+        filter.setValue(inputImage, forKey: kCIInputImageKey)
+        filter.setValue(laplacianKernel, forKey: "inputWeights")
+        filter.setValue(0.0, forKey: "inputBias") // No bias needed for Laplacian
+
+        // Apply the filter
+        guard let outputImage = filter.outputImage else { return nil }
+
+        // Create a new pixel buffer to store the output
+        var newPixelBuffer: CVPixelBuffer?
+        let pixelBufferAttributes: [String: Any] = [
+            kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA,
+            kCVPixelBufferWidthKey as String: CVPixelBufferGetWidth(pixelBuffer),
+            kCVPixelBufferHeightKey as String: CVPixelBufferGetHeight(pixelBuffer)
+        ]
+        CVPixelBufferCreate(kCFAllocatorDefault, Int(outputImage.extent.width), Int(outputImage.extent.height), kCVPixelFormatType_32BGRA, pixelBufferAttributes as CFDictionary, &newPixelBuffer)
+
+        // Render the output image into the new pixel buffer
+        if let newPixelBuffer = newPixelBuffer {
+            context.render(outputImage, to: newPixelBuffer)
+        }
+
+        return newPixelBuffer
+    }
+
+    func calculateVarianceOf(pixelBuffer: CVPixelBuffer) -> Float? {
+        CVPixelBufferLockBaseAddress(pixelBuffer, .readOnly)
+        defer { CVPixelBufferUnlockBaseAddress(pixelBuffer, .readOnly) }
+
+        guard let baseAddress = CVPixelBufferGetBaseAddress(pixelBuffer) else { return nil }
+
+        let width = CVPixelBufferGetWidth(pixelBuffer)
+        let height = CVPixelBufferGetHeight(pixelBuffer)
+        let bytesPerRow = CVPixelBufferGetBytesPerRow(pixelBuffer)
+
+        var pixelValues = [UInt8]()
+
+        for y in 0..<height {
+            let rowPointer = baseAddress.advanced(by: y * bytesPerRow)
+            let row = UnsafeBufferPointer(start: rowPointer.assumingMemoryBound(to: UInt8.self), count: width * 4)
+
+            // Extract grayscale values (assuming BGRA format)
+            for x in stride(from: 0, to: row.count, by: 4) {
+                let blue = row[x]
+                let green = row[x + 1]
+                let red = row[x + 2]
+                let gray = UInt8(0.299 * Float(red) + 0.587 * Float(green) + 0.114 * Float(blue))
+                pixelValues.append(gray)
             }
         }
-        rectangleDetectionRequest.maximumObservations = 1
-        return rectangleDetectionRequest
+
+        // Calculate the variance
+        let pixelValuesFloat = pixelValues.map { Float($0) }
+        let mean = pixelValuesFloat.reduce(0, +) / Float(pixelValuesFloat.count)
+        let variance = pixelValuesFloat.reduce(0) { $0 + pow($1 - mean, 2) } / Float(pixelValuesFloat.count)
+
+        return variance
     }
+
     
     private func analyzeLightingDegree(pixelBuffer: CVPixelBuffer) -> Float {
             // Perform your lighting analysis here, using the pixel buffer
@@ -237,6 +334,6 @@ protocol CardDetectionSessionHandlerDelegate: AnyObject {
     func sessionHandler(_ handler: ObjectDetectionSessionHandler, didDetectBarcodes barcodes: [VNBarcodeObservation])
     func shouldDetectCardImageWithSessionHandler(_ handler: ObjectDetectionSessionHandler) -> Bool
     func shouldDetectBarcodeWithSessionHandler(_ handler: ObjectDetectionSessionHandler) -> Bool
-    func brightnessHandler(brightnessDegree:Float)
+    func brightnessHandler(brightnessDegree:Float, message: String?)
     func drawDetectedRactangles(rect: VNRectangleObservation?)
 }
