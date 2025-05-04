@@ -7,7 +7,10 @@
 
 import UIKit
 import AVFoundation
-@_implementationOnly import MLKit
+//@_implementationOnly import MLKit
+
+import MLKitFaceDetection
+import MLKitVision
 
 
 

@@ -362,7 +362,7 @@ class BaseCardDetectionViewController: ObjectDetectionViewController {
         else {
             return true
         }
-        let text = variance < threshold ? "Blurry" : "Not Blurry"
+        //let text = variance < threshold ? "Blurry" : "Not Blurry"
         return variance < threshold
     }
     
