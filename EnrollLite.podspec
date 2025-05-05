@@ -15,7 +15,9 @@ Pod::Spec.new do |s|
   # Specify the source files
 
    s.source_files = "EnrollLite/**/*.{swift,h}"
-   s.resources  = [
+
+   s.resource_bundles = {
+    'EnrollLiteFrameworkResources' => [
       'EnrollLite/**/*.xcassets',
       'EnrollLite/**/*.storyboard',
       'EnrollLite/**/*.ttf',
@@ -24,6 +26,7 @@ Pod::Spec.new do |s|
       'EnrollLite/**/*.svg',
       'EnrollLite/**/*.xib'
     ]
+  }
  
     
   # Specify dependencies
