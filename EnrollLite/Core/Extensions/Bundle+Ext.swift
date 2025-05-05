@@ -8,5 +8,20 @@
 import Foundation
 
 extension Bundle {
-    static let enrollBundle = Bundle(identifier: "com.luminsoft.EnrollLite")!
+    
+    static var enrollBundle: Bundle {
+         let bundleName = "EnrollLiteFrameworkResources"
+
+         // The bundle this code is executing in (the Pod's module)
+         let podBundle = Bundle(for: BaseCardDetectionViewController.self)
+
+         // Locate the resource bundle inside the Pod bundle
+         guard let url = podBundle.url(forResource: bundleName, withExtension: "bundle"),
+               let resourceBundle = Bundle(url: url) else {
+             fatalError("Cannot find EnrollFrameworkResources.bundle")
+         }
+
+         return resourceBundle
+     }
+   // static let enrollBundle = Bundle(identifier: "com.luminsoft.EnrollLite")!
 }
