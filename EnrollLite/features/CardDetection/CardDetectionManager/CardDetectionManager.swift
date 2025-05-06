@@ -26,10 +26,11 @@ public class CardDetectionManager: NSObject{
         
     }
     
-    public func startCardDetection(from viewController: UIViewController){
+    public func startCardDetection()->UIViewController{
         let cardDetectorVC = CardDetectionViewController()
         cardDetectorVC.delegate = cardDetectionHandler
-        viewController.present(cardDetectorVC, animated: true)
+        return  cardDetectorVC
+        //viewController.present(cardDetectorVC, animated: true)
     }
 }
 

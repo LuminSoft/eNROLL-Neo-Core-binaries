@@ -30,7 +30,7 @@ public class PassportDetectionManager: NSObject {
     }
     
     // Public method to start the scanning process
-    public func startPassportDetection(from viewController: UIViewController) {
+    public func startPassportDetection()-> UIViewController? {
         
         guard VNDocumentCameraViewController.isSupported else {
             self.delegate?.passportDetectionDidFail(withError: PassportDetectionErrorModel(error: NSError(
@@ -38,11 +38,13 @@ public class PassportDetectionManager: NSObject {
                 code: -1,
                 userInfo: [NSLocalizedDescriptionKey: "Document scanning is not supported on this device."]
             )))
-            return
+            return  nil
         }
         let documentCameraViewController = VNDocumentCameraViewController()
-        documentCameraViewController.delegate = delegateHandler  // Set the handler as the delegate
-        viewController.present(documentCameraViewController, animated: true, completion: nil)
+        documentCameraViewController.delegate = delegateHandler 
+        return documentCameraViewController
+        // Set the handler as the delegate
+//        viewController.present(documentCameraViewController, animated: true, completion: nil)
     }
     
     // Internal methods to handle results, called by the delegate handler

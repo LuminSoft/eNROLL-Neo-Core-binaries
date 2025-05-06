@@ -24,10 +24,11 @@ public class FaceDetectionManager: NSObject {
         self.withSmileLiveness = withSmileLiveness
     }
     
-    public func startFaceDetection(from viewController: UIViewController){
+    public func startFaceDetection()-> UIViewController{
         let vc = FaceDetectionViewController()
         vc.delegate = delegate
         vc.withSmileLiveness = withSmileLiveness
-        viewController.present(vc, animated: true)
+        return vc
+        //viewController.present(vc, animated: true)
     }
 }
