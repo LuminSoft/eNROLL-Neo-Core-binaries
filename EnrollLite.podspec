@@ -10,6 +10,7 @@ Pod::Spec.new do |s|
   s.author           = { "Lumia Soft" => "Mariam.ismail@lumminsoft.com" }
   s.platform         = :ios, "13.0" # Set minimum iOS version as required
   s.source           = { :git => 'https://github.com/mariam-lumin/EnrollLite.git', :tag => s.version.to_s }
+   s.vendored_frameworks = "EnrollLite"
  
   
   # Specify the source files
