@@ -16,14 +16,13 @@ extension String{
     }
 }
 
-public protocol LocalizationProvider {
-    func localizedString(forKey key: String) -> String
-}
+
 
 public class LocalizationManager {
-    public static var provider: LocalizationProvider?
+    public static var provider: Dictionary<String, String>?
+    
 
-    public static func localizedString(forKey key: String) -> String {
-        return provider?.localizedString(forKey: key) ?? key
+     static func localizedString(forKey key: String) -> String {
+         return provider?[key] ?? key
     }
 }
