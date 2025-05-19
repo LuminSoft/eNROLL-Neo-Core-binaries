@@ -48,6 +48,7 @@
 		27F92F712CEB752000B02DC6 /* Bundle+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F92F702CEB752000B02DC6 /* Bundle+Ext.swift */; };
 		5D7A774564A6224C3CFE5AFB /* Pods_EnrollLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45C3442ED7814046AA67F837 /* Pods_EnrollLite.framework */; };
 		6F19E73C2DC7B43600361120 /* EnrollLite.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 6F19E73B2DC7B43600361120 /* EnrollLite.podspec */; };
+		6F1FA9C32DDB81410038F767 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FA9C22DDB81410038F767 /* LocalizationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +98,7 @@
 		27F92F702CEB752000B02DC6 /* Bundle+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Ext.swift"; sourceTree = "<group>"; };
 		45C3442ED7814046AA67F837 /* Pods_EnrollLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EnrollLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F19E73B2DC7B43600361120 /* EnrollLite.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EnrollLite.podspec; sourceTree = "<group>"; };
+		6F1FA9C22DDB81410038F767 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +265,7 @@
 		27B415BB2CEB54D1008B3AB1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6F1FA9C22DDB81410038F767 /* LocalizationManager.swift */,
 				27F92F602CEB63CF00B02DC6 /* Localizable.strings */,
 				27F92F652CEB63DF00B02DC6 /* Localizable.strings */,
 			);
@@ -431,9 +434,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-EnrollLite/Pods-EnrollLite-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-EnrollLite/Pods-EnrollLite-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -469,6 +476,7 @@
 				27F92F6C2CEB6E3E00B02DC6 /* String+Ext.swift in Sources */,
 				27A22ACE2D2AA580008E931C /* EnrollLiteError.swift in Sources */,
 				27828B072CE0E55C002BEE4D /* TorchSettings.swift in Sources */,
+				6F1FA9C32DDB81410038F767 /* LocalizationManager.swift in Sources */,
 				27828B192CE0F341002BEE4D /* CMSampleBuffer+CGImage.swift in Sources */,
 				27828AF92CE0E300002BEE4D /* CardDetectionViewController.swift in Sources */,
 				27AD74F52D258268005B6CC0 /* LicenseModels.swift in Sources */,

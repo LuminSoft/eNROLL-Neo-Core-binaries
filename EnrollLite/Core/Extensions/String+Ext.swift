@@ -8,21 +8,13 @@
 import Foundation
 
 
-extension String{
+ extension String{
     
     func localizedString() -> String {
+        
       return  LocalizationManager.localizedString(forKey: self)
 //        return NSLocalizedString(self, bundle: Bundle.enrollBundle, comment: "")
     }
 }
 
 
-
-public class LocalizationManager {
-    public static var provider: Dictionary<String, String>?
-    
-
-     static func localizedString(forKey key: String) -> String {
-         return provider?[key] ?? key
-    }
-}
