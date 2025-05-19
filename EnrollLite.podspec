@@ -24,7 +24,8 @@ Pod::Spec.new do |s|
       'EnrollLite/**/*.otf',
       'EnrollLite/**/*.json',
       'EnrollLite/**/*.svg',
-      'EnrollLite/**/*.xib'
+      'EnrollLite/**/*.xib',
+      'EnrollLite/**/*.strings'
     ]
   }
  
