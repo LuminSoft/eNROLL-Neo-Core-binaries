@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "EnrollLite"
-  s.version          = "1.0.0"
+  s.version          = "1.0.1"
   s.summary          = "An SDK for document, face, and passport detection."
   s.description      = "DESC
                        EnrollLite is a custom SDK that provides various detection functionalities including document, face, and passport detection, utilizing Google ML Kit's Face Detection.
