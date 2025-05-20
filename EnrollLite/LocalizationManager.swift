@@ -11,7 +11,7 @@ public class LocalizationManager {
     
     public static var provider: Dictionary<String, String>?
 
-     static func localizedString(forKey key: String) -> String {
+     public static func localizedString(forKey key: String) -> String {
          return provider?[key] ?? key
     }
 }
