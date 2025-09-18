@@ -18,9 +18,19 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     
     var captureSession = AVCaptureSession()
     var photoOutput = AVCapturePhotoOutput()
+    let videoOutput = AVCaptureVideoDataOutput()
+    
+    // AssetWriter
+    private var assetWriter: AVAssetWriter?
+    private var videoInput: AVAssetWriterInput?
+    private var pixelBufferAdaptor: AVAssetWriterInputPixelBufferAdaptor?
+    private var isWriting = false
+    private var startTime: CMTime?
+
     var isPhotoCaptured = false // Flag to ensure photo is captured only once
     public var delegate: FaceDetectionDelegate?
     public var withSmileLiveness: Bool = false
+    public var withWinkLiveness: Bool = false
     
     // Updated implementation of numberOfFaces label
     let textLabel: UILabel = {
@@ -59,6 +69,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     
     private var naturalImage: UIImage?
     private var smileImage: UIImage?
+    private var winkImage: UIImage?
     
     // Variables to store the circle properties
     var circleRadius: CGFloat = 0.0
@@ -78,6 +89,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     var moveCloser = Keys.Localizations.moveCloser
     var moveFar = Keys.Localizations.moveFar
     var smile = Keys.Localizations.smile
+    var wink = Keys.Localizations.wink
     var keepNaturalFace = Keys.Localizations.keepNaturalFace
     
     public override func viewDidLoad() {
@@ -90,7 +102,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        super.viewWillAppear(animated)
         addDimmedLayerWithClearCircle()
         setupLabel()
     }
@@ -117,17 +129,34 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
         naturalImage = nil
         smileImage = nil
         isCapturingSmileImage = false
+        isCapturingWinkImage = false
     }
     
     var naturalStableFrameCounter = 0 // Counter to check stability across multiple frames
     var smileStableFrameCounter = 0 // Counter to check stability across multiple frames
+    var winkStableFrameCounter = 0
     var requiredNaturalStableFrames = 3 // Number of consecutive stable frames required
     let requiredSmileStableFrames = 6 // Number of consecutive stable frames required
+    let requiredWinkStableFrames = 3
     var isCapturing = false
     var isCapturingSmileImage = false
+    var isCapturingWinkImage = false
     
     public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard !isCapturing else { return } // Skip processing if we're capturing
+        
+        guard isWriting,
+                   let writer = assetWriter,
+                   let videoInput = videoInput,
+                   videoInput.isReadyForMoreMediaData else { return }
+             
+             let timestamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
+             if startTime == nil {
+                 startTime = timestamp
+                 writer.startSession(atSourceTime: timestamp)
+             }
+             
+        videoInput.append(sampleBuffer)
         
         frameCounter += 1
         if frameCounter % frameSkipInterval != 0 {
@@ -187,10 +216,12 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
                 return
             }
             
+            self.startRecording()
             
             DispatchQueue.main.async {
                 if faces.count == 1 {
                     let face = faces.first!
+                    
                     
                     // Calculate the center of the detected face in the image buffer coordinates
                     let faceFrame = face.frame
@@ -229,7 +260,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
                                 self.textLabel.text = self.keepNaturalFace
                             } else if self.isLookingForward(face: face) {
                                 self.naturalStableFrameCounter += 1
-                                if self.withSmileLiveness {
+                                if self.withSmileLiveness  {
                                     if self.naturalStableFrameCounter >= self.requiredNaturalStableFrames {
                                             self.capturePhoto(isSmileImage: false) // Capture the photo after 1 second
                                             self.textLabel.text = self.smile
@@ -239,10 +270,38 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
                                                 self.textLabel.text = self.holdStill
                                                 self.smileStableFrameCounter += 1
                                                 if self.smileStableFrameCounter >= self.requiredSmileStableFrames{
-                                                    self.capturePhoto(isSmileImage: true) // Capture the photo after 1 second
-                                                    self.resetHoldStillTimer()
+                                                    self.capturePhoto(isSmileImage: true)// Capture the photo after 1 second
+                                                    self.isCapturingSmileImage = false
+                                                    self.isCapturingWinkImage = true
+                                                   // self.resetHoldStillTimer()
                                                 }
                                             }
+                                        
+                                        if (self.isCapturingWinkImage){
+                                            let leftEye = face.leftEyeOpenProbability ?? 1.0
+                                            let rightEye = face.rightEyeOpenProbability ?? 1.0
+                                            if leftEye < 0.1 && rightEye > 0.9 {
+                                                self.textLabel.text = "Wink Left 👁"
+                                                self.capturePhoto(isSmileImage: true)
+                                                self.resetHoldStillTimer()
+                                                self.stopRecording()
+                                            
+                                            } else if rightEye < 0.1 && leftEye > 0.9 {
+                                                self.textLabel.text = "Wink Right 👁"
+                                                self.capturePhoto(isSmileImage: true)
+                                                self.resetHoldStillTimer()
+                                                self.stopRecording()
+                                            } else {
+                                                self.textLabel.text = "Please Wink 😉"
+                                                return // don’t continue until wink detected
+                                            }
+                                        }
+                                        
+                                        
+                                        
+                                        
+                                           
+                                        
                                     }
                                 } else {
                                     self.drawCircleBorder(color: .green, lineWidth: 4)
@@ -450,9 +509,10 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
         }
         
         // Create and configure the photo output
-        captureSession.addOutput(photoOutput) // Add the photo output to the session
+        captureSession.addOutput(photoOutput)// Add the photo output to the session
+      
         
-        let videoOutput = AVCaptureVideoDataOutput()
+     
         videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
         captureSession.addOutput(videoOutput)
         captureSession.sessionPreset = .high
@@ -465,6 +525,47 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
         }
         view.backgroundColor = .black
         
+    }
+    
+    // MARK: - Recording Controls
+    
+    func startRecording() {
+        let outputURL = FileManager.default.temporaryDirectory
+            .appendingPathComponent("liveness.mp4")
+        
+        assetWriter = try? AVAssetWriter(outputURL: outputURL, fileType: .mp4)
+        
+        let settings = videoOutput.recommendedVideoSettingsForAssetWriter(writingTo: .mp4) ?? [
+            AVVideoCodecKey: AVVideoCodecType.h264,
+            AVVideoWidthKey: 720,
+            AVVideoHeightKey: 1280
+        ]
+        
+        videoInput = AVAssetWriterInput(mediaType: .video, outputSettings: settings)
+        videoInput?.expectsMediaDataInRealTime = true
+        
+        if let videoInput = videoInput, assetWriter?.canAdd(videoInput) == true {
+            assetWriter?.add(videoInput)
+        }
+        
+        if let videoInput = videoInput {
+            pixelBufferAdaptor = AVAssetWriterInputPixelBufferAdaptor(
+                assetWriterInput: videoInput,
+                sourcePixelBufferAttributes: nil
+            )
+        }
+        
+        assetWriter?.startWriting()
+        isWriting = true
+        startTime = nil
+    }
+    
+    func stopRecording() {
+        isWriting = false
+        videoInput?.markAsFinished()
+        assetWriter?.finishWriting {
+            print("Video saved at: \(self.assetWriter?.outputURL)")
+        }
     }
     
     
@@ -537,6 +638,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
         // Add the new border layer to the main view
         view.layer.addSublayer(borderLayer)
     }
+
     
 }
 
