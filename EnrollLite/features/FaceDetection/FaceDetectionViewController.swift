@@ -102,7 +102,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        super.viewDidAppear(animated)
         addDimmedLayerWithClearCircle()
         setupLabel()
     }
