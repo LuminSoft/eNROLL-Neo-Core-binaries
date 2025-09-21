@@ -11,7 +11,7 @@ import AVFoundation
 
 import MLKitFaceDetection
 import MLKitVision
-
+import Photos
 
 
 class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, AVCapturePhotoCaptureDelegate {
@@ -70,6 +70,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     private var naturalImage: UIImage?
     private var smileImage: UIImage?
     private var winkImage: UIImage?
+    private var liveneesVideoUrl:URL?
     
     // Variables to store the circle properties
     var circleRadius: CGFloat = 0.0
@@ -95,6 +96,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupCamera()
+        startRecording()
         view.addSubview(rectangleView)
         if !withSmileLiveness{
             requiredNaturalStableFrames = 6
@@ -128,6 +130,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
         smileStableFrameCounter = 0
         naturalImage = nil
         smileImage = nil
+        winkImage = nil
         isCapturingSmileImage = false
         isCapturingWinkImage = false
     }
@@ -142,22 +145,11 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     var isCapturingSmileImage = false
     var isCapturingWinkImage = false
     
+    
     public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard !isCapturing else { return } // Skip processing if we're capturing
         
-        guard isWriting,
-                   let writer = assetWriter,
-                   let videoInput = videoInput,
-                   videoInput.isReadyForMoreMediaData else { return }
-             
-             let timestamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
-             if startTime == nil {
-                 startTime = timestamp
-                 writer.startSession(atSourceTime: timestamp)
-             }
-             
-        videoInput.append(sampleBuffer)
-        
+
         frameCounter += 1
         if frameCounter % frameSkipInterval != 0 {
             return // Skip this frame
@@ -216,7 +208,19 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
                 return
             }
             
-            self.startRecording()
+            if !self.isWriting{
+                let ts = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
+                self.assetWriter?.startSession(atSourceTime: ts)
+                self.startTime = ts
+                self.isWriting = true
+                            print("🎥 Recording started at \(ts.seconds)")
+            }
+      
+            if self.isWriting,
+                     self.videoInput!.isReadyForMoreMediaData{
+    
+                self.videoInput!.append(sampleBuffer)
+                   }
             
             DispatchQueue.main.async {
                 if faces.count == 1 {
@@ -281,18 +285,16 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
                                             let leftEye = face.leftEyeOpenProbability ?? 1.0
                                             let rightEye = face.rightEyeOpenProbability ?? 1.0
                                             if leftEye < 0.1 && rightEye > 0.9 {
-                                                self.textLabel.text = "Wink Left 👁"
                                                 self.capturePhoto(isSmileImage: true)
                                                 self.resetHoldStillTimer()
                                                 self.stopRecording()
                                             
                                             } else if rightEye < 0.1 && leftEye > 0.9 {
-                                                self.textLabel.text = "Wink Right 👁"
                                                 self.capturePhoto(isSmileImage: true)
                                                 self.resetHoldStillTimer()
                                                 self.stopRecording()
                                             } else {
-                                                self.textLabel.text = "Please Wink 😉"
+                                                self.textLabel.text = self.wink
                                                 return // don’t continue until wink detected
                                             }
                                         }
@@ -351,12 +353,18 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
         }
         
         if isSmileImage {
-            smileImage = capturedImage
+           if (smileImage == nil){
+               smileImage = capturedImage
+           }
+            else {
+                winkImage = capturedImage
+            }
+         
             
             // Pass the processed image to the delegate and dismiss the view controller
-            if let naturalImage = naturalImage , let smileImage = smileImage{
+            if let naturalImage = naturalImage , let smileImage = smileImage, let winkImage = winkImage{
                 self.dismiss(animated: true) { [weak self] in
-                    self?.delegate?.faceDectionSucceed(with: FaceDetectionSuccessModel(naturalImage: naturalImage, smileImage: smileImage))
+                    self?.delegate?.faceDectionSucceed(with: FaceDetectionSuccessModel(naturalImage: naturalImage, smileImage: smileImage,livenessVideo: self?.liveneesVideoUrl))
                 }
             }
         }else {
@@ -364,7 +372,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
                 naturalImage = capturedImage
                 if isSinglePhotocapture == true {
                     self.dismiss(animated: true) { [weak self] in
-                        self?.delegate?.faceDectionSucceed(with: FaceDetectionSuccessModel(naturalImage: capturedImage, smileImage: nil))
+                        self?.delegate?.faceDectionSucceed(with: FaceDetectionSuccessModel(naturalImage: capturedImage, smileImage: nil,livenessVideo: self?.liveneesVideoUrl))
                     }
                 }
             }
@@ -510,12 +518,9 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
         
         // Create and configure the photo output
         captureSession.addOutput(photoOutput)// Add the photo output to the session
-      
-        
-     
         videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
         captureSession.addOutput(videoOutput)
-        captureSession.sessionPreset = .high
+        captureSession.sessionPreset = .medium
         
         let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.frame = view.frame
@@ -530,41 +535,87 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     // MARK: - Recording Controls
     
     func startRecording() {
+        
         let outputURL = FileManager.default.temporaryDirectory
             .appendingPathComponent("liveness.mp4")
         
         assetWriter = try? AVAssetWriter(outputURL: outputURL, fileType: .mp4)
         
-        let settings = videoOutput.recommendedVideoSettingsForAssetWriter(writingTo: .mp4) ?? [
+//        let settings = videoOutput.recommendedVideoSettingsForAssetWriter(writingTo: .mp4) ?? [
+//            AVVideoCodecKey: AVVideoCodecType.h264,
+//            AVVideoWidthKey: 720,
+//            AVVideoWidthKey: 720,
+//            AVVideoHeightKey: 1280
+//        ]
+        let settings: [String: Any] = [
             AVVideoCodecKey: AVVideoCodecType.h264,
-            AVVideoWidthKey: 720,
-            AVVideoHeightKey: 1280
+            AVVideoWidthKey: 480,   // medium resolution width
+            AVVideoHeightKey: 640,  // medium resolution height
+            AVVideoCompressionPropertiesKey: [
+                AVVideoAverageBitRateKey: 1_000_000, // ~1 Mbps (medium quality)
+                AVVideoProfileLevelKey: AVVideoProfileLevelH264MainAutoLevel
+            ]
         ]
         
-        videoInput = AVAssetWriterInput(mediaType: .video, outputSettings: settings)
-        videoInput?.expectsMediaDataInRealTime = true
+        self.videoInput = AVAssetWriterInput(mediaType: .video, outputSettings: settings)
+        self.videoInput!.expectsMediaDataInRealTime = true
+        self.videoInput!.transform = CGAffineTransform(rotationAngle: .pi/2)
         
-        if let videoInput = videoInput, assetWriter?.canAdd(videoInput) == true {
-            assetWriter?.add(videoInput)
-        }
-        
-        if let videoInput = videoInput {
+        if  assetWriter?.canAdd(self.videoInput!) == true {
+            // Fix orientation (for portrait recording)
+            assetWriter?.add(self.videoInput!)
             pixelBufferAdaptor = AVAssetWriterInputPixelBufferAdaptor(
-                assetWriterInput: videoInput,
+                assetWriterInput: self.videoInput!,
                 sourcePixelBufferAttributes: nil
             )
         }
-        
+   
         assetWriter?.startWriting()
-        isWriting = true
-        startTime = nil
+       
+        //startTime = nil
     }
     
     func stopRecording() {
         isWriting = false
-        videoInput?.markAsFinished()
+        self.videoInput?.markAsFinished()
         assetWriter?.finishWriting {
+            
             print("Video saved at: \(self.assetWriter?.outputURL)")
+            if let videoURL = self.assetWriter?.outputURL {
+                
+              //  DispatchQueue.main.async {
+                  
+                    
+                    // (Optional) Move to Documents before saving
+                    let docs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                    let destURL = docs.appendingPathComponent("liveness.mp4")
+                    try? FileManager.default.removeItem(at: destURL)
+                    try? FileManager.default.moveItem(at: videoURL, to: destURL)
+                    
+                    PHPhotoLibrary.shared().performChanges({
+                          PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: destURL)
+                      }) { success, error in
+                          if success {
+                              print("✅ Saved to Photos")
+                          } else {
+                              print("❌ Error saving video: \(String(describing: error))")
+                          }
+                      }
+                    
+               // }
+                self.liveneesVideoUrl = destURL
+               
+//                let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+//                let destination = documents.appendingPathComponent("liveness.mp4")
+//
+//                do {
+//                  //  try FileManager.default.copyItem(at: videoURL, to: destination)
+                 
+                  //  print("Video moved to: \(destination.path)")
+//                } catch {
+//                    print("Error saving video: \(error)")
+//                }
+            }
         }
     }
     
@@ -667,3 +718,4 @@ extension UIImage {
         return rotatedImage
     }
 }
+
