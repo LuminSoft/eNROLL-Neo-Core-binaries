@@ -364,7 +364,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
             // Pass the processed image to the delegate and dismiss the view controller
             if let naturalImage = naturalImage , let smileImage = smileImage, let winkImage = winkImage{
                 self.dismiss(animated: true) { [weak self] in
-                    self?.delegate?.faceDectionSucceed(with: FaceDetectionSuccessModel(naturalImage: naturalImage, smileImage: smileImage,livenessVideo: self?.liveneesVideoUrl))
+                    self?.delegate?.faceDectionSucceed(with: FaceDetectionSuccessModel(naturalImage: naturalImage, smileImage: smileImage,livenessVideo: self?.liveneesVideoUrl != nil ? self!.liveneesVideoUrl!.lastPathComponent: ""))
                 }
             }
         }else {
@@ -372,7 +372,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
                 naturalImage = capturedImage
                 if isSinglePhotocapture == true {
                     self.dismiss(animated: true) { [weak self] in
-                        self?.delegate?.faceDectionSucceed(with: FaceDetectionSuccessModel(naturalImage: capturedImage, smileImage: nil,livenessVideo: self?.liveneesVideoUrl))
+                        self?.delegate?.faceDectionSucceed(with: FaceDetectionSuccessModel(naturalImage: capturedImage, smileImage: nil,livenessVideo: self?.liveneesVideoUrl != nil ? self!.liveneesVideoUrl!.lastPathComponent: "" ))
                     }
                 }
             }
