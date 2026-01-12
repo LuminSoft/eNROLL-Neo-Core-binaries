@@ -23,6 +23,10 @@ struct Keys{
         static let keepNaturalFace = "keepNaturalFace".localizedString()
         static let theImageIsBlurry = "theImageIsBlurry".localizedString()
         static let wink = "wink".localizedString()
+        static let turnLeft = "turnLeft".localizedString()
+        static let turnRight = "turnRight".localizedString()
+        static let lookUp = "lookUp".localizedString()
+        static let lookDown = "lookDown".localizedString()
     }
     
     

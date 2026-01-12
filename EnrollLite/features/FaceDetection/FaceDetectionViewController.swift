@@ -14,6 +14,31 @@ import MLKitVision
 import Photos
 
 
+enum LivenessStep {
+    case lookStraight
+    case smile
+    case wink
+    case turnLeft
+    case turnRight
+    case lookUp
+    case lookDown
+}
+
+enum HeadPose {
+    case left, right, up, down, center
+}
+
+func detectHeadPose(face: Face) -> HeadPose {
+    let yaw = face.headEulerAngleY
+    let pitch = face.headEulerAngleX
+
+    if yaw > 20 { return .right }
+    if yaw < -20 { return .left }
+    if pitch > 15 { return .down }
+    if pitch < -15 { return .up }
+    return .center
+}
+
 class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, AVCapturePhotoCaptureDelegate {
     
     var captureSession = AVCaptureSession()
@@ -31,6 +56,10 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     public var delegate: FaceDetectionDelegate?
     public var withSmileLiveness: Bool = false
     public var withWinkLiveness: Bool = false
+    
+    var livenessSteps: [LivenessStep] = []
+    var currentStepIndex = 0
+
     
     // Updated implementation of numberOfFaces label
     let textLabel: UILabel = {
@@ -68,9 +97,10 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     // Images Catched
     
     private var naturalImage: UIImage?
-    private var smileImage: UIImage?
-    private var winkImage: UIImage?
+    //private var smileImage: UIImage?
+   // private var winkImage: UIImage?
     private var liveneesVideoUrl:URL?
+    private var livenessFrames: [UIImage] = []
     
     // Variables to store the circle properties
     var circleRadius: CGFloat = 0.0
@@ -96,11 +126,12 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupCamera()
-        startRecording()
+       // startRecording()
         view.addSubview(rectangleView)
-        if !withSmileLiveness{
-            requiredNaturalStableFrames = 6
-        }
+        generateLivenessSteps()
+//        if !withSmileLiveness{
+//            requiredNaturalStableFrames = 6
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -127,29 +158,91 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     // Function to reset the timer when "Hold Still" is no longer shown
     func resetHoldStillTimer() {
         naturalStableFrameCounter = 0 // Reset the stability counter
-        smileStableFrameCounter = 0
+        //smileStableFrameCounter = 0
+        stableFrameCounter = 0
         naturalImage = nil
-        smileImage = nil
-        winkImage = nil
-        isCapturingSmileImage = false
-        isCapturingWinkImage = false
+        //smileImage = nil
+        //winkImage = nil
+       // isCapturingSmileImage = false
+        //isCapturingWinkImage = false
+        isCapturing = false
+        isCapturingLivenessStep = false
     }
     
     var naturalStableFrameCounter = 0 // Counter to check stability across multiple frames
-    var smileStableFrameCounter = 0 // Counter to check stability across multiple frames
-    var winkStableFrameCounter = 0
-    var requiredNaturalStableFrames = 3 // Number of consecutive stable frames required
-    let requiredSmileStableFrames = 6 // Number of consecutive stable frames required
-    let requiredWinkStableFrames = 3
+    var stableFrameCounter = 0 // Counter to check stability across multiple frames
+   // var winkStableFrameCounter = 0
+   // var requiredNaturalStableFrames = 3 // Number of consecutive stable frames required
+   // let requiredSmileStableFrames = 6 // Number of consecutive stable frames required
+   // let requiredWinkStableFrames = 3
     var isCapturing = false
-    var isCapturingSmileImage = false
-    var isCapturingWinkImage = false
+    //var isCapturingSmileImage = false
+   // var isCapturingWinkImage = false
+    var isCapturingLivenessStep = false
     
+    func generateLivenessSteps() {
+        let all: [LivenessStep] = [.smile, .wink, .turnLeft, .turnRight, .lookUp, .lookDown]
+        livenessSteps = Array(all.shuffled().prefix(3))
+        livenessSteps[0] = .lookStraight
+        currentStepIndex = 0
+    }
+    
+    func instructionFor(step: LivenessStep) -> String {
+        switch step {
+        case .smile: return Keys.Localizations.smile
+        case .wink: return Keys.Localizations.wink
+        case .turnLeft: return Keys.Localizations.turnLeft
+        case .turnRight: return Keys.Localizations.turnRight
+        case .lookUp: return Keys.Localizations.lookUp
+        case .lookDown: return Keys.Localizations.lookDown
+        case .lookStraight: return Keys.Localizations.lookStraight + Keys.Localizations.keepNaturalFace
+        }
+    }
+    
+    func stableFramesCountFor(step: LivenessStep) -> Int {
+        switch step {
+        case .smile: return 6
+        case .wink: return 3
+        case .turnLeft: return 5
+        case .turnRight: return 5
+        case .lookUp: return 6
+        case .lookDown: return 6
+        case .lookStraight: return 6
+        }
+    }
+    
+    func isStepSatisfied(step: LivenessStep, face: Face) -> Bool {
+        switch step {
+
+        case .smile:
+            return face.smilingProbability > 0.7
+
+        case .wink:
+            let l = face.leftEyeOpenProbability
+            let r = face.rightEyeOpenProbability
+            return (l < 0.15 && r > 0.8) || (r < 0.15 && l > 0.8)
+
+        case .turnLeft:
+            return face.headEulerAngleY < -20
+
+        case .turnRight:
+            return face.headEulerAngleY > 20
+
+        case .lookUp:
+            return face.headEulerAngleX < -15
+
+        case .lookDown:
+            return face.headEulerAngleX > 15
+
+        case .lookStraight:
+            return isLookingForward(face: face) && face.smilingProbability < 0.4
+        }
+    }
     
     public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard !isCapturing else { return } // Skip processing if we're capturing
         
-
+        
         frameCounter += 1
         if frameCounter % frameSkipInterval != 0 {
             return // Skip this frame
@@ -213,14 +306,14 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
                 self.assetWriter?.startSession(atSourceTime: ts)
                 self.startTime = ts
                 self.isWriting = true
-                            print("🎥 Recording started at \(ts.seconds)")
+                print("🎥 Recording started at \(ts.seconds)")
             }
-      
+            
             if self.isWriting,
-                     self.videoInput!.isReadyForMoreMediaData{
-    
+               self.videoInput!.isReadyForMoreMediaData{
+                
                 self.videoInput!.append(sampleBuffer)
-                   }
+            }
             
             DispatchQueue.main.async {
                 if faces.count == 1 {
@@ -260,78 +353,41 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
                             self.textLabel.text = self.moveFar
                             self.resetHoldStillTimer()
                         } else {
-                            if self.isLookingForward(face: face) && face.smilingProbability > 0.4 && !self.isCapturingSmileImage{
-                                self.textLabel.text = self.keepNaturalFace
-                            } else if self.isLookingForward(face: face) {
-                                self.naturalStableFrameCounter += 1
-                                if self.withSmileLiveness  {
-                                    if self.naturalStableFrameCounter >= self.requiredNaturalStableFrames {
-                                            self.capturePhoto(isSmileImage: false) // Capture the photo after 1 second
-                                            self.textLabel.text = self.smile
-                                            self.isCapturingSmileImage = true
-                                            if face.smilingProbability > 0.7 {
-                                                self.drawCircleBorder(color: .green, lineWidth: 4)
-                                                self.textLabel.text = self.holdStill
-                                                self.smileStableFrameCounter += 1
-                                                if self.smileStableFrameCounter >= self.requiredSmileStableFrames{
-                                                    self.capturePhoto(isSmileImage: true)// Capture the photo after 1 second
-                                                    self.isCapturingSmileImage = false
-                                                    self.isCapturingWinkImage = true
-                                                   // self.resetHoldStillTimer()
-                                                }
-                                            }
-                                        
-                                        if (self.isCapturingWinkImage){
-                                            let leftEye = face.leftEyeOpenProbability ?? 1.0
-                                            let rightEye = face.rightEyeOpenProbability ?? 1.0
-                                            if leftEye < 0.1 && rightEye > 0.9 {
-                                                self.capturePhoto(isSmileImage: true)
-                                                self.resetHoldStillTimer()
-                                                self.stopRecording()
-                                            
-                                            } else if rightEye < 0.1 && leftEye > 0.9 {
-                                                self.capturePhoto(isSmileImage: true)
-                                                self.resetHoldStillTimer()
-                                                self.stopRecording()
-                                            } else {
-                                                self.textLabel.text = self.wink
-                                                return // don’t continue until wink detected
-                                            }
-                                        }
-                                        
-                                        
-                                        
-                                        
-                                           
-                                        
-                                    }
-                                } else {
-                                    self.drawCircleBorder(color: .green, lineWidth: 4)
-                                    self.textLabel.text = self.holdStill
-                                    if self.naturalStableFrameCounter >= self.requiredNaturalStableFrames {
-                                        self.capturePhoto(isSmileImage: false, isSinglePhotocapture: true) // Capture the photo after 1 second
+                            // will begin using random steps
+                            let currentStep = self.livenessSteps[self.currentStepIndex]
+                            self.textLabel.text = self.instructionFor(step: currentStep)
+                            if self.isStepSatisfied(step: currentStep, face: face)  {
+
+                                self.stableFrameCounter += 1
+                                self.drawCircleBorder(color: .green, lineWidth: 4)
+                                self.textLabel.text = self.holdStill
+
+                                if self.stableFrameCounter >= self.stableFramesCountFor(step: currentStep) {
+                                    self.capturePhoto(isNaturalImage: self.currentStepIndex == 0)
+                                    self.stableFrameCounter = 0
+                                    self.currentStepIndex += 1
+
+                                    if self.currentStepIndex == self.livenessSteps.count {
+                                        //self.stopRecording()
+                                        self.finishLiveness()
+                                        return
                                     }
                                 }
-                            }else {
-                                self.textLabel.text = self.lookStraight
-                                self.resetHoldStillTimer() // Reset the timer
+                            } else {
+                                self.stableFrameCounter = 0
+                                self.drawCircleBorder(color: .white, lineWidth: 4)
                             }
+
                         }
-                    } else {
-                        self.textLabel.text = self.centerYourFace
-                        self.resetHoldStillTimer() // Reset the timer
                     }
-                } else {
-                    self.textLabel.text = self.noFaceDetected
-                    self.resetHoldStillTimer() // Reset the timer
                 }
             }
         }
     }
     
     // Function to capture the last frame when the "Hold Still" state is active
-    func capturePhoto(isSmileImage: Bool, isSinglePhotocapture: Bool? = nil) {
-        isCapturing = isSinglePhotocapture ?? isSmileImage // Prevent further processing while capturing
+    func capturePhoto(isNaturalImage: Bool, isSinglePhotocapture: Bool? = nil) {
+        isCapturing = true //isSinglePhotocapture ?? isSmileImage // Prevent further processing while capturing
         
         guard let sampleBuffer = lastSampleBuffer else { return }
         guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
@@ -352,36 +408,53 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
             capturedImage = capturedImage.withHorizontallyFlippedOrientation()
         }
         
-        if isSmileImage {
-           if (smileImage == nil){
-               smileImage = capturedImage
-           }
-            else {
-                winkImage = capturedImage
-            }
+        if isNaturalImage && naturalImage == nil{
+            naturalImage = capturedImage
+        }
+        self.livenessFrames.append(capturedImage)
+//        if isSmileImage {
+//           if (smileImage == nil){
+//               smileImage = capturedImage
+//           }
+//            else {
+//                winkImage = capturedImage
+//            }
          
             
             // Pass the processed image to the delegate and dismiss the view controller
-            if let naturalImage = naturalImage , let smileImage = smileImage, let winkImage = winkImage{
-                self.dismiss(animated: true) { [weak self] in
-                    self?.delegate?.faceDectionSucceed(with: FaceDetectionSuccessModel(naturalImage: naturalImage, smileImage: smileImage,livenessVideo: self?.liveneesVideoUrl != nil ? self!.liveneesVideoUrl!.lastPathComponent: ""))
-                }
-            }
-        }else {
-            if naturalImage == nil {
-                naturalImage = capturedImage
-                if isSinglePhotocapture == true {
-                    self.dismiss(animated: true) { [weak self] in
-                        self?.delegate?.faceDectionSucceed(with: FaceDetectionSuccessModel(naturalImage: capturedImage, smileImage: nil,livenessVideo: self?.liveneesVideoUrl != nil ? self!.liveneesVideoUrl!.lastPathComponent: "" ))
-                    }
-                }
-            }
+//            if let naturalImage = naturalImage , let smileImage = smileImage, let winkImage = winkImage{
+//                self.dismiss(animated: true) { [weak self] in
+//                    self?.delegate?.faceDectionSucceed(with: FaceDetectionSuccessModel(naturalImage: naturalImage, smileImage: smileImage,livenessVideo: self?.liveneesVideoUrl != nil ? self!.liveneesVideoUrl!.lastPathComponent: ""))
+//                }
+//            }
+        //}else {
+          //  if naturalImage == nil {
+              //  naturalImage = capturedImage
+//                if isSinglePhotocapture == true {
+//                    self.dismiss(animated: true) { [weak self] in
+//                        self?.delegate?.faceDectionSucceed(with: FaceDetectionSuccessModel(naturalImage: capturedImage, smileImage: nil,livenessVideo: self?.liveneesVideoUrl != nil ? self!.liveneesVideoUrl!.lastPathComponent: "" ))
+//                    }
+//                }
+           // }
             
-        }
+       // }
         // Reset capturing state to allow further processing after showing the photo
         isCapturing = false
     }
 
+    func finishLiveness() {
+        if let naturalImage = naturalImage {
+            self.dismiss(animated: true) {
+                self.delegate?.faceDectionSucceed(
+                    with: FaceDetectionSuccessModel(
+                        naturalImage: naturalImage,
+                        smileImage: self.livenessFrames.last,
+                        livenessVideo: self.liveneesVideoUrl?.lastPathComponent ?? ""
+                    )
+                )
+            }
+        }
+    }
 
     
     

@@ -16,6 +16,10 @@
 "smile" = "Smile";
 "wink" = "Wink";
 "keepNaturalFace" = "Keep Natural Face";
+"turnLeft" = "Turn your head left";
+"turnRight" = "Turn your head Right";
+"lookUp" = "Look Up";
+"lookDown" = "Look Down";
 
 /*-------------------------*/
 
