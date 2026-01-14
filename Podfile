@@ -9,6 +9,7 @@ target 'EnrollLite' do
  use_frameworks! :linkage => :static
 
  pod 'GoogleMLKit/FaceDetection'
+ pod 'lottie-ios'
   # Pods for EnrollLite
 
 end

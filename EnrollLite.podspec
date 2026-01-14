@@ -32,6 +32,7 @@ Pod::Spec.new do |s|
     
   # Specify dependencies
   s.dependency "GoogleMLKit/FaceDetection"
+  s.dependency "lottie-ios"
   s.static_framework = true
   s.public_header_files = 'EnrollLite/**/*.h'
 
