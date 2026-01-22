@@ -49,8 +49,7 @@
 		5D7A774564A6224C3CFE5AFB /* Pods_EnrollLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45C3442ED7814046AA67F837 /* Pods_EnrollLite.framework */; };
 		6F19E73C2DC7B43600361120 /* EnrollLite.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 6F19E73B2DC7B43600361120 /* EnrollLite.podspec */; };
 		6F1FA9C32DDB81410038F767 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1FA9C22DDB81410038F767 /* LocalizationManager.swift */; };
-		6FEDB4F42F17BEBD0065D6CA /* wink-simple.json in Resources */ = {isa = PBXBuildFile; fileRef = 6FEDB4F32F17BEBD0065D6CA /* wink-simple.json */; };
-		6FEDB5032F17DE360065D6CA /* wink-simple.json in Sources */ = {isa = PBXBuildFile; fileRef = 6FEDB4F32F17BEBD0065D6CA /* wink-simple.json */; };
+		6FEDB50A2F17E6710065D6CA /* wink-simple.json in Resources */ = {isa = PBXBuildFile; fileRef = 6FEDB4F32F17BEBD0065D6CA /* wink-simple.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -395,7 +394,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6FEDB4F42F17BEBD0065D6CA /* wink-simple.json in Resources */,
+				6FEDB50A2F17E6710065D6CA /* wink-simple.json in Resources */,
 				27F92F662CEB693000B02DC6 /* Localizable.strings in Resources */,
 				27828B122CE0E674002BEE4D /* Media.xcassets in Resources */,
 				27828B142CE0E674002BEE4D /* CardDetectionViewController.xib in Resources */,
@@ -459,7 +458,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6FEDB5032F17DE360065D6CA /* wink-simple.json in Sources */,
 				27828B1F2CE239C7002BEE4D /* FaceDetectionViewController.swift in Sources */,
 				0471D2A12CE36F3B006FE45C /* CardDetectionManager.swift in Sources */,
 				0471D2BA2CE3B735006FE45C /* CardDetectionDelegate.swift in Sources */,

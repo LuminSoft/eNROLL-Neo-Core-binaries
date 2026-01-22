@@ -12,7 +12,7 @@ import AVFoundation
 import MLKitFaceDetection
 import MLKitVision
 import Photos
-import Lottie
+//import Lottie
 
 
 enum LivenessStep {
@@ -74,7 +74,8 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     var livenessSteps: [LivenessStep] = []
     var currentStepIndex = 0
     var previewLayer : AVCaptureVideoPreviewLayer?
-    
+    var rollingFrames: [(image: UIImage, time: CMTime)] = []
+    let maxBufferDuration: Double = 1.0 // seconds
     
     // Updated implementation of numberOfFaces label
     let textLabel: UILabel = {
@@ -141,7 +142,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupCamera()
-         //startRecording()
+         startRecording()
         view.addSubview(rectangleView)
         generateLivenessSteps()
         //        if !withSmileLiveness{
@@ -214,50 +215,62 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
         case .lookStraight: return Keys.Localizations.lookStraight + Keys.Localizations.keepNaturalFace
         }
     }
-    func animationViewFor(step: LivenessStep) -> LottieAnimationView {
-        
-//        guard let url = Bundle.main.url(forResource:"wink-simple", withExtension: "json"),
-//              let data = try? String(contentsOf: url, encoding: .utf8) else {
-//            return LottieAnimationView()
+    
+//    func animationViewFor(step: LivenessStep) -> LottieAnimationView {
+//        
+////        guard let url = Bundle.main.url(forResource:"wink-simple", withExtension: "json"),
+////              let data = try? String(contentsOf: url, encoding: .utf8) else {
+////            return LottieAnimationView()
+////        }
+//        // Load the resource bundle first
+//        let frameworkBundle = Bundle(for: CardDetectionViewController.self)
+//        guard let resourceBundleURL = frameworkBundle.url(forResource: "EnrollLiteFrameworkResources", withExtension: "bundle"),
+//              let resourceBundle = Bundle(url: resourceBundleURL) else {
+//            fatalError("Resource bundle not found")
+//       
 //        }
-        let animation = LottieAnimation.named(
-            "wink-simple",
-            bundle: Bundle.enrollBundle
-         )
-        switch step {
-         
-        case .smile:
-          
-
-            return LottieAnimationView(animation: animation)
-        case .wink: return LottieAnimationView(animation: animation)
-        case .turnLeft: return LottieAnimationView(animation: animation)
-        case .turnRight: return LottieAnimationView(animation: animation)
-        case .lookUp: return LottieAnimationView(animation: animation)
-        case .lookDown: return LottieAnimationView(animation: animation)
-        case .lookStraight: return LottieAnimationView(animation: animation)
-        }
-    }
+//        print("Resource bundle path:", resourceBundle.bundlePath)
+//         let files = try? FileManager.default.contentsOfDirectory(atPath: resourceBundle.bundlePath)
+//         print("Files in bundle:", files ?? [])
+//
+//        // Load the Lottie animation from the resource bundle
+//        guard let animation = LottieAnimation.named("wink-simple", bundle: resourceBundle) else {
+//            fatalError("wink-simple not found in resource bundle")
+//        }
+//        switch step {
+//         
+//        case .smile:
+//          
+//
+//            return LottieAnimationView(animation: animation)
+//        case .wink: return LottieAnimationView(animation: animation)
+//        case .turnLeft: return LottieAnimationView(animation: animation)
+//        case .turnRight: return LottieAnimationView(animation: animation)
+//        case .lookUp: return LottieAnimationView(animation: animation)
+//        case .lookDown: return LottieAnimationView(animation: animation)
+//        case .lookStraight: return LottieAnimationView(animation: animation)
+//        }
+//    }
     
     
     
-    let winkView = LottieAnimationView(name: "simple_wink")
+   
    
     
     func stableFramesCountFor(step: LivenessStep) -> Int {
         switch step {
-        case .smile: return 6
-        case .wink: return 3
-        case .turnLeft: return 5
-        case .turnRight: return 5
-        case .lookUp: return 6
-        case .lookDown: return 6
-        case .lookStraight: return 6
+        case .smile: return 1
+        case .wink: return 1
+        case .turnLeft: return 1
+        case .turnRight: return 1
+        case .lookUp: return 1
+        case .lookDown: return 1
+        case .lookStraight: return 1
         }
     }
     
     func isStepSatisfied(step: LivenessStep, face: Face) -> Bool {
-        detectHeadPose(face: face)
+       // detectHeadPose(face: face)
         switch step {
             
         case .smile:
@@ -285,6 +298,9 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
         }
     }
     
+    func appendRollingFrame(_ image: UIImage, time: CMTime) {
+        rollingFrames.append((image, time))
+    }
     func faceRectInView(_ face: Face, _ imageWidth:CGFloat,_ imageHeight:CGFloat) -> CGRect {
         let imageRect = CGRect(
             x: face.frame.origin.x,
@@ -365,19 +381,8 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
                 return
             }
             
-            //            if !self.isWriting{
-            //                let ts = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
-            //                self.assetWriter?.startSession(atSourceTime: ts)
-            //                self.startTime = ts
-            //                self.isWriting = true
-            //                print("🎥 Recording started at \(ts.seconds)")
-            //            }
-            //
-            //            if self.isWriting,
-            //               self.videoInput!.isReadyForMoreMediaData{
-            //
-            //                self.videoInput!.append(sampleBuffer)
-            //            }
+            
+           
             
             DispatchQueue.main.async {
                 if faces.count == 1 {
@@ -412,7 +417,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
                     
                     // Define a threshold distance (you can adjust this value)
                     let thresholdDistance: CGFloat =  60.0 // Adjust this as needed
-                    let centerTolerance = self.circleRadius * 0.25
+                    let centerTolerance = self.circleRadius * 0.40
                     if distance < thresholdDistance {
                     let isCentered = distance < centerTolerance
                         
@@ -430,23 +435,36 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
                         } else {
                             // will begin using random steps
                             if self.currentStepIndex == self.livenessSteps.count {
-                                //self.stopRecording()
+                                self.stopRecording()
                                 self.finishLiveness()
                                 return
                             }
+                            if !self.isWriting{
+                                let ts = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
+                                self.assetWriter?.startSession(atSourceTime: ts)
+                                self.startTime = ts
+                                self.isWriting = true
+                                print("🎥 Recording started at \(ts.seconds)")
+                            }
+                
+                            if self.isWriting,
+                               self.videoInput!.isReadyForMoreMediaData{
+                
+                                self.videoInput!.append(sampleBuffer)
+                            }
                             let currentStep = self.livenessSteps[self.currentStepIndex]
                             self.textLabel.text = self.instructionFor(step: currentStep)
-                            let winkView = self.animationViewFor(step: currentStep)
-                            winkView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
-                            winkView.center = self.view.center
-                            winkView.contentMode = .scaleAspectFit
-                            winkView.loopMode = .loop
-                            winkView.play()
-                            self.view.addSubview(winkView)
+//                            let winkView = self.animationViewFor(step: currentStep)
+//                            winkView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+//                            winkView.center = self.view.center
+//                            winkView.contentMode = .scaleAspectFit
+//                            winkView.loopMode = .playOnce
+//                            winkView.play()
+//                            self.view.addSubview(winkView)
                             
                             if self.isStepSatisfied(step: currentStep, face: face)  {
-                                winkView.stop()
-                                winkView.removeFromSuperview()
+                              //  winkView.stop()
+                             //   winkView.removeFromSuperview()
                                 
                                 self.stableFrameCounter += 1
                                 self.drawCircleBorder(color: .green, lineWidth: 4)
@@ -454,7 +472,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
                                 
                                 if self.stableFrameCounter >= self.stableFramesCountFor(step: currentStep) {
                                     self.capturePhoto(isNaturalImage: self.currentStepIndex == 0)
-                                    
+                                    self.captureLivenessSegment()
                                     self.stableFrameCounter = 0
                                     self.currentStepIndex += 1
 //                                                if !self.isWriting{
@@ -482,7 +500,32 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
             }
         }
     }
-    
+    func captureLivenessSegment() {
+        let preFrames = rollingFrames.map { $0.image }
+
+        let postDuration: Double = 0.5
+        let fps = 4
+        let totalFrames = Int(postDuration * Double(fps))
+
+        var postFrames: [UIImage] = []
+
+        DispatchQueue.global().async {
+            for _ in 0..<totalFrames {
+                if let last = self.rollingFrames.last?.image {
+                    postFrames.append(last)
+                }
+                usleep(4_000) // ~30fps
+            }
+          
+            let finalFrames = preFrames + postFrames
+            self.livenessFrames.append(contentsOf: finalFrames)
+            self.rollingFrames.removeAll()
+
+//            DispatchQueue.main.async {
+//                self.buildLivenessVideo(frames: finalFrames)
+//            }
+        }
+    }
     // Function to capture the last frame when the "Hold Still" state is active
     func capturePhoto(isNaturalImage: Bool, isSinglePhotocapture: Bool? = nil) {
         isCapturing = true //isSinglePhotocapture ?? isSmileImage // Prevent further processing while capturing
@@ -509,7 +552,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
         if isNaturalImage && naturalImage == nil{
             naturalImage = capturedImage
         }
-        self.livenessFrames.append(capturedImage)
+        //self.livenessFrames.append(capturedImage)
         //        if isSmileImage {
         //           if (smileImage == nil){
         //               smileImage = capturedImage
@@ -543,17 +586,17 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     func finishLiveness() {
         if let naturalImage = naturalImage {
             self.dismiss(animated: true){
-                self.buildLivenessVideo(frames: self.livenessFrames)
-            }
-//                        self.dismiss(animated: true) {
-//                            self.delegate?.faceDectionSucceed(
-//                                with: FaceDetectionSuccessModel(
-//                                    naturalImage: naturalImage,
-//                                    smileImage: self.livenessFrames.last,
-//                                    livenessVideo: self.liveneesVideoUrl?.lastPathComponent ?? ""
-//                                )
-//                            )
-//                        }
+                //self.buildLivenessVideo(frames: self.livenessFrames)
+            
+
+                            self.delegate?.faceDectionSucceed(
+                                with: FaceDetectionSuccessModel(
+                                    naturalImage: naturalImage,
+                                    smileImage: naturalImage,
+                                    livenessVideo: self.liveneesVideoUrl?.lastPathComponent ?? ""
+                                )
+                            )
+                        }
         }
     }
     
@@ -617,7 +660,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
                                        PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: destURL)
                                    }) { success, error in
                                        if success {
-                                           print("✅ Saved to Photos")
+                                          // print("✅ Saved to Photos")
                                        } else {
                                            print("❌ Error saving video: \(String(describing: error))")
                                        }
@@ -805,14 +848,15 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
 //        ]
         let settings: [String: Any] = [
             AVVideoCodecKey: AVVideoCodecType.h264,
-            AVVideoWidthKey: 480,   // medium resolution width
-            AVVideoHeightKey: 640,  // medium resolution height
+            AVVideoWidthKey: 360,
+            AVVideoHeightKey: 640,
             AVVideoCompressionPropertiesKey: [
-                AVVideoAverageBitRateKey: 1_000_000, // ~1 Mbps (medium quality)
-                AVVideoProfileLevelKey: AVVideoProfileLevelH264MainAutoLevel
+                AVVideoAverageBitRateKey: 400_000, // ✅ lower = faster
+                AVVideoMaxKeyFrameIntervalKey: 10,
+                AVVideoExpectedSourceFrameRateKey: 4, // liveness FPS
+                AVVideoProfileLevelKey: AVVideoProfileLevelH264BaselineAutoLevel
             ]
         ]
-        
         self.videoInput = AVAssetWriterInput(mediaType: .video, outputSettings: settings)
         self.videoInput!.expectsMediaDataInRealTime = true
         self.videoInput!.transform = CGAffineTransform(rotationAngle: .pi/2)
@@ -852,7 +896,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
                           PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: destURL)
                       }) { success, error in
                           if success {
-                              print("✅ Saved to Photos")
+                              //  print("✅ Saved to Photos")
                           } else {
                               print("❌ Error saving video: \(String(describing: error))")
                           }
@@ -890,7 +934,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
         overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         
         // Calculate the circle radius to be 70% of the screen width
-        circleRadius = (view.bounds.width * 0.7) / 2
+        circleRadius = (view.bounds.width * 0.9) / 2
         circleCenter = overlayView.center
         
         // Calculate the min and max x and y for the bounding rectangle
@@ -1003,5 +1047,6 @@ extension UIImage {
         return px
     }
 }
+
 
 
