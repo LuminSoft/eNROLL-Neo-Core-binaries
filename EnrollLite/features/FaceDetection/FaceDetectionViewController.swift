@@ -72,6 +72,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     public var withWinkLiveness: Bool = false
     
     var livenessSteps: [LivenessStep] = []
+    var livenessTotalScore : CGFloat = 0
     var currentStepIndex = 0
     var previewLayer : AVCaptureVideoPreviewLayer?
     var rollingFrames: [(image: UIImage, time: CMTime)] = []
@@ -274,23 +275,45 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
         switch step {
             
         case .smile:
+            if (face.smilingProbability > 0.7){
+                livenessTotalScore  += face.smilingProbability}
             return face.smilingProbability > 0.7
             
         case .wink:
             let l = face.leftEyeOpenProbability
             let r = face.rightEyeOpenProbability
+            if ((l < 0.15 && r > 0.8) || (r < 0.15 && l > 0.8)){
+                let leftWink = (1 - l) * r
+                // Right wink score
+                let rightWink = (1 - r) * l
+                // Take the stronger one
+                let score = max(leftWink, rightWink)
+                livenessTotalScore  +=  score
+            }
             return (l < 0.15 && r > 0.8) || (r < 0.15 && l > 0.8)
             
         case .turnLeft:
+            if (face.headEulerAngleY < -35){
+                livenessTotalScore  +=  0.95
+            }
             return face.headEulerAngleY < -35
             
         case .turnRight:
+            if (face.headEulerAngleY > 35){
+                livenessTotalScore  +=  0.95
+            }
             return face.headEulerAngleY > 35
             
         case .lookUp:
+            if (face.headEulerAngleX > 0){
+                livenessTotalScore  +=  0.95
+            }
             return face.headEulerAngleX > 0
             
         case .lookDown:
+            if (face.headEulerAngleX < -1){
+                livenessTotalScore  +=  0.95
+            }
             return face.headEulerAngleX < -1
             
         case .lookStraight:
@@ -593,7 +616,8 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
                                 with: FaceDetectionSuccessModel(
                                     naturalImage: naturalImage,
                                     smileImage: naturalImage,
-                                    livenessVideo: self.liveneesVideoUrl?.lastPathComponent ?? ""
+                                    livenessVideo: self.liveneesVideoUrl?.lastPathComponent ?? "",
+                                    livnessScore: (self.livenessTotalScore/3)*100
                                 )
                             )
                         }
@@ -671,13 +695,13 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     
         
        // self.dismiss(animated: true) {
-            self.delegate?.faceDectionSucceed(
-                with: FaceDetectionSuccessModel(
-                    naturalImage: self.naturalImage!,
-                    smileImage: self.livenessFrames.last,
-                    livenessVideo: self.liveneesVideoUrl?.lastPathComponent ?? ""
-                )
-            )
+//            self.delegate?.faceDectionSucceed(
+//                with: FaceDetectionSuccessModel(
+//                    naturalImage: self.naturalImage!,
+//                    smileImage: self.livenessFrames.last,
+//                    livenessVideo: self.liveneesVideoUrl?.lastPathComponent ?? ""
+//                )
+           // )
        // }
     }
 
