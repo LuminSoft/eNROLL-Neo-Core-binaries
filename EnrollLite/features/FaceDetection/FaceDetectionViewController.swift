@@ -611,7 +611,8 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
             self.dismiss(animated: true){
                 //self.buildLivenessVideo(frames: self.livenessFrames)
             
-
+                print("liveness score is" + Double((self.livenessTotalScore/3)*100).description )
+                print("liveness modified score is" + self.livenessTotalScore.description)
                             self.delegate?.faceDectionSucceed(
                                 with: FaceDetectionSuccessModel(
                                     naturalImage: naturalImage,
