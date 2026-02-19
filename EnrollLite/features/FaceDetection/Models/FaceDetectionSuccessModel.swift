@@ -12,5 +12,5 @@ public struct FaceDetectionSuccessModel{
     public let naturalImage: UIImage
     public let smileImage: UIImage?
     public let livenessVideo:String
-    public let livnessScore : CGFloat
+    public let livnessScore : Double
 }
