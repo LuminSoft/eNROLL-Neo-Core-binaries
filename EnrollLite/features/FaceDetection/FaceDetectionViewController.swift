@@ -72,7 +72,7 @@ class FaceDetectionViewController: UIViewController, AVCaptureVideoDataOutputSam
     public var withWinkLiveness: Bool = false
     
     var livenessSteps: [LivenessStep] = []
-    var livenessTotalScore : CGFloat = 0
+    var livenessTotalScore : Double = 0
     var currentStepIndex = 0
     var previewLayer : AVCaptureVideoPreviewLayer?
     var rollingFrames: [(image: UIImage, time: CMTime)] = []
