@@ -1,0 +1,3470 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "EnrollLite",
+    "printedName": "EnrollLite",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "AVFoundation",
+        "printedName": "AVFoundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "Import",
+        "name": "MLKitFaceDetection",
+        "printedName": "MLKitFaceDetection",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "MLKitVision",
+        "printedName": "MLKitVision",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "Import",
+        "name": "Photos",
+        "printedName": "Photos",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "CardDetectionManager",
+        "printedName": "CardDetectionManager",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "delegate",
+            "printedName": "delegate",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "WeakStorage",
+                "printedName": "(any EnrollLite.CardDetectionDelegate)?"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10EnrollLite20CardDetectionManagerC8delegateAA0cD8Delegate_pSgvp",
+            "mangledName": "$s10EnrollLite20CardDetectionManagerC8delegateAA0cD8Delegate_pSgvp",
+            "moduleName": "EnrollLite",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "ReferenceOwnership",
+              "AccessControl"
+            ],
+            "ownership": 1,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any EnrollLite.CardDetectionDelegate)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CardDetectionDelegate",
+                        "printedName": "any EnrollLite.CardDetectionDelegate",
+                        "usr": "s:10EnrollLite21CardDetectionDelegateP"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10EnrollLite20CardDetectionManagerC8delegateAA0cD8Delegate_pSgvg",
+                "mangledName": "$s10EnrollLite20CardDetectionManagerC8delegateAA0cD8Delegate_pSgvg",
+                "moduleName": "EnrollLite",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any EnrollLite.CardDetectionDelegate)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CardDetectionDelegate",
+                        "printedName": "any EnrollLite.CardDetectionDelegate",
+                        "usr": "s:10EnrollLite21CardDetectionDelegateP"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10EnrollLite20CardDetectionManagerC8delegateAA0cD8Delegate_pSgvs",
+                "mangledName": "$s10EnrollLite20CardDetectionManagerC8delegateAA0cD8Delegate_pSgvs",
+                "moduleName": "EnrollLite",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10EnrollLite20CardDetectionManagerC8delegateAA0cD8Delegate_pSgvM",
+                "mangledName": "$s10EnrollLite20CardDetectionManagerC8delegateAA0cD8Delegate_pSgvM",
+                "moduleName": "EnrollLite",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(delegate:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CardDetectionManager",
+                "printedName": "EnrollLite.CardDetectionManager",
+                "usr": "c:@M@EnrollLite@objc(cs)CardDetectionManager"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any EnrollLite.CardDetectionDelegate)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CardDetectionDelegate",
+                    "printedName": "any EnrollLite.CardDetectionDelegate",
+                    "usr": "s:10EnrollLite21CardDetectionDelegateP"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:10EnrollLite20CardDetectionManagerC8delegateAcA0cD8Delegate_pSg_tKcfc",
+            "mangledName": "$s10EnrollLite20CardDetectionManagerC8delegateAcA0cD8Delegate_pSg_tKcfc",
+            "moduleName": "EnrollLite",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "startCardDetection",
+            "printedName": "startCardDetection()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UIViewController",
+                "printedName": "UIKit.UIViewController",
+                "usr": "c:objc(cs)UIViewController"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10EnrollLite20CardDetectionManagerC05startcD0So16UIViewControllerCyF",
+            "mangledName": "$s10EnrollLite20CardDetectionManagerC05startcD0So16UIViewControllerCyF",
+            "moduleName": "EnrollLite",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CardDetectionManager",
+                "printedName": "EnrollLite.CardDetectionManager",
+                "usr": "c:@M@EnrollLite@objc(cs)CardDetectionManager"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@EnrollLite@objc(cs)CardDetectionManager(im)init",
+            "mangledName": "$s10EnrollLite20CardDetectionManagerCACycfc",
+            "moduleName": "EnrollLite",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@EnrollLite@objc(cs)CardDetectionManager",
+        "mangledName": "$s10EnrollLite20CardDetectionManagerC",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "CardDetectionDelegate",
+        "printedName": "CardDetectionDelegate",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "cardDetectionSuccess",
+            "printedName": "cardDetectionSuccess(with:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CardDetectionSuccessModel",
+                "printedName": "EnrollLite.CardDetectionSuccessModel",
+                "usr": "s:10EnrollLite25CardDetectionSuccessModelV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10EnrollLite21CardDetectionDelegateP04cardD7Success4withyAA0cdG5ModelV_tF",
+            "mangledName": "$s10EnrollLite21CardDetectionDelegateP04cardD7Success4withyAA0cdG5ModelV_tF",
+            "moduleName": "EnrollLite",
+            "genericSig": "<τ_0_0 where τ_0_0 : EnrollLite.CardDetectionDelegate>",
+            "sugared_genericSig": "<Self where Self : EnrollLite.CardDetectionDelegate>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "s:10EnrollLite21CardDetectionDelegateP",
+        "mangledName": "$s10EnrollLite21CardDetectionDelegateP",
+        "moduleName": "EnrollLite",
+        "genericSig": "<τ_0_0 : AnyObject>",
+        "sugared_genericSig": "<Self : AnyObject>",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "FaceDetectionSuccessModel",
+        "printedName": "FaceDetectionSuccessModel",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "naturalImage",
+            "printedName": "naturalImage",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UIImage",
+                "printedName": "UIKit.UIImage",
+                "usr": "c:objc(cs)UIImage"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10EnrollLite25FaceDetectionSuccessModelV12naturalImageSo7UIImageCvp",
+            "mangledName": "$s10EnrollLite25FaceDetectionSuccessModelV12naturalImageSo7UIImageCvp",
+            "moduleName": "EnrollLite",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UIImage",
+                    "printedName": "UIKit.UIImage",
+                    "usr": "c:objc(cs)UIImage"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10EnrollLite25FaceDetectionSuccessModelV12naturalImageSo7UIImageCvg",
+                "mangledName": "$s10EnrollLite25FaceDetectionSuccessModelV12naturalImageSo7UIImageCvg",
+                "moduleName": "EnrollLite",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "smileImage",
+            "printedName": "smileImage",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "UIKit.UIImage?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UIImage",
+                    "printedName": "UIKit.UIImage",
+                    "usr": "c:objc(cs)UIImage"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10EnrollLite25FaceDetectionSuccessModelV10smileImageSo7UIImageCSgvp",
+            "mangledName": "$s10EnrollLite25FaceDetectionSuccessModelV10smileImageSo7UIImageCSgvp",
+            "moduleName": "EnrollLite",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "UIKit.UIImage?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "UIImage",
+                        "printedName": "UIKit.UIImage",
+                        "usr": "c:objc(cs)UIImage"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10EnrollLite25FaceDetectionSuccessModelV10smileImageSo7UIImageCSgvg",
+                "mangledName": "$s10EnrollLite25FaceDetectionSuccessModelV10smileImageSo7UIImageCSgvg",
+                "moduleName": "EnrollLite",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "livenessVideo",
+            "printedName": "livenessVideo",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10EnrollLite25FaceDetectionSuccessModelV13livenessVideoSSvp",
+            "mangledName": "$s10EnrollLite25FaceDetectionSuccessModelV13livenessVideoSSvp",
+            "moduleName": "EnrollLite",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10EnrollLite25FaceDetectionSuccessModelV13livenessVideoSSvg",
+                "mangledName": "$s10EnrollLite25FaceDetectionSuccessModelV13livenessVideoSSvg",
+                "moduleName": "EnrollLite",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "livnessScore",
+            "printedName": "livnessScore",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Double",
+                "printedName": "Swift.Double",
+                "usr": "s:Sd"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10EnrollLite25FaceDetectionSuccessModelV12livnessScoreSdvp",
+            "mangledName": "$s10EnrollLite25FaceDetectionSuccessModelV12livnessScoreSdvp",
+            "moduleName": "EnrollLite",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Double",
+                    "printedName": "Swift.Double",
+                    "usr": "s:Sd"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10EnrollLite25FaceDetectionSuccessModelV12livnessScoreSdvg",
+                "mangledName": "$s10EnrollLite25FaceDetectionSuccessModelV12livnessScoreSdvg",
+                "moduleName": "EnrollLite",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:10EnrollLite25FaceDetectionSuccessModelV",
+        "mangledName": "$s10EnrollLite25FaceDetectionSuccessModelV",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "FaceDetectionErrorModel",
+        "printedName": "FaceDetectionErrorModel",
+        "declKind": "Struct",
+        "usr": "s:10EnrollLite23FaceDetectionErrorModelV",
+        "mangledName": "$s10EnrollLite23FaceDetectionErrorModelV",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "PassportDetectionErrorModel",
+        "printedName": "PassportDetectionErrorModel",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "error",
+            "printedName": "error",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Error",
+                "printedName": "any Swift.Error",
+                "usr": "s:s5ErrorP"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10EnrollLite27PassportDetectionErrorModelV5errors0E0_pvp",
+            "mangledName": "$s10EnrollLite27PassportDetectionErrorModelV5errors0E0_pvp",
+            "moduleName": "EnrollLite",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Error",
+                    "printedName": "any Swift.Error",
+                    "usr": "s:s5ErrorP"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10EnrollLite27PassportDetectionErrorModelV5errors0E0_pvg",
+                "mangledName": "$s10EnrollLite27PassportDetectionErrorModelV5errors0E0_pvg",
+                "moduleName": "EnrollLite",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:10EnrollLite27PassportDetectionErrorModelV",
+        "mangledName": "$s10EnrollLite27PassportDetectionErrorModelV",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "FaceDetectionManager",
+        "printedName": "FaceDetectionManager",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(delegate:withSmileLiveness:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "FaceDetectionManager",
+                "printedName": "EnrollLite.FaceDetectionManager",
+                "usr": "c:@M@EnrollLite@objc(cs)FaceDetectionManager"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any EnrollLite.FaceDetectionDelegate)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FaceDetectionDelegate",
+                    "printedName": "any EnrollLite.FaceDetectionDelegate",
+                    "usr": "s:10EnrollLite21FaceDetectionDelegateP"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "hasDefaultArg": true,
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:10EnrollLite20FaceDetectionManagerC8delegate17withSmileLivenessAcA0cD8Delegate_pSg_SbtKcfc",
+            "mangledName": "$s10EnrollLite20FaceDetectionManagerC8delegate17withSmileLivenessAcA0cD8Delegate_pSg_SbtKcfc",
+            "moduleName": "EnrollLite",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "startFaceDetection",
+            "printedName": "startFaceDetection()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UIViewController",
+                "printedName": "UIKit.UIViewController",
+                "usr": "c:objc(cs)UIViewController"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10EnrollLite20FaceDetectionManagerC05startcD0So16UIViewControllerCyF",
+            "mangledName": "$s10EnrollLite20FaceDetectionManagerC05startcD0So16UIViewControllerCyF",
+            "moduleName": "EnrollLite",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "FaceDetectionManager",
+                "printedName": "EnrollLite.FaceDetectionManager",
+                "usr": "c:@M@EnrollLite@objc(cs)FaceDetectionManager"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@EnrollLite@objc(cs)FaceDetectionManager(im)init",
+            "mangledName": "$s10EnrollLite20FaceDetectionManagerCACycfc",
+            "moduleName": "EnrollLite",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@EnrollLite@objc(cs)FaceDetectionManager",
+        "mangledName": "$s10EnrollLite20FaceDetectionManagerC",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "PassportDetectionDelegate",
+        "printedName": "PassportDetectionDelegate",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "passportDetectionDidSucceed",
+            "printedName": "passportDetectionDidSucceed(with:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PassportDetectionSuccessModel",
+                "printedName": "EnrollLite.PassportDetectionSuccessModel",
+                "usr": "s:10EnrollLite29PassportDetectionSuccessModelV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10EnrollLite25PassportDetectionDelegateP08passportD10DidSucceed4withyAA0cD12SuccessModelV_tF",
+            "mangledName": "$s10EnrollLite25PassportDetectionDelegateP08passportD10DidSucceed4withyAA0cD12SuccessModelV_tF",
+            "moduleName": "EnrollLite",
+            "genericSig": "<τ_0_0 where τ_0_0 : EnrollLite.PassportDetectionDelegate>",
+            "sugared_genericSig": "<Self where Self : EnrollLite.PassportDetectionDelegate>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "passportDetectionDidFail",
+            "printedName": "passportDetectionDidFail(withError:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PassportDetectionErrorModel",
+                "printedName": "EnrollLite.PassportDetectionErrorModel",
+                "usr": "s:10EnrollLite27PassportDetectionErrorModelV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10EnrollLite25PassportDetectionDelegateP08passportD7DidFail9withErroryAA0cdJ5ModelV_tF",
+            "mangledName": "$s10EnrollLite25PassportDetectionDelegateP08passportD7DidFail9withErroryAA0cdJ5ModelV_tF",
+            "moduleName": "EnrollLite",
+            "genericSig": "<τ_0_0 where τ_0_0 : EnrollLite.PassportDetectionDelegate>",
+            "sugared_genericSig": "<Self where Self : EnrollLite.PassportDetectionDelegate>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "passportDetectionDidCancel",
+            "printedName": "passportDetectionDidCancel()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10EnrollLite25PassportDetectionDelegateP08passportD9DidCancelyyF",
+            "mangledName": "$s10EnrollLite25PassportDetectionDelegateP08passportD9DidCancelyyF",
+            "moduleName": "EnrollLite",
+            "genericSig": "<τ_0_0 where τ_0_0 : EnrollLite.PassportDetectionDelegate>",
+            "sugared_genericSig": "<Self where Self : EnrollLite.PassportDetectionDelegate>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "s:10EnrollLite25PassportDetectionDelegateP",
+        "mangledName": "$s10EnrollLite25PassportDetectionDelegateP",
+        "moduleName": "EnrollLite",
+        "genericSig": "<τ_0_0 : AnyObject>",
+        "sugared_genericSig": "<Self : AnyObject>",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "AVFoundation",
+        "printedName": "AVFoundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "Import",
+        "name": "Vision",
+        "printedName": "Vision",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "FaceDetectionDelegate",
+        "printedName": "FaceDetectionDelegate",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "faceDectionSucceed",
+            "printedName": "faceDectionSucceed(with:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "FaceDetectionSuccessModel",
+                "printedName": "EnrollLite.FaceDetectionSuccessModel",
+                "usr": "s:10EnrollLite25FaceDetectionSuccessModelV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10EnrollLite21FaceDetectionDelegateP18faceDectionSucceed4withyAA0cD12SuccessModelV_tF",
+            "mangledName": "$s10EnrollLite21FaceDetectionDelegateP18faceDectionSucceed4withyAA0cD12SuccessModelV_tF",
+            "moduleName": "EnrollLite",
+            "genericSig": "<τ_0_0 where τ_0_0 : EnrollLite.FaceDetectionDelegate>",
+            "sugared_genericSig": "<Self where Self : EnrollLite.FaceDetectionDelegate>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "faceDetectionFail",
+            "printedName": "faceDetectionFail(withError:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "FaceDetectionErrorModel",
+                "printedName": "EnrollLite.FaceDetectionErrorModel",
+                "usr": "s:10EnrollLite23FaceDetectionErrorModelV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10EnrollLite21FaceDetectionDelegateP04faceD4Fail9withErroryAA0cdI5ModelV_tF",
+            "mangledName": "$s10EnrollLite21FaceDetectionDelegateP04faceD4Fail9withErroryAA0cdI5ModelV_tF",
+            "moduleName": "EnrollLite",
+            "genericSig": "<τ_0_0 where τ_0_0 : EnrollLite.FaceDetectionDelegate>",
+            "sugared_genericSig": "<Self where Self : EnrollLite.FaceDetectionDelegate>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "s:10EnrollLite21FaceDetectionDelegateP",
+        "mangledName": "$s10EnrollLite21FaceDetectionDelegateP",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "EnrollLiteVerifier",
+        "printedName": "EnrollLiteVerifier",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "verifyEnrollLiteLicense",
+            "printedName": "verifyEnrollLiteLicense(resourceName:withExtension:bundle:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "hasDefaultArg": true,
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bundle",
+                "printedName": "Foundation.Bundle",
+                "hasDefaultArg": true,
+                "usr": "c:objc(cs)NSBundle"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10EnrollLite0aB8VerifierC06verifyaB7License12resourceName13withExtension6bundleySS_SSSo8NSBundleCtKFZ",
+            "mangledName": "$s10EnrollLite0aB8VerifierC06verifyaB7License12resourceName13withExtension6bundleySS_SSSo8NSBundleCtKFZ",
+            "moduleName": "EnrollLite",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:10EnrollLite0aB8VerifierC",
+        "mangledName": "$s10EnrollLite0aB8VerifierC",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "hasMissingDesignatedInitializers": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "CardDetectionSuccessModel",
+        "printedName": "CardDetectionSuccessModel",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "image",
+            "printedName": "image",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UIImage",
+                "printedName": "UIKit.UIImage",
+                "usr": "c:objc(cs)UIImage"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10EnrollLite25CardDetectionSuccessModelV5imageSo7UIImageCvp",
+            "mangledName": "$s10EnrollLite25CardDetectionSuccessModelV5imageSo7UIImageCvp",
+            "moduleName": "EnrollLite",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UIImage",
+                    "printedName": "UIKit.UIImage",
+                    "usr": "c:objc(cs)UIImage"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10EnrollLite25CardDetectionSuccessModelV5imageSo7UIImageCvg",
+                "mangledName": "$s10EnrollLite25CardDetectionSuccessModelV5imageSo7UIImageCvg",
+                "moduleName": "EnrollLite",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:10EnrollLite25CardDetectionSuccessModelV",
+        "mangledName": "$s10EnrollLite25CardDetectionSuccessModelV",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "PassportDetectionSuccessModel",
+        "printedName": "PassportDetectionSuccessModel",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "image",
+            "printedName": "image",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UIImage",
+                "printedName": "UIKit.UIImage",
+                "usr": "c:objc(cs)UIImage"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10EnrollLite29PassportDetectionSuccessModelV5imageSo7UIImageCvp",
+            "mangledName": "$s10EnrollLite29PassportDetectionSuccessModelV5imageSo7UIImageCvp",
+            "moduleName": "EnrollLite",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UIImage",
+                    "printedName": "UIKit.UIImage",
+                    "usr": "c:objc(cs)UIImage"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10EnrollLite29PassportDetectionSuccessModelV5imageSo7UIImageCvg",
+                "mangledName": "$s10EnrollLite29PassportDetectionSuccessModelV5imageSo7UIImageCvg",
+                "moduleName": "EnrollLite",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:10EnrollLite29PassportDetectionSuccessModelV",
+        "mangledName": "$s10EnrollLite29PassportDetectionSuccessModelV",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "EnrollLiteError",
+        "printedName": "EnrollLiteError",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "message",
+            "printedName": "message",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10EnrollLite0aB5ErrorP7messageSSvp",
+            "mangledName": "$s10EnrollLite0aB5ErrorP7messageSSvp",
+            "moduleName": "EnrollLite",
+            "protocolReq": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10EnrollLite0aB5ErrorP7messageSSvg",
+                "mangledName": "$s10EnrollLite0aB5ErrorP7messageSSvg",
+                "moduleName": "EnrollLite",
+                "genericSig": "<τ_0_0 where τ_0_0 : EnrollLite.EnrollLiteError>",
+                "sugared_genericSig": "<Self where Self : EnrollLite.EnrollLiteError>",
+                "protocolReq": true,
+                "reqNewWitnessTableEntry": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10EnrollLite0aB5ErrorP7messageSSvs",
+                "mangledName": "$s10EnrollLite0aB5ErrorP7messageSSvs",
+                "moduleName": "EnrollLite",
+                "genericSig": "<τ_0_0 where τ_0_0 : EnrollLite.EnrollLiteError>",
+                "sugared_genericSig": "<Self where Self : EnrollLite.EnrollLiteError>",
+                "protocolReq": true,
+                "reqNewWitnessTableEntry": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10EnrollLite0aB5ErrorP7messageSSvM",
+                "mangledName": "$s10EnrollLite0aB5ErrorP7messageSSvM",
+                "moduleName": "EnrollLite",
+                "genericSig": "<τ_0_0 where τ_0_0 : EnrollLite.EnrollLiteError>",
+                "sugared_genericSig": "<Self where Self : EnrollLite.EnrollLiteError>",
+                "protocolReq": true,
+                "implicit": true,
+                "reqNewWitnessTableEntry": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(message:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:10EnrollLite0aB5ErrorP7messagexSS_tcfc",
+            "mangledName": "$s10EnrollLite0aB5ErrorP7messagexSS_tcfc",
+            "moduleName": "EnrollLite",
+            "genericSig": "<τ_0_0 where τ_0_0 : EnrollLite.EnrollLiteError>",
+            "sugared_genericSig": "<Self where Self : EnrollLite.EnrollLiteError>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "s:10EnrollLite0aB5ErrorP",
+        "mangledName": "$s10EnrollLite0aB5ErrorP",
+        "moduleName": "EnrollLite",
+        "genericSig": "<τ_0_0 : Swift.Error>",
+        "sugared_genericSig": "<Self : Swift.Error>",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Error",
+            "printedName": "Error",
+            "usr": "s:s5ErrorP",
+            "mangledName": "$ss5ErrorP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "LocalizationManager",
+        "printedName": "LocalizationManager",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "provider",
+            "printedName": "provider",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "[Swift.String : Swift.String]?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Dictionary",
+                    "printedName": "[Swift.String : Swift.String]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:SD"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10EnrollLite19LocalizationManagerC8providerSDyS2SGSgvpZ",
+            "mangledName": "$s10EnrollLite19LocalizationManagerC8providerSDyS2SGSgvpZ",
+            "moduleName": "EnrollLite",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "[Swift.String : Swift.String]?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Dictionary",
+                        "printedName": "[Swift.String : Swift.String]",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ],
+                        "usr": "s:SD"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10EnrollLite19LocalizationManagerC8providerSDyS2SGSgvgZ",
+                "mangledName": "$s10EnrollLite19LocalizationManagerC8providerSDyS2SGSgvgZ",
+                "moduleName": "EnrollLite",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "[Swift.String : Swift.String]?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Dictionary",
+                        "printedName": "[Swift.String : Swift.String]",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ],
+                        "usr": "s:SD"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10EnrollLite19LocalizationManagerC8providerSDyS2SGSgvsZ",
+                "mangledName": "$s10EnrollLite19LocalizationManagerC8providerSDyS2SGSgvsZ",
+                "moduleName": "EnrollLite",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10EnrollLite19LocalizationManagerC8providerSDyS2SGSgvMZ",
+                "mangledName": "$s10EnrollLite19LocalizationManagerC8providerSDyS2SGSgvMZ",
+                "moduleName": "EnrollLite",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "localizedString",
+            "printedName": "localizedString(forKey:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10EnrollLite19LocalizationManagerC15localizedString6forKeyS2S_tFZ",
+            "mangledName": "$s10EnrollLite19LocalizationManagerC15localizedString6forKeyS2S_tFZ",
+            "moduleName": "EnrollLite",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:10EnrollLite19LocalizationManagerC",
+        "mangledName": "$s10EnrollLite19LocalizationManagerC",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "hasMissingDesignatedInitializers": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Accelerate",
+        "printedName": "Accelerate",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "Import",
+        "name": "CoreMedia",
+        "printedName": "CoreMedia",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "AVFoundation",
+        "printedName": "AVFoundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "Import",
+        "name": "Vision",
+        "printedName": "Vision",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "AVFoundation",
+        "printedName": "AVFoundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "Import",
+        "name": "Vision",
+        "printedName": "Vision",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ObjectDetectionViewController",
+        "printedName": "ObjectDetectionViewController",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "viewDidLoad",
+            "printedName": "viewDidLoad()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@EnrollLite@objc(cs)ObjectDetectionViewController(im)viewDidLoad",
+            "mangledName": "$s10EnrollLite29ObjectDetectionViewControllerC11viewDidLoadyyF",
+            "moduleName": "EnrollLite",
+            "overriding": true,
+            "objc_name": "viewDidLoad",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Preconcurrency",
+              "Custom",
+              "AccessControl",
+              "Override"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "prefersStatusBarHidden",
+            "printedName": "prefersStatusBarHidden",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@EnrollLite@objc(cs)ObjectDetectionViewController(py)prefersStatusBarHidden",
+            "mangledName": "$s10EnrollLite29ObjectDetectionViewControllerC22prefersStatusBarHiddenSbvp",
+            "moduleName": "EnrollLite",
+            "overriding": true,
+            "objc_name": "prefersStatusBarHidden",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Preconcurrency",
+              "Custom",
+              "AccessControl",
+              "Override"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@EnrollLite@objc(cs)ObjectDetectionViewController(im)prefersStatusBarHidden",
+                "mangledName": "$s10EnrollLite29ObjectDetectionViewControllerC22prefersStatusBarHiddenSbvg",
+                "moduleName": "EnrollLite",
+                "overriding": true,
+                "objc_name": "prefersStatusBarHidden",
+                "declAttributes": [
+                  "Dynamic",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "viewDidAppear",
+            "printedName": "viewDidAppear(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@EnrollLite@objc(cs)ObjectDetectionViewController(im)viewDidAppear:",
+            "mangledName": "$s10EnrollLite29ObjectDetectionViewControllerC13viewDidAppearyySbF",
+            "moduleName": "EnrollLite",
+            "overriding": true,
+            "objc_name": "viewDidAppear:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Preconcurrency",
+              "Custom",
+              "AccessControl",
+              "Override"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "viewWillDisappear",
+            "printedName": "viewWillDisappear(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@EnrollLite@objc(cs)ObjectDetectionViewController(im)viewWillDisappear:",
+            "mangledName": "$s10EnrollLite29ObjectDetectionViewControllerC17viewWillDisappearyySbF",
+            "moduleName": "EnrollLite",
+            "overriding": true,
+            "objc_name": "viewWillDisappear:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Preconcurrency",
+              "Custom",
+              "AccessControl",
+              "Override"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "viewWillTransition",
+            "printedName": "viewWillTransition(to:with:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CGSize",
+                "printedName": "CoreFoundation.CGSize",
+                "usr": "c:@S@CGSize"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UIViewControllerTransitionCoordinator",
+                "printedName": "any UIKit.UIViewControllerTransitionCoordinator",
+                "usr": "c:objc(pl)UIViewControllerTransitionCoordinator"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@EnrollLite@objc(cs)ObjectDetectionViewController(im)viewWillTransitionToSize:withTransitionCoordinator:",
+            "mangledName": "$s10EnrollLite29ObjectDetectionViewControllerC18viewWillTransition2to4withySo6CGSizeV_So06UIViewfI11Coordinator_ptF",
+            "moduleName": "EnrollLite",
+            "overriding": true,
+            "objc_name": "viewWillTransitionToSize:withTransitionCoordinator:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Preconcurrency",
+              "Custom",
+              "AccessControl",
+              "Override"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "presentationControllerDidDismiss",
+            "printedName": "presentationControllerDidDismiss(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UIPresentationController",
+                "printedName": "UIKit.UIPresentationController",
+                "usr": "c:objc(cs)UIPresentationController"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@EnrollLite@objc(cs)ObjectDetectionViewController(im)presentationControllerDidDismiss:",
+            "mangledName": "$s10EnrollLite29ObjectDetectionViewControllerC012presentationF10DidDismissyySo014UIPresentationF0CF",
+            "moduleName": "EnrollLite",
+            "objc_name": "presentationControllerDidDismiss:",
+            "declAttributes": [
+              "ObjC",
+              "Preconcurrency",
+              "Custom",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(nibName:bundle:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ObjectDetectionViewController",
+                "printedName": "EnrollLite.ObjectDetectionViewController",
+                "usr": "c:@M@EnrollLite@objc(cs)ObjectDetectionViewController"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.Bundle?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bundle",
+                    "printedName": "Foundation.Bundle",
+                    "usr": "c:objc(cs)NSBundle"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@EnrollLite@objc(cs)ObjectDetectionViewController(im)initWithNibName:bundle:",
+            "mangledName": "$s10EnrollLite29ObjectDetectionViewControllerC7nibName6bundleACSSSg_So8NSBundleCSgtcfc",
+            "moduleName": "EnrollLite",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "initWithNibName:bundle:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Preconcurrency",
+              "Custom",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(coder:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "EnrollLite.ObjectDetectionViewController?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ObjectDetectionViewController",
+                    "printedName": "EnrollLite.ObjectDetectionViewController",
+                    "usr": "c:@M@EnrollLite@objc(cs)ObjectDetectionViewController"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NSCoder",
+                "printedName": "Foundation.NSCoder",
+                "usr": "c:objc(cs)NSCoder"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@EnrollLite@objc(cs)ObjectDetectionViewController(im)initWithCoder:",
+            "mangledName": "$s10EnrollLite29ObjectDetectionViewControllerC5coderACSgSo7NSCoderC_tcfc",
+            "moduleName": "EnrollLite",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "initWithCoder:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Preconcurrency",
+              "Custom",
+              "Required"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@EnrollLite@objc(cs)ObjectDetectionViewController",
+        "mangledName": "$s10EnrollLite29ObjectDetectionViewControllerC",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "Preconcurrency",
+          "Custom",
+          "AccessControl",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)UIViewController",
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "UIKit.UIViewController",
+          "UIKit.UIResponder",
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "UITraitChangeObservable",
+            "printedName": "UITraitChangeObservable",
+            "usr": "s:5UIKit23UITraitChangeObservableP",
+            "mangledName": "$s5UIKit23UITraitChangeObservableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CommonCrypto",
+        "printedName": "CommonCrypto",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "AVFoundation",
+        "printedName": "AVFoundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "Import",
+        "name": "Vision",
+        "printedName": "Vision",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "Import",
+        "name": "CoreImage",
+        "printedName": "CoreImage",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "VisionKit",
+        "printedName": "VisionKit",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "PassportDetectionManager",
+        "printedName": "PassportDetectionManager",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "delegate",
+            "printedName": "delegate",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "WeakStorage",
+                "printedName": "(any EnrollLite.PassportDetectionDelegate)?"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10EnrollLite24PassportDetectionManagerC8delegateAA0cD8Delegate_pSgvp",
+            "mangledName": "$s10EnrollLite24PassportDetectionManagerC8delegateAA0cD8Delegate_pSgvp",
+            "moduleName": "EnrollLite",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "ReferenceOwnership",
+              "AccessControl"
+            ],
+            "ownership": 1,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any EnrollLite.PassportDetectionDelegate)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PassportDetectionDelegate",
+                        "printedName": "any EnrollLite.PassportDetectionDelegate",
+                        "usr": "s:10EnrollLite25PassportDetectionDelegateP"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10EnrollLite24PassportDetectionManagerC8delegateAA0cD8Delegate_pSgvg",
+                "mangledName": "$s10EnrollLite24PassportDetectionManagerC8delegateAA0cD8Delegate_pSgvg",
+                "moduleName": "EnrollLite",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any EnrollLite.PassportDetectionDelegate)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PassportDetectionDelegate",
+                        "printedName": "any EnrollLite.PassportDetectionDelegate",
+                        "usr": "s:10EnrollLite25PassportDetectionDelegateP"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10EnrollLite24PassportDetectionManagerC8delegateAA0cD8Delegate_pSgvs",
+                "mangledName": "$s10EnrollLite24PassportDetectionManagerC8delegateAA0cD8Delegate_pSgvs",
+                "moduleName": "EnrollLite",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10EnrollLite24PassportDetectionManagerC8delegateAA0cD8Delegate_pSgvM",
+                "mangledName": "$s10EnrollLite24PassportDetectionManagerC8delegateAA0cD8Delegate_pSgvM",
+                "moduleName": "EnrollLite",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(delegate:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "PassportDetectionManager",
+                "printedName": "EnrollLite.PassportDetectionManager",
+                "usr": "c:@M@EnrollLite@objc(cs)PassportDetectionManager"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "(any EnrollLite.PassportDetectionDelegate)?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "PassportDetectionDelegate",
+                    "printedName": "any EnrollLite.PassportDetectionDelegate",
+                    "usr": "s:10EnrollLite25PassportDetectionDelegateP"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:10EnrollLite24PassportDetectionManagerC8delegateAcA0cD8Delegate_pSg_tKcfc",
+            "mangledName": "$s10EnrollLite24PassportDetectionManagerC8delegateAcA0cD8Delegate_pSg_tKcfc",
+            "moduleName": "EnrollLite",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "startPassportDetection",
+            "printedName": "startPassportDetection()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "UIKit.UIViewController?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UIViewController",
+                    "printedName": "UIKit.UIViewController",
+                    "usr": "c:objc(cs)UIViewController"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10EnrollLite24PassportDetectionManagerC05startcD0So16UIViewControllerCSgyF",
+            "mangledName": "$s10EnrollLite24PassportDetectionManagerC05startcD0So16UIViewControllerCSgyF",
+            "moduleName": "EnrollLite",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "PassportDetectionManager",
+                "printedName": "EnrollLite.PassportDetectionManager",
+                "usr": "c:@M@EnrollLite@objc(cs)PassportDetectionManager"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@EnrollLite@objc(cs)PassportDetectionManager(im)init",
+            "mangledName": "$s10EnrollLite24PassportDetectionManagerCACycfc",
+            "moduleName": "EnrollLite",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@EnrollLite@objc(cs)PassportDetectionManager",
+        "mangledName": "$s10EnrollLite24PassportDetectionManagerC",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "VisionKit",
+        "printedName": "VisionKit",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "EnrollLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Vision",
+        "printedName": "Vision",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      },
+      {
+        "kind": "Import",
+        "name": "DeveloperToolsSupport",
+        "printedName": "DeveloperToolsSupport",
+        "declKind": "Import",
+        "moduleName": "EnrollLite"
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1426,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1498,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1639,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1685,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "Array",
+      "offset": 1736,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1777,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1806,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "Array",
+      "offset": 1917,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "FloatLiteral",
+      "offset": 1956,
+      "length": 3,
+      "value": "1.0"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "BooleanLiteral",
+      "offset": 2225,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "StringLiteral",
+      "offset": 2298,
+      "length": 14,
+      "value": "\"Avenir-Heavy\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2320,
+      "length": 2,
+      "value": "30"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "BooleanLiteral",
+      "offset": 2598,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "BooleanLiteral",
+      "offset": 2633,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "FloatLiteral",
+      "offset": 2885,
+      "length": 3,
+      "value": "2.0"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "BooleanLiteral",
+      "offset": 2946,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "StringLiteral",
+      "offset": 3065,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "Array",
+      "offset": 3342,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "FloatLiteral",
+      "offset": 3430,
+      "length": 3,
+      "value": "0.0"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "IntegerLiteral",
+      "offset": 4809,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "IntegerLiteral",
+      "offset": 4874,
+      "length": 2,
+      "value": "10"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "IntegerLiteral",
+      "offset": 5578,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "IntegerLiteral",
+      "offset": 5662,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "BooleanLiteral",
+      "offset": 5997,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "BooleanLiteral",
+      "offset": 6117,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "BooleanLiteral",
+      "offset": 21951,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "IntegerLiteral",
+      "offset": 22644,
+      "length": 1,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "BooleanLiteral",
+      "offset": 24672,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "FloatLiteral",
+      "offset": 38625,
+      "length": 3,
+      "value": "0.0"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "FloatLiteral",
+      "offset": 38666,
+      "length": 3,
+      "value": "0.0"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "FloatLiteral",
+      "offset": 38707,
+      "length": 3,
+      "value": "0.0"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionViewController.swift",
+      "kind": "FloatLiteral",
+      "offset": 38748,
+      "length": 3,
+      "value": "0.0"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/CardDetection\/CardDetectionSettings.swift",
+      "kind": "FloatLiteral",
+      "offset": 458,
+      "length": 3,
+      "value": "0.1"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/CardDetection\/CardDetectionSettings.swift",
+      "kind": "IntegerLiteral",
+      "offset": 780,
+      "length": 8,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/CardDetection\/CardDetectionSettings.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1999,
+      "length": 1,
+      "value": "5"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/CardDetection\/Bundle+IDCardCamera.swift",
+      "kind": "StringLiteral",
+      "offset": 260,
+      "length": 23,
+      "value": "\"IDCardCameraResources\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/CardDetection\/Bundle+IDCardCamera.swift",
+      "kind": "StringLiteral",
+      "offset": 300,
+      "length": 8,
+      "value": "\"bundle\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/Core\/Constants\/Keys.swift",
+      "kind": "StringLiteral",
+      "offset": 182,
+      "length": 16,
+      "value": "\"centerYourFace\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/Core\/Constants\/Keys.swift",
+      "kind": "StringLiteral",
+      "offset": 251,
+      "length": 14,
+      "value": "\"lookStraight\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/Core\/Constants\/Keys.swift",
+      "kind": "StringLiteral",
+      "offset": 320,
+      "length": 16,
+      "value": "\"noFaceDetected\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/Core\/Constants\/Keys.swift",
+      "kind": "StringLiteral",
+      "offset": 391,
+      "length": 16,
+      "value": "\"oneFaceAllowed\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/Core\/Constants\/Keys.swift",
+      "kind": "StringLiteral",
+      "offset": 457,
+      "length": 11,
+      "value": "\"holdStill\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/Core\/Constants\/Keys.swift",
+      "kind": "StringLiteral",
+      "offset": 519,
+      "length": 12,
+      "value": "\"moveCloser\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/Core\/Constants\/Keys.swift",
+      "kind": "StringLiteral",
+      "offset": 579,
+      "length": 9,
+      "value": "\"moveFar\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/Core\/Constants\/Keys.swift",
+      "kind": "StringLiteral",
+      "offset": 647,
+      "length": 20,
+      "value": "\"centerYourDocument\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/Core\/Constants\/Keys.swift",
+      "kind": "StringLiteral",
+      "offset": 721,
+      "length": 15,
+      "value": "\"needMoreLight\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/Core\/Constants\/Keys.swift",
+      "kind": "StringLiteral",
+      "offset": 782,
+      "length": 7,
+      "value": "\"smile\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/Core\/Constants\/Keys.swift",
+      "kind": "StringLiteral",
+      "offset": 845,
+      "length": 17,
+      "value": "\"keepNaturalFace\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/Core\/Constants\/Keys.swift",
+      "kind": "StringLiteral",
+      "offset": 919,
+      "length": 18,
+      "value": "\"theImageIsBlurry\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/Core\/Constants\/Keys.swift",
+      "kind": "StringLiteral",
+      "offset": 982,
+      "length": 6,
+      "value": "\"wink\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/Core\/Constants\/Keys.swift",
+      "kind": "StringLiteral",
+      "offset": 1037,
+      "length": 10,
+      "value": "\"turnLeft\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/Core\/Constants\/Keys.swift",
+      "kind": "StringLiteral",
+      "offset": 1097,
+      "length": 11,
+      "value": "\"turnRight\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/Core\/Constants\/Keys.swift",
+      "kind": "StringLiteral",
+      "offset": 1155,
+      "length": 8,
+      "value": "\"lookUp\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/Core\/Constants\/Keys.swift",
+      "kind": "StringLiteral",
+      "offset": 1212,
+      "length": 10,
+      "value": "\"lookDown\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/Core\/Constants\/Globals.swift",
+      "kind": "BooleanLiteral",
+      "offset": 191,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/Core\/Constants\/Globals.swift",
+      "kind": "BooleanLiteral",
+      "offset": 227,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/Core\/Constants\/Globals.swift",
+      "kind": "BooleanLiteral",
+      "offset": 267,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/FaceDetection\/FaceDetectionManager.swift",
+      "kind": "BooleanLiteral",
+      "offset": 349,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/CardDetection\/ObjectDetectionSessionHandler.swift",
+      "kind": "StringLiteral",
+      "offset": 592,
+      "length": 42,
+      "value": "\"com.appliedrec.Ver-ID.RectangleDetection\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/CardDetection\/ObjectDetectionSessionHandler.swift",
+      "kind": "Array",
+      "offset": 648,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/CardDetection\/ObjectDetectionSessionHandler.swift",
+      "kind": "IntegerLiteral",
+      "offset": 809,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/CardDetection\/ObjectDetectionSessionHandler.swift",
+      "kind": "FloatLiteral",
+      "offset": 7526,
+      "length": 5,
+      "value": "100.0"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/EnrollLiteVerifier.swift",
+      "kind": "StringLiteral",
+      "offset": 242,
+      "length": 6,
+      "value": "\"json\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/Core\/EnrollLiteError\/EnrollLiteError.swift",
+      "kind": "StringLiteral",
+      "offset": 336,
+      "length": 49,
+      "value": "\"Document Scanner is not enabled in your license\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/Core\/EnrollLiteError\/EnrollLiteError.swift",
+      "kind": "StringLiteral",
+      "offset": 545,
+      "length": 45,
+      "value": "\"Face Scanner is not enabled in your license\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/Core\/EnrollLiteError\/EnrollLiteError.swift",
+      "kind": "StringLiteral",
+      "offset": 746,
+      "length": 27,
+      "value": "\"Enroll Lite License Error\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/Core\/License\/LicenseModels.swift",
+      "kind": "StringLiteral",
+      "offset": 368,
+      "length": 8,
+      "value": "\"eNROLL\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/CardDetection\/ObjectDetectionViewController.swift",
+      "kind": "IntegerLiteral",
+      "offset": 503,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/CardDetection\/ObjectDetectionViewController.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1606,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/Core\/License\/LicenseVerifier.swift",
+      "kind": "StringLiteral",
+      "offset": 333,
+      "length": 6,
+      "value": "\"json\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/CardDetection\/BaseCardDetectionViewController.swift",
+      "kind": "IntegerLiteral",
+      "offset": 696,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/CardDetection\/BaseCardDetectionViewController.swift",
+      "kind": "Array",
+      "offset": 873,
+      "length": 28,
+      "value": "[false, false, false, false]"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/CardDetection\/BaseCardDetectionViewController.swift",
+      "kind": "Array",
+      "offset": 955,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/CardDetection\/BaseCardDetectionViewController.swift",
+      "kind": "FloatLiteral",
+      "offset": 1004,
+      "length": 4,
+      "value": "10.0"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/CardDetection\/BaseCardDetectionViewController.swift",
+      "kind": "StringLiteral",
+      "offset": 1037,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/CardDetection\/BaseCardDetectionViewController.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1168,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/CardDetection\/BaseCardDetectionViewController.swift",
+      "kind": "StringLiteral",
+      "offset": 1266,
+      "length": 17,
+      "value": "\"Need more light\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/CardDetection\/BaseCardDetectionViewController.swift",
+      "kind": "FloatLiteral",
+      "offset": 1442,
+      "length": 3,
+      "value": "0.5"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/CardDetection\/BaseCardDetectionViewController.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1518,
+      "length": 2,
+      "value": "10"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/CardDetection\/BaseCardDetectionViewController.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1597,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Projects\/ios\/enroll-lite-framework\/EnrollLite\/features\/CardDetection\/BaseCardDetectionViewController.swift",
+      "kind": "FloatLiteral",
+      "offset": 16114,
+      "length": 5,
+      "value": "100.0"
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Library\/Developer\/Xcode\/DerivedData\/EnrollLite-gywijoarequvonahuwpfgqduzbak\/Build\/Intermediates.noindex\/ArchiveIntermediates\/EnrollLite\/IntermediateBuildFilesPath\/EnrollLite.build\/Release-iphonesimulator\/EnrollLite.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 730,
+      "length": 11,
+      "value": "\"torch_off\""
+    },
+    {
+      "filePath": "\/Users\/mariamismail\/Library\/Developer\/Xcode\/DerivedData\/EnrollLite-gywijoarequvonahuwpfgqduzbak\/Build\/Intermediates.noindex\/ArchiveIntermediates\/EnrollLite\/IntermediateBuildFilesPath\/EnrollLite.build\/Release-iphonesimulator\/EnrollLite.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 866,
+      "length": 10,
+      "value": "\"torch_on\""
+    }
+  ]
+}
