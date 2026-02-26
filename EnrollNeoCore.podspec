@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
  s.name             = "EnrollNeoCore"
-  s.version          = "1.0.2"
+  s.version          = "1.0.3"
   s.summary          = "An internally developed identity verification SDK for to be used in eNROLL framework."
   s.description      = "DESC
                        EnrollCoreFramework is a custom SDK that provides various detection functionalities including document, face, and passport detection.
@@ -33,10 +33,15 @@ Pod::Spec.new do |s|
   # Specify dependencies
   s.ios.deployment_target = '13.0'
   s.platform     = :ios, '13.0'
-  s.vendored_frameworks = s.version.to_s + "/EnrollNeoCore.xcframework"
+  s.vendored_frameworks = s.version.to_s + "/EnrollLite.xcframework"
+  
+ # Prevent CocoaPods from checking for simulator slices
+  s.pod_target_xcconfig = {
+    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 x86_64'
+  }
   s.dependency "GoogleMLKit/FaceDetection"
   s.dependency "lottie-ios"
-  #s.static_framework = true
+  s.static_framework = true
   #s.public_header_files = 'EnrollLite/**/*.h'
 
   # Frameworks and libraries your SDK depends on
