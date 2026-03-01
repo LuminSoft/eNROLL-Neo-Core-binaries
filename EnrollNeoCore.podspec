@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
  s.name             = "EnrollNeoCore"
-  s.version          = "1.0.5"
+  s.version          = "1.0.6"
   s.summary          = "An internally developed identity verification SDK for to be used in eNROLL framework."
   s.description      = "DESC
                        EnrollCoreFramework is a custom SDK that provides various detection functionalities including document, face, and passport detection.
@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.homepage         = "https://github.com/LuminSoft/eNROLL-Neo-Core-binaries" 
   s.license          = { :type => 'MIT', :file => 'LICENSE' } # Adjust as needed
   s.author           = { "Lumia Soft" => "Mariam.ismail@luminsoft.com" }
-  s.platform         = :ios, "13.0" # Set minimum iOS version as required
+  s.platform         = :ios, "15.5" # Set minimum iOS version as required
   s.source           = { :git => 'https://github.com/LuminSoft/eNROLL-Neo-Core-binaries.git', :tag => s.version.to_s }
  
   
@@ -31,8 +31,8 @@ Pod::Spec.new do |s|
  #
     
   # Specify dependencies
-  s.ios.deployment_target = '13.0'
-  s.platform     = :ios, '13.0'
+  s.ios.deployment_target = '15.5'
+  s.platform     = :ios, '15.5'
   s.vendored_frameworks = s.version.to_s + "/EnrollLite.xcframework"
   
  # Prevent CocoaPods from checking for simulator slices
