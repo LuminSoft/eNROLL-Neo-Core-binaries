@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
  s.name             = "EnrollNeoCore"
-  s.version          = "1.0.8"
+  s.version          = "1.0.9"
   s.summary          = "An internally developed identity verification SDK for to be used in eNROLL framework."
   s.description      = "DESC
                        EnrollCoreFramework is a custom SDK that provides various detection functionalities including document, face, and passport detection.
@@ -41,6 +41,9 @@ Pod::Spec.new do |s|
   }
   s.dependency "GoogleMLKit/FaceDetection"
   s.dependency "lottie-ios"
+  s.dependency "NFCPassportReader",git:'https://github.com/AndyQ/NFCPassportReader.git'
+  s.dependency "QKMRZScanner"
+
   s.static_framework = true
   #s.public_header_files = 'EnrollLite/**/*.h'
 
