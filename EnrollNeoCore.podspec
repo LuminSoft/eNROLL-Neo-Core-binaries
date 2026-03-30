@@ -1,14 +1,11 @@
 Pod::Spec.new do |s|
- s.name             = "EnrollNeoCore"
-  s.version          = "1.0.9"
+  s.name             = "EnrollNeoCore"
+  s.version          = "1.0.10"
   s.summary          = "An internally developed identity verification SDK for to be used in eNROLL framework."
-  s.description      = "DESC
-                       EnrollCoreFramework is a custom SDK that provides various detection functionalities including document, face, and passport detection.
-                       DESC"
+  s.description      = "EnrollCoreFramework is a custom SDK that provides various detection functionalities including document, face, and passport detection."
   s.homepage         = "https://github.com/LuminSoft/eNROLL-Neo-Core-binaries" 
   s.license          = { :type => 'MIT', :file => 'LICENSE' } # Adjust as needed
   s.author           = { "Lumia Soft" => "Mariam.ismail@luminsoft.com" }
-  s.platform         = :ios, "15.5" # Set minimum iOS version as required
   s.source           = { :git => 'https://github.com/LuminSoft/eNROLL-Neo-Core-binaries.git', :tag => s.version.to_s }
  
   
@@ -39,10 +36,7 @@ Pod::Spec.new do |s|
   s.pod_target_xcconfig = {
     'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 x86_64'
   }
-  s.dependency "GoogleMLKit/FaceDetection"
-  s.dependency "lottie-ios"
-  s.dependency "NFCPassportReader",git:'https://github.com/AndyQ/NFCPassportReader.git'
-  s.dependency "QKMRZScanner"
+
 
   s.static_framework = true
   #s.public_header_files = 'EnrollLite/**/*.h'
