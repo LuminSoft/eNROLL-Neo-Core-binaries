@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "EnrollNeoCore"
-  s.version          = "1.0.12"
+  s.version          = "1.0.13"
   s.summary          = "An internally developed identity verification SDK for to be used in eNROLL framework."
   s.description      = "EnrollCoreFramework is a custom SDK that provides various detection functionalities including document, face, and passport detection."
   s.homepage         = "https://github.com/LuminSoft/eNROLL-Neo-Core-binaries" 
