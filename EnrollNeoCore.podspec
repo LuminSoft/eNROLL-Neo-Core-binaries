@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "EnrollNeoCore"
-  s.version          = "1.0.15"
+  s.version          = "1.0.16"
   s.summary          = "An internally developed identity verification SDK for to be used in eNROLL framework."
   s.description      = "EnrollCoreFramework is a custom SDK that provides various detection functionalities including document, face, and passport detection."
   s.homepage         = "https://github.com/LuminSoft/eNROLL-Neo-Core-binaries" 
@@ -46,7 +46,10 @@ Pod::Spec.new do |s|
   #s.ios.frameworks   = ["UIKit", "Vision"]
   s.dependency "GoogleMLKit/FaceDetection"
   s.dependency "lottie-ios"
-  s.dependency "QKMRZScanner"
+  s.dependency "QKMRZParser", "~> 2.0.0"
+  s.dependency "SwiftyTesseract", "~> 3.1.3"
+
+   
 
   # For Swift compatibility
   #s.swift_version    = "5.0" # Specify the Swift version as needed
