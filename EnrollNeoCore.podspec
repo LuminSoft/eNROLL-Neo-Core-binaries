@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "EnrollNeoCore"
-  s.version          = "1.0.22"
+  s.version          = "1.0.23"
   s.summary          = "An internally developed identity verification SDK for to be used in eNROLL framework."
   s.description      = "EnrollCoreFramework is a custom SDK that provides various detection functionalities including document, face, and passport detection."
   s.homepage         = "https://github.com/LuminSoft/eNROLL-Neo-Core-binaries" 
@@ -34,7 +34,7 @@ Pod::Spec.new do |s|
   
  # Prevent CocoaPods from checking for simulator slices
   s.pod_target_xcconfig = {
-    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 x86_64'
+    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
   }
 
 
@@ -52,7 +52,8 @@ Pod::Spec.new do |s|
    
 
   # For Swift compatibility
-  #s.swift_version    = "5.0" # Specify the Swift version as needed
+  s.swift_versions = ['5.0']
+ 
 
 
 end
